@@ -1,0 +1,124 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <title>PetCenter</title>
+    <link rel="shortcut icon" type="image/x-icon" href="~/Web.ico" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta http-equiv="cache-control" content="no-cache" />
+    <meta http-equiv="pragma" content="no-cache" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+     <style type="text/css">
+        body {
+            margin-top:70px !important;
+            margin-bottom:40px !important;
+        }
+        #lblLogo {
+            color:#ffffff;
+            font-weight:normal;
+        }
+        #spanUserName {
+            font-size:11px
+        }
+    </style>
+
+    @Styles.Render("~/Content/bootstrap/css")
+    @Styles.Render("~/Content/site/css")
+    @Styles.Render("~/Content/menu/css")
+    @Styles.Render("~/Content/grid/css")
+
+    @RenderSection("CSS", required: false)
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/site")
+    @Scripts.Render("~/bundles/menu")
+    @Scripts.Render("~/bundles/grid")
+
+    @RenderSection("JavaScript", required: false)
+</head>
+<body>
+     @Html.Hidden("hdnRutaWeb",Url.Content("~"))
+    @{
+        String strOpcionAdministrarLugaresHospedaje = String.Format("{0}{1}",Url.Content("~"),"Lugar\\Planifica");
+        String strOpcionReservacionHospedaje = String.Format("{0}{1}", Url.Content("~"), "Reserva\\Busqueda");
+        String strOpcionServicioHospedajeConReserva = String.Format("{0}{1}", Url.Content("~"), "Hospedaje\\ConReserva");
+        String strOpcionServicioHospedajeSinReserva = String.Format("{0}{1}", Url.Content("~"), "Hospedaje\\SinReservaBusqueda");
+    }
+
+    <div id="ModalContainer"></div>
+
+    <div class="modal fade" id="pleaseWaitDialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title"><i class="fa fa-cog"></i> Procesando Información...</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="progress-container">
+                        <div class="progress progress-striped active">
+                            <div class="progress-bar progress-bar-success" style="width:0%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                </button>
+                <img id="imgLogo" src="~/Images/Logo.png" height="48" alt="Logo" />
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-left">
+                    <li><a href='#'><i class='fa fa-cog'></i> Operaciones <span class='caret'></span></a>
+                        <ul class='dropdown-menu'>
+                            <li><a href='@strOpcionReservacionHospedaje'>Reservación de Hospedaje</a>
+                            </li>
+                            <li><a href='#'>Servicio de Hospedaje <span class='caret'></a>
+                                <ul class='dropdown-menu'>
+                                    <li><a href='@strOpcionServicioHospedajeConReserva'>Hospedaje con Reserva</a>
+                                    </li>
+                                    <li><a href='@strOpcionServicioHospedajeSinReserva'>Hospedaje sin Reserva</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><a href='#'><i class='fa fa-user-secret'></i> Administración <span class='caret'></span></a>
+                        <ul class='dropdown-menu'>
+                            <li>
+                                <a href='@strOpcionAdministrarLugaresHospedaje'>Administrar Lugares Hospedaje</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="row">
+            @RenderBody()
+        </div>
+    </div>
+
+    @{
+        if (TempData["Mensaje"] != null)
+        {
+            <script type="text/javascript">
+                fncUtil_MensajeExito('@TempData["Mensaje"]');
+            </script>
+        }
+    }
+</body>
+</html>

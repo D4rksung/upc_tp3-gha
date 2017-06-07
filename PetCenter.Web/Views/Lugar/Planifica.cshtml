@@ -1,0 +1,60 @@
+﻿@model PetCenter.Web.Models.DTOGHA_Lugar_Estado
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section JavaScript
+{
+    @Scripts.Render("~/bundles/LugarPlanifica")
+}
+@using (Html.BeginForm("Planificar", "Lugar", FormMethod.Post, new { id = "form1", @class = "form-horizontal" }))
+{
+    <fieldset>
+        <legend><i class="fa fa-th-list"></i> Administrar Lugares Hospedaje</legend>
+        <div class="panel panel-primary panel-shadow">
+            <div class="panel-heading"><i class="fa fa-calendar"></i> Planificación anual</div>
+            <div class="panel-body form-horizontal">
+                <div class="form-inline">
+                    <div class="col-md-12">
+                        <div class="row">
+                            @Html.LabelFor(model => model.Periodo, new { @class = "col-md-3 control-label" })
+                            <div class="col-md-2">
+                                <div class="input-group">
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-default btn-number" data-type="minus" data-field="Periodo">
+                                            <span class="glyphicon glyphicon-minus"></span>
+                                        </button>
+                                    </span>
+                                    @Html.TextBoxFor(model => model.Periodo, new { @class = "form-control input-number", data_message = "Required", maxlength = "4", min = "0", max = "9999" })
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-default btn-number" data-type="plus" data-field="Periodo">
+                                            <span class="glyphicon glyphicon-plus"></span>
+                                        </button>
+                                    </span>
+                                </div>
+                                @Html.ValidationMessageFor(model => model.Periodo, "", new { @class = "ErrorSummary" })
+                            </div>
+                            <div class="col-md-2">
+                                <button id="btnValidar" class="btn btn-primary">
+                                    <span class="glyphicon glyphicon-check"></span> Validar Periodo
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ErrorSummary">
+                    @Html.ValidationSummary(true)
+                    @Html.AntiForgeryToken()
+                </div>
+            </div>
+            <div class="panel-footer">
+                <button id="btnProgramar" class="btn btn-primary" autofocus>
+                    <span class="glyphicon glyphicon-calendar"></span> Programar todos los lugares como disponibles
+                </button>
+            </div>
+        </div>
+        <div>
+            <table id="jqGrid_lista_A"></table>
+            <div id="jqGrid_pager_A"></div>
+        </div>
+    </fieldset>
+}

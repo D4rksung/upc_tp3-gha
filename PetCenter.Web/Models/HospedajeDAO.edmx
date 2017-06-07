@@ -1,0 +1,826 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="BDPetCenterModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="BDPetCenterModelStoreContainer">
+          <EntitySet Name="GCP_Cliente" EntityType="BDPetCenterModel.Store.GCP_Cliente" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="GCP_Especie" EntityType="BDPetCenterModel.Store.GCP_Especie" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="GCP_Mascota" EntityType="BDPetCenterModel.Store.GCP_Mascota" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="GCP_Raza" EntityType="BDPetCenterModel.Store.GCP_Raza" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="GHA_Hospedaje" EntityType="BDPetCenterModel.Store.GHA_Hospedaje" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="GHA_Lugar" EntityType="BDPetCenterModel.Store.GHA_Lugar" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="GHA_Lugar_Estado" EntityType="BDPetCenterModel.Store.GHA_Lugar_Estado" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="GHA_Lugar_Hospedaje" EntityType="BDPetCenterModel.Store.GHA_Lugar_Hospedaje" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="GHA_Lugar_Reserva" EntityType="BDPetCenterModel.Store.GHA_Lugar_Reserva" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="GHA_Reserva" EntityType="BDPetCenterModel.Store.GHA_Reserva" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_GCP_Mascota_GCP_Cliente" Association="BDPetCenterModel.Store.FK_GCP_Mascota_GCP_Cliente">
+            <End Role="GCP_Cliente" EntitySet="GCP_Cliente" />
+            <End Role="GCP_Mascota" EntitySet="GCP_Mascota" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GCP_Mascota_GCP_Raza" Association="BDPetCenterModel.Store.FK_GCP_Mascota_GCP_Raza">
+            <End Role="GCP_Raza" EntitySet="GCP_Raza" />
+            <End Role="GCP_Mascota" EntitySet="GCP_Mascota" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GCP_Raza_GCP_Especie" Association="BDPetCenterModel.Store.FK_GCP_Raza_GCP_Especie">
+            <End Role="GCP_Especie" EntitySet="GCP_Especie" />
+            <End Role="GCP_Raza" EntitySet="GCP_Raza" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GHA_Hospedaje_GCP_Cliente" Association="BDPetCenterModel.Store.FK_GHA_Hospedaje_GCP_Cliente">
+            <End Role="GCP_Cliente" EntitySet="GCP_Cliente" />
+            <End Role="GHA_Hospedaje" EntitySet="GHA_Hospedaje" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GHA_Hospedaje_GCP_Mascota" Association="BDPetCenterModel.Store.FK_GHA_Hospedaje_GCP_Mascota">
+            <End Role="GCP_Mascota" EntitySet="GCP_Mascota" />
+            <End Role="GHA_Hospedaje" EntitySet="GHA_Hospedaje" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GHA_Hospedaje_GHA_Reserva" Association="BDPetCenterModel.Store.FK_GHA_Hospedaje_GHA_Reserva">
+            <End Role="GHA_Reserva" EntitySet="GHA_Reserva" />
+            <End Role="GHA_Hospedaje" EntitySet="GHA_Hospedaje" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GHA_Lugar_Estado_Lugar" Association="BDPetCenterModel.Store.FK_GHA_Lugar_Estado_Lugar">
+            <End Role="GHA_Lugar" EntitySet="GHA_Lugar" />
+            <End Role="GHA_Lugar_Estado" EntitySet="GHA_Lugar_Estado" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GHA_Lugar_Hospedaje_GHA_Hospedaje" Association="BDPetCenterModel.Store.FK_GHA_Lugar_Hospedaje_GHA_Hospedaje">
+            <End Role="GHA_Hospedaje" EntitySet="GHA_Hospedaje" />
+            <End Role="GHA_Lugar_Hospedaje" EntitySet="GHA_Lugar_Hospedaje" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GHA_Lugar_Hospedaje_GHA_Lugar" Association="BDPetCenterModel.Store.FK_GHA_Lugar_Hospedaje_GHA_Lugar">
+            <End Role="GHA_Lugar" EntitySet="GHA_Lugar" />
+            <End Role="GHA_Lugar_Hospedaje" EntitySet="GHA_Lugar_Hospedaje" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GHA_Lugar_Reserva_GHA_Lugar" Association="BDPetCenterModel.Store.FK_GHA_Lugar_Reserva_GHA_Lugar">
+            <End Role="GHA_Lugar" EntitySet="GHA_Lugar" />
+            <End Role="GHA_Lugar_Reserva" EntitySet="GHA_Lugar_Reserva" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GHA_Lugar_Reserva_GHA_Reserva" Association="BDPetCenterModel.Store.FK_GHA_Lugar_Reserva_GHA_Reserva">
+            <End Role="GHA_Reserva" EntitySet="GHA_Reserva" />
+            <End Role="GHA_Lugar_Reserva" EntitySet="GHA_Lugar_Reserva" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GHA_Reserva_GCP_Cliente" Association="BDPetCenterModel.Store.FK_GHA_Reserva_GCP_Cliente">
+            <End Role="GCP_Cliente" EntitySet="GCP_Cliente" />
+            <End Role="GHA_Reserva" EntitySet="GHA_Reserva" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GHA_Reserva_GCP_Mascota" Association="BDPetCenterModel.Store.FK_GHA_Reserva_GCP_Mascota">
+            <End Role="GCP_Mascota" EntitySet="GCP_Mascota" />
+            <End Role="GHA_Reserva" EntitySet="GHA_Reserva" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="GCP_Cliente">
+          <Key>
+            <PropertyRef Name="CodigoCliente" />
+          </Key>
+          <Property Name="CodigoCliente" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="NombreCliente" Type="varchar" Nullable="false" MaxLength="150" />
+          <Property Name="DireccionCliente" Type="varchar" Nullable="false" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="GCP_Especie">
+          <Key>
+            <PropertyRef Name="CodigoEspecie" />
+          </Key>
+          <Property Name="CodigoEspecie" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="DescripcionEspecie" Type="varchar" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="GCP_Mascota">
+          <Key>
+            <PropertyRef Name="CodigoMascota" />
+          </Key>
+          <Property Name="CodigoMascota" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CodigoCliente" Type="int" Nullable="false" />
+          <Property Name="CodigoRaza" Type="int" Nullable="false" />
+          <Property Name="NombreMascota" Type="varchar" Nullable="false" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="GCP_Raza">
+          <Key>
+            <PropertyRef Name="CodigoRaza" />
+          </Key>
+          <Property Name="CodigoRaza" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CodigoEspecie" Type="int" Nullable="false" />
+          <Property Name="NombreRaza" Type="varchar" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="GHA_Hospedaje">
+          <Key>
+            <PropertyRef Name="CodigoHospedaje" />
+          </Key>
+          <Property Name="CodigoHospedaje" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CodigoReserva" Type="bigint" />
+          <Property Name="CodigoCliente" Type="int" Nullable="false" />
+          <Property Name="CodigoMascota" Type="int" Nullable="false" />
+          <Property Name="FechaRegistro" Type="date" Nullable="false" />
+          <Property Name="EstadoHospedaje" Type="smallint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GHA_Lugar">
+          <Key>
+            <PropertyRef Name="CodigoLugar" />
+          </Key>
+          <Property Name="CodigoLugar" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="DescripcionLugar" Type="varchar" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="GHA_Lugar_Estado">
+          <Key>
+            <PropertyRef Name="CodigoLugarEstado" />
+          </Key>
+          <Property Name="CodigoLugarEstado" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CodigoLugar" Type="bigint" Nullable="false" />
+          <Property Name="Estado_lugar" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="Periodo" Type="int" Nullable="false" />
+          <Property Name="FechaDia" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GHA_Lugar_Hospedaje">
+          <Key>
+            <PropertyRef Name="CodigoLugarHopedaje" />
+          </Key>
+          <Property Name="CodigoLugarHopedaje" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CodigoHospedaje" Type="bigint" Nullable="false" />
+          <Property Name="CodigoLugar" Type="bigint" Nullable="false" />
+          <Property Name="FechaInicio" Type="date" Nullable="false" />
+          <Property Name="FechaFin" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GHA_Lugar_Reserva">
+          <Key>
+            <PropertyRef Name="CodigoLugarReserva" />
+          </Key>
+          <Property Name="CodigoLugarReserva" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CodigoReserva" Type="bigint" Nullable="false" />
+          <Property Name="CodigoLugar" Type="bigint" Nullable="false" />
+          <Property Name="FechaInicio" Type="date" Nullable="false" />
+          <Property Name="FechaFin" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GHA_Reserva">
+          <Key>
+            <PropertyRef Name="CodigoReserva" />
+          </Key>
+          <Property Name="CodigoReserva" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CodigoCliente" Type="int" Nullable="false" />
+          <Property Name="CodigoMascota" Type="int" Nullable="false" />
+          <Property Name="FechaRegistro" Type="date" Nullable="false" />
+          <Property Name="EstadoReserva" Type="smallint" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_GCP_Mascota_GCP_Cliente">
+          <End Role="GCP_Cliente" Type="BDPetCenterModel.Store.GCP_Cliente" Multiplicity="1" />
+          <End Role="GCP_Mascota" Type="BDPetCenterModel.Store.GCP_Mascota" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GCP_Cliente">
+              <PropertyRef Name="CodigoCliente" />
+            </Principal>
+            <Dependent Role="GCP_Mascota">
+              <PropertyRef Name="CodigoCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GCP_Mascota_GCP_Raza">
+          <End Role="GCP_Raza" Type="BDPetCenterModel.Store.GCP_Raza" Multiplicity="1" />
+          <End Role="GCP_Mascota" Type="BDPetCenterModel.Store.GCP_Mascota" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GCP_Raza">
+              <PropertyRef Name="CodigoRaza" />
+            </Principal>
+            <Dependent Role="GCP_Mascota">
+              <PropertyRef Name="CodigoRaza" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GCP_Raza_GCP_Especie">
+          <End Role="GCP_Especie" Type="BDPetCenterModel.Store.GCP_Especie" Multiplicity="1" />
+          <End Role="GCP_Raza" Type="BDPetCenterModel.Store.GCP_Raza" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GCP_Especie">
+              <PropertyRef Name="CodigoEspecie" />
+            </Principal>
+            <Dependent Role="GCP_Raza">
+              <PropertyRef Name="CodigoEspecie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GHA_Hospedaje_GCP_Cliente">
+          <End Role="GCP_Cliente" Type="BDPetCenterModel.Store.GCP_Cliente" Multiplicity="1" />
+          <End Role="GHA_Hospedaje" Type="BDPetCenterModel.Store.GHA_Hospedaje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GCP_Cliente">
+              <PropertyRef Name="CodigoCliente" />
+            </Principal>
+            <Dependent Role="GHA_Hospedaje">
+              <PropertyRef Name="CodigoCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GHA_Hospedaje_GCP_Mascota">
+          <End Role="GCP_Mascota" Type="BDPetCenterModel.Store.GCP_Mascota" Multiplicity="1" />
+          <End Role="GHA_Hospedaje" Type="BDPetCenterModel.Store.GHA_Hospedaje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GCP_Mascota">
+              <PropertyRef Name="CodigoMascota" />
+            </Principal>
+            <Dependent Role="GHA_Hospedaje">
+              <PropertyRef Name="CodigoMascota" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GHA_Hospedaje_GHA_Reserva">
+          <End Role="GHA_Reserva" Type="BDPetCenterModel.Store.GHA_Reserva" Multiplicity="0..1" />
+          <End Role="GHA_Hospedaje" Type="BDPetCenterModel.Store.GHA_Hospedaje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GHA_Reserva">
+              <PropertyRef Name="CodigoReserva" />
+            </Principal>
+            <Dependent Role="GHA_Hospedaje">
+              <PropertyRef Name="CodigoReserva" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GHA_Lugar_Estado_Lugar">
+          <End Role="GHA_Lugar" Type="BDPetCenterModel.Store.GHA_Lugar" Multiplicity="1" />
+          <End Role="GHA_Lugar_Estado" Type="BDPetCenterModel.Store.GHA_Lugar_Estado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GHA_Lugar">
+              <PropertyRef Name="CodigoLugar" />
+            </Principal>
+            <Dependent Role="GHA_Lugar_Estado">
+              <PropertyRef Name="CodigoLugar" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GHA_Lugar_Hospedaje_GHA_Hospedaje">
+          <End Role="GHA_Hospedaje" Type="BDPetCenterModel.Store.GHA_Hospedaje" Multiplicity="1" />
+          <End Role="GHA_Lugar_Hospedaje" Type="BDPetCenterModel.Store.GHA_Lugar_Hospedaje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GHA_Hospedaje">
+              <PropertyRef Name="CodigoHospedaje" />
+            </Principal>
+            <Dependent Role="GHA_Lugar_Hospedaje">
+              <PropertyRef Name="CodigoHospedaje" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GHA_Lugar_Hospedaje_GHA_Lugar">
+          <End Role="GHA_Lugar" Type="BDPetCenterModel.Store.GHA_Lugar" Multiplicity="1" />
+          <End Role="GHA_Lugar_Hospedaje" Type="BDPetCenterModel.Store.GHA_Lugar_Hospedaje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GHA_Lugar">
+              <PropertyRef Name="CodigoLugar" />
+            </Principal>
+            <Dependent Role="GHA_Lugar_Hospedaje">
+              <PropertyRef Name="CodigoLugar" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GHA_Lugar_Reserva_GHA_Lugar">
+          <End Role="GHA_Lugar" Type="BDPetCenterModel.Store.GHA_Lugar" Multiplicity="1" />
+          <End Role="GHA_Lugar_Reserva" Type="BDPetCenterModel.Store.GHA_Lugar_Reserva" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GHA_Lugar">
+              <PropertyRef Name="CodigoLugar" />
+            </Principal>
+            <Dependent Role="GHA_Lugar_Reserva">
+              <PropertyRef Name="CodigoLugar" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GHA_Lugar_Reserva_GHA_Reserva">
+          <End Role="GHA_Reserva" Type="BDPetCenterModel.Store.GHA_Reserva" Multiplicity="1" />
+          <End Role="GHA_Lugar_Reserva" Type="BDPetCenterModel.Store.GHA_Lugar_Reserva" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GHA_Reserva">
+              <PropertyRef Name="CodigoReserva" />
+            </Principal>
+            <Dependent Role="GHA_Lugar_Reserva">
+              <PropertyRef Name="CodigoReserva" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GHA_Reserva_GCP_Cliente">
+          <End Role="GCP_Cliente" Type="BDPetCenterModel.Store.GCP_Cliente" Multiplicity="1" />
+          <End Role="GHA_Reserva" Type="BDPetCenterModel.Store.GHA_Reserva" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GCP_Cliente">
+              <PropertyRef Name="CodigoCliente" />
+            </Principal>
+            <Dependent Role="GHA_Reserva">
+              <PropertyRef Name="CodigoCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GHA_Reserva_GCP_Mascota">
+          <End Role="GCP_Mascota" Type="BDPetCenterModel.Store.GCP_Mascota" Multiplicity="1" />
+          <End Role="GHA_Reserva" Type="BDPetCenterModel.Store.GHA_Reserva" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GCP_Mascota">
+              <PropertyRef Name="CodigoMascota" />
+            </Principal>
+            <Dependent Role="GHA_Reserva">
+              <PropertyRef Name="CodigoMascota" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="usp_GrabarHospedaje" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CodigoReserva" Type="bigint" Mode="In" />
+          <Parameter Name="CodigoCliente" Type="int" Mode="In" />
+          <Parameter Name="CodigoMascota" Type="int" Mode="In" />
+          <Parameter Name="CodigoLugar" Type="bigint" Mode="In" />
+          <Parameter Name="FechaInicio" Type="date" Mode="In" />
+          <Parameter Name="FechaFin" Type="date" Mode="In" />
+        </Function>
+        <Function Name="usp_GrabarReserva" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CodigoCliente" Type="int" Mode="In" />
+          <Parameter Name="CodigoMascota" Type="int" Mode="In" />
+          <Parameter Name="CodigoLugar" Type="bigint" Mode="In" />
+          <Parameter Name="FechaInicio" Type="date" Mode="In" />
+          <Parameter Name="FechaFin" Type="date" Mode="In" />
+        </Function>
+        <Function Name="usp_PlanificarHospedaje" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Anio" Type="int" Mode="In" />
+        </Function>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BDPetCenterModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="BDPetCenterEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="GCP_Cliente" EntityType="BDPetCenterModel.GCP_Cliente" />
+          <EntitySet Name="GCP_Especie" EntityType="BDPetCenterModel.GCP_Especie" />
+          <EntitySet Name="GCP_Mascota" EntityType="BDPetCenterModel.GCP_Mascota" />
+          <EntitySet Name="GCP_Raza" EntityType="BDPetCenterModel.GCP_Raza" />
+          <EntitySet Name="GHA_Hospedaje" EntityType="BDPetCenterModel.GHA_Hospedaje" />
+          <EntitySet Name="GHA_Lugar" EntityType="BDPetCenterModel.GHA_Lugar" />
+          <EntitySet Name="GHA_Lugar_Estado" EntityType="BDPetCenterModel.GHA_Lugar_Estado" />
+          <EntitySet Name="GHA_Lugar_Hospedaje" EntityType="BDPetCenterModel.GHA_Lugar_Hospedaje" />
+          <EntitySet Name="GHA_Lugar_Reserva" EntityType="BDPetCenterModel.GHA_Lugar_Reserva" />
+          <EntitySet Name="GHA_Reserva" EntityType="BDPetCenterModel.GHA_Reserva" />
+          <AssociationSet Name="FK_GCP_Mascota_GCP_Cliente" Association="BDPetCenterModel.FK_GCP_Mascota_GCP_Cliente">
+            <End Role="GCP_Cliente" EntitySet="GCP_Cliente" />
+            <End Role="GCP_Mascota" EntitySet="GCP_Mascota" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GHA_Hospedaje_GCP_Cliente" Association="BDPetCenterModel.FK_GHA_Hospedaje_GCP_Cliente">
+            <End Role="GCP_Cliente" EntitySet="GCP_Cliente" />
+            <End Role="GHA_Hospedaje" EntitySet="GHA_Hospedaje" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GHA_Reserva_GCP_Cliente" Association="BDPetCenterModel.FK_GHA_Reserva_GCP_Cliente">
+            <End Role="GCP_Cliente" EntitySet="GCP_Cliente" />
+            <End Role="GHA_Reserva" EntitySet="GHA_Reserva" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GCP_Raza_GCP_Especie" Association="BDPetCenterModel.FK_GCP_Raza_GCP_Especie">
+            <End Role="GCP_Especie" EntitySet="GCP_Especie" />
+            <End Role="GCP_Raza" EntitySet="GCP_Raza" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GCP_Mascota_GCP_Raza" Association="BDPetCenterModel.FK_GCP_Mascota_GCP_Raza">
+            <End Role="GCP_Raza" EntitySet="GCP_Raza" />
+            <End Role="GCP_Mascota" EntitySet="GCP_Mascota" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GHA_Hospedaje_GCP_Mascota" Association="BDPetCenterModel.FK_GHA_Hospedaje_GCP_Mascota">
+            <End Role="GCP_Mascota" EntitySet="GCP_Mascota" />
+            <End Role="GHA_Hospedaje" EntitySet="GHA_Hospedaje" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GHA_Reserva_GCP_Mascota" Association="BDPetCenterModel.FK_GHA_Reserva_GCP_Mascota">
+            <End Role="GCP_Mascota" EntitySet="GCP_Mascota" />
+            <End Role="GHA_Reserva" EntitySet="GHA_Reserva" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GHA_Hospedaje_GHA_Reserva" Association="BDPetCenterModel.FK_GHA_Hospedaje_GHA_Reserva">
+            <End Role="GHA_Reserva" EntitySet="GHA_Reserva" />
+            <End Role="GHA_Hospedaje" EntitySet="GHA_Hospedaje" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GHA_Lugar_Hospedaje_GHA_Hospedaje" Association="BDPetCenterModel.FK_GHA_Lugar_Hospedaje_GHA_Hospedaje">
+            <End Role="GHA_Hospedaje" EntitySet="GHA_Hospedaje" />
+            <End Role="GHA_Lugar_Hospedaje" EntitySet="GHA_Lugar_Hospedaje" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GHA_Lugar_Estado_Lugar" Association="BDPetCenterModel.FK_GHA_Lugar_Estado_Lugar">
+            <End Role="GHA_Lugar" EntitySet="GHA_Lugar" />
+            <End Role="GHA_Lugar_Estado" EntitySet="GHA_Lugar_Estado" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GHA_Lugar_Hospedaje_GHA_Lugar" Association="BDPetCenterModel.FK_GHA_Lugar_Hospedaje_GHA_Lugar">
+            <End Role="GHA_Lugar" EntitySet="GHA_Lugar" />
+            <End Role="GHA_Lugar_Hospedaje" EntitySet="GHA_Lugar_Hospedaje" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GHA_Lugar_Reserva_GHA_Lugar" Association="BDPetCenterModel.FK_GHA_Lugar_Reserva_GHA_Lugar">
+            <End Role="GHA_Lugar" EntitySet="GHA_Lugar" />
+            <End Role="GHA_Lugar_Reserva" EntitySet="GHA_Lugar_Reserva" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GHA_Lugar_Reserva_GHA_Reserva" Association="BDPetCenterModel.FK_GHA_Lugar_Reserva_GHA_Reserva">
+            <End Role="GHA_Reserva" EntitySet="GHA_Reserva" />
+            <End Role="GHA_Lugar_Reserva" EntitySet="GHA_Lugar_Reserva" />
+          </AssociationSet>
+          <FunctionImport Name="usp_GrabarHospedaje">
+            <Parameter Name="CodigoReserva" Mode="In" Type="Int64" />
+            <Parameter Name="CodigoCliente" Mode="In" Type="Int32" />
+            <Parameter Name="CodigoMascota" Mode="In" Type="Int32" />
+            <Parameter Name="CodigoLugar" Mode="In" Type="Int64" />
+            <Parameter Name="FechaInicio" Mode="In" Type="DateTime" />
+            <Parameter Name="FechaFin" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="usp_GrabarReserva">
+            <Parameter Name="CodigoCliente" Mode="In" Type="Int32" />
+            <Parameter Name="CodigoMascota" Mode="In" Type="Int32" />
+            <Parameter Name="CodigoLugar" Mode="In" Type="Int64" />
+            <Parameter Name="FechaInicio" Mode="In" Type="DateTime" />
+            <Parameter Name="FechaFin" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="usp_PlanificarHospedaje">
+            <Parameter Name="Anio" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <EntityType Name="GCP_Cliente">
+          <Key>
+            <PropertyRef Name="CodigoCliente" />
+          </Key>
+          <Property Name="CodigoCliente" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="NombreCliente" Type="String" Nullable="false" MaxLength="150" Unicode="false" FixedLength="false" />
+          <Property Name="DireccionCliente" Type="String" Nullable="false" MaxLength="150" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="GCP_Mascota" Relationship="BDPetCenterModel.FK_GCP_Mascota_GCP_Cliente" FromRole="GCP_Cliente" ToRole="GCP_Mascota" />
+          <NavigationProperty Name="GHA_Hospedaje" Relationship="BDPetCenterModel.FK_GHA_Hospedaje_GCP_Cliente" FromRole="GCP_Cliente" ToRole="GHA_Hospedaje" />
+          <NavigationProperty Name="GHA_Reserva" Relationship="BDPetCenterModel.FK_GHA_Reserva_GCP_Cliente" FromRole="GCP_Cliente" ToRole="GHA_Reserva" />
+        </EntityType>
+        <EntityType Name="GCP_Especie">
+          <Key>
+            <PropertyRef Name="CodigoEspecie" />
+          </Key>
+          <Property Name="CodigoEspecie" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="DescripcionEspecie" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="GCP_Raza" Relationship="BDPetCenterModel.FK_GCP_Raza_GCP_Especie" FromRole="GCP_Especie" ToRole="GCP_Raza" />
+        </EntityType>
+        <EntityType Name="GCP_Mascota">
+          <Key>
+            <PropertyRef Name="CodigoMascota" />
+          </Key>
+          <Property Name="CodigoMascota" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="CodigoCliente" Type="Int32" Nullable="false" />
+          <Property Name="CodigoRaza" Type="Int32" Nullable="false" />
+          <Property Name="NombreMascota" Type="String" Nullable="false" MaxLength="150" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="GCP_Cliente" Relationship="BDPetCenterModel.FK_GCP_Mascota_GCP_Cliente" FromRole="GCP_Mascota" ToRole="GCP_Cliente" />
+          <NavigationProperty Name="GCP_Raza" Relationship="BDPetCenterModel.FK_GCP_Mascota_GCP_Raza" FromRole="GCP_Mascota" ToRole="GCP_Raza" />
+          <NavigationProperty Name="GHA_Hospedaje" Relationship="BDPetCenterModel.FK_GHA_Hospedaje_GCP_Mascota" FromRole="GCP_Mascota" ToRole="GHA_Hospedaje" />
+          <NavigationProperty Name="GHA_Reserva" Relationship="BDPetCenterModel.FK_GHA_Reserva_GCP_Mascota" FromRole="GCP_Mascota" ToRole="GHA_Reserva" />
+        </EntityType>
+        <EntityType Name="GCP_Raza">
+          <Key>
+            <PropertyRef Name="CodigoRaza" />
+          </Key>
+          <Property Name="CodigoRaza" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="CodigoEspecie" Type="Int32" Nullable="false" />
+          <Property Name="NombreRaza" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="GCP_Especie" Relationship="BDPetCenterModel.FK_GCP_Raza_GCP_Especie" FromRole="GCP_Raza" ToRole="GCP_Especie" />
+          <NavigationProperty Name="GCP_Mascota" Relationship="BDPetCenterModel.FK_GCP_Mascota_GCP_Raza" FromRole="GCP_Raza" ToRole="GCP_Mascota" />
+        </EntityType>
+        <EntityType Name="GHA_Hospedaje">
+          <Key>
+            <PropertyRef Name="CodigoHospedaje" />
+          </Key>
+          <Property Name="CodigoHospedaje" Type="Int64" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="CodigoReserva" Type="Int64" />
+          <Property Name="CodigoCliente" Type="Int32" Nullable="false" />
+          <Property Name="CodigoMascota" Type="Int32" Nullable="false" />
+          <Property Name="FechaRegistro" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="EstadoHospedaje" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="GCP_Cliente" Relationship="BDPetCenterModel.FK_GHA_Hospedaje_GCP_Cliente" FromRole="GHA_Hospedaje" ToRole="GCP_Cliente" />
+          <NavigationProperty Name="GCP_Mascota" Relationship="BDPetCenterModel.FK_GHA_Hospedaje_GCP_Mascota" FromRole="GHA_Hospedaje" ToRole="GCP_Mascota" />
+          <NavigationProperty Name="GHA_Reserva" Relationship="BDPetCenterModel.FK_GHA_Hospedaje_GHA_Reserva" FromRole="GHA_Hospedaje" ToRole="GHA_Reserva" />
+          <NavigationProperty Name="GHA_Lugar_Hospedaje" Relationship="BDPetCenterModel.FK_GHA_Lugar_Hospedaje_GHA_Hospedaje" FromRole="GHA_Hospedaje" ToRole="GHA_Lugar_Hospedaje" />
+        </EntityType>
+        <EntityType Name="GHA_Lugar">
+          <Key>
+            <PropertyRef Name="CodigoLugar" />
+          </Key>
+          <Property Name="CodigoLugar" Type="Int64" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="DescripcionLugar" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="GHA_Lugar_Estado" Relationship="BDPetCenterModel.FK_GHA_Lugar_Estado_Lugar" FromRole="GHA_Lugar" ToRole="GHA_Lugar_Estado" />
+          <NavigationProperty Name="GHA_Lugar_Hospedaje" Relationship="BDPetCenterModel.FK_GHA_Lugar_Hospedaje_GHA_Lugar" FromRole="GHA_Lugar" ToRole="GHA_Lugar_Hospedaje" />
+          <NavigationProperty Name="GHA_Lugar_Reserva" Relationship="BDPetCenterModel.FK_GHA_Lugar_Reserva_GHA_Lugar" FromRole="GHA_Lugar" ToRole="GHA_Lugar_Reserva" />
+        </EntityType>
+        <EntityType Name="GHA_Lugar_Estado">
+          <Key>
+            <PropertyRef Name="CodigoLugarEstado" />
+          </Key>
+          <Property Name="CodigoLugarEstado" Type="Int64" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="CodigoLugar" Type="Int64" Nullable="false" />
+          <Property Name="Estado_lugar" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="Periodo" Type="Int32" Nullable="false" />
+          <Property Name="FechaDia" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="GHA_Lugar" Relationship="BDPetCenterModel.FK_GHA_Lugar_Estado_Lugar" FromRole="GHA_Lugar_Estado" ToRole="GHA_Lugar" />
+        </EntityType>
+        <EntityType Name="GHA_Lugar_Hospedaje">
+          <Key>
+            <PropertyRef Name="CodigoLugarHopedaje" />
+          </Key>
+          <Property Name="CodigoLugarHopedaje" Type="Int64" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="CodigoHospedaje" Type="Int64" Nullable="false" />
+          <Property Name="CodigoLugar" Type="Int64" Nullable="false" />
+          <Property Name="FechaInicio" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="FechaFin" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="GHA_Hospedaje" Relationship="BDPetCenterModel.FK_GHA_Lugar_Hospedaje_GHA_Hospedaje" FromRole="GHA_Lugar_Hospedaje" ToRole="GHA_Hospedaje" />
+          <NavigationProperty Name="GHA_Lugar" Relationship="BDPetCenterModel.FK_GHA_Lugar_Hospedaje_GHA_Lugar" FromRole="GHA_Lugar_Hospedaje" ToRole="GHA_Lugar" />
+        </EntityType>
+        <EntityType Name="GHA_Lugar_Reserva">
+          <Key>
+            <PropertyRef Name="CodigoLugarReserva" />
+          </Key>
+          <Property Name="CodigoLugarReserva" Type="Int64" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="CodigoReserva" Type="Int64" Nullable="false" />
+          <Property Name="CodigoLugar" Type="Int64" Nullable="false" />
+          <Property Name="FechaInicio" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="FechaFin" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="GHA_Lugar" Relationship="BDPetCenterModel.FK_GHA_Lugar_Reserva_GHA_Lugar" FromRole="GHA_Lugar_Reserva" ToRole="GHA_Lugar" />
+          <NavigationProperty Name="GHA_Reserva" Relationship="BDPetCenterModel.FK_GHA_Lugar_Reserva_GHA_Reserva" FromRole="GHA_Lugar_Reserva" ToRole="GHA_Reserva" />
+        </EntityType>
+        <EntityType Name="GHA_Reserva">
+          <Key>
+            <PropertyRef Name="CodigoReserva" />
+          </Key>
+          <Property Name="CodigoReserva" Type="Int64" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="CodigoCliente" Type="Int32" Nullable="false" />
+          <Property Name="CodigoMascota" Type="Int32" Nullable="false" />
+          <Property Name="FechaRegistro" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="EstadoReserva" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="GCP_Cliente" Relationship="BDPetCenterModel.FK_GHA_Reserva_GCP_Cliente" FromRole="GHA_Reserva" ToRole="GCP_Cliente" />
+          <NavigationProperty Name="GCP_Mascota" Relationship="BDPetCenterModel.FK_GHA_Reserva_GCP_Mascota" FromRole="GHA_Reserva" ToRole="GCP_Mascota" />
+          <NavigationProperty Name="GHA_Hospedaje" Relationship="BDPetCenterModel.FK_GHA_Hospedaje_GHA_Reserva" FromRole="GHA_Reserva" ToRole="GHA_Hospedaje" />
+          <NavigationProperty Name="GHA_Lugar_Reserva" Relationship="BDPetCenterModel.FK_GHA_Lugar_Reserva_GHA_Reserva" FromRole="GHA_Reserva" ToRole="GHA_Lugar_Reserva" />
+        </EntityType>
+        <Association Name="FK_GCP_Mascota_GCP_Cliente">
+          <End Role="GCP_Cliente" Type="BDPetCenterModel.GCP_Cliente" Multiplicity="1" />
+          <End Role="GCP_Mascota" Type="BDPetCenterModel.GCP_Mascota" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GCP_Cliente">
+              <PropertyRef Name="CodigoCliente" />
+            </Principal>
+            <Dependent Role="GCP_Mascota">
+              <PropertyRef Name="CodigoCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GHA_Hospedaje_GCP_Cliente">
+          <End Role="GCP_Cliente" Type="BDPetCenterModel.GCP_Cliente" Multiplicity="1" />
+          <End Role="GHA_Hospedaje" Type="BDPetCenterModel.GHA_Hospedaje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GCP_Cliente">
+              <PropertyRef Name="CodigoCliente" />
+            </Principal>
+            <Dependent Role="GHA_Hospedaje">
+              <PropertyRef Name="CodigoCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GHA_Reserva_GCP_Cliente">
+          <End Role="GCP_Cliente" Type="BDPetCenterModel.GCP_Cliente" Multiplicity="1" />
+          <End Role="GHA_Reserva" Type="BDPetCenterModel.GHA_Reserva" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GCP_Cliente">
+              <PropertyRef Name="CodigoCliente" />
+            </Principal>
+            <Dependent Role="GHA_Reserva">
+              <PropertyRef Name="CodigoCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GCP_Raza_GCP_Especie">
+          <End Role="GCP_Especie" Type="BDPetCenterModel.GCP_Especie" Multiplicity="1" />
+          <End Role="GCP_Raza" Type="BDPetCenterModel.GCP_Raza" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GCP_Especie">
+              <PropertyRef Name="CodigoEspecie" />
+            </Principal>
+            <Dependent Role="GCP_Raza">
+              <PropertyRef Name="CodigoEspecie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GCP_Mascota_GCP_Raza">
+          <End Role="GCP_Raza" Type="BDPetCenterModel.GCP_Raza" Multiplicity="1" />
+          <End Role="GCP_Mascota" Type="BDPetCenterModel.GCP_Mascota" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GCP_Raza">
+              <PropertyRef Name="CodigoRaza" />
+            </Principal>
+            <Dependent Role="GCP_Mascota">
+              <PropertyRef Name="CodigoRaza" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GHA_Hospedaje_GCP_Mascota">
+          <End Role="GCP_Mascota" Type="BDPetCenterModel.GCP_Mascota" Multiplicity="1" />
+          <End Role="GHA_Hospedaje" Type="BDPetCenterModel.GHA_Hospedaje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GCP_Mascota">
+              <PropertyRef Name="CodigoMascota" />
+            </Principal>
+            <Dependent Role="GHA_Hospedaje">
+              <PropertyRef Name="CodigoMascota" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GHA_Reserva_GCP_Mascota">
+          <End Role="GCP_Mascota" Type="BDPetCenterModel.GCP_Mascota" Multiplicity="1" />
+          <End Role="GHA_Reserva" Type="BDPetCenterModel.GHA_Reserva" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GCP_Mascota">
+              <PropertyRef Name="CodigoMascota" />
+            </Principal>
+            <Dependent Role="GHA_Reserva">
+              <PropertyRef Name="CodigoMascota" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GHA_Hospedaje_GHA_Reserva">
+          <End Role="GHA_Reserva" Type="BDPetCenterModel.GHA_Reserva" Multiplicity="0..1" />
+          <End Role="GHA_Hospedaje" Type="BDPetCenterModel.GHA_Hospedaje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GHA_Reserva">
+              <PropertyRef Name="CodigoReserva" />
+            </Principal>
+            <Dependent Role="GHA_Hospedaje">
+              <PropertyRef Name="CodigoReserva" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GHA_Lugar_Hospedaje_GHA_Hospedaje">
+          <End Role="GHA_Hospedaje" Type="BDPetCenterModel.GHA_Hospedaje" Multiplicity="1" />
+          <End Role="GHA_Lugar_Hospedaje" Type="BDPetCenterModel.GHA_Lugar_Hospedaje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GHA_Hospedaje">
+              <PropertyRef Name="CodigoHospedaje" />
+            </Principal>
+            <Dependent Role="GHA_Lugar_Hospedaje">
+              <PropertyRef Name="CodigoHospedaje" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GHA_Lugar_Estado_Lugar">
+          <End Role="GHA_Lugar" Type="BDPetCenterModel.GHA_Lugar" Multiplicity="1" />
+          <End Role="GHA_Lugar_Estado" Type="BDPetCenterModel.GHA_Lugar_Estado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GHA_Lugar">
+              <PropertyRef Name="CodigoLugar" />
+            </Principal>
+            <Dependent Role="GHA_Lugar_Estado">
+              <PropertyRef Name="CodigoLugar" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GHA_Lugar_Hospedaje_GHA_Lugar">
+          <End Role="GHA_Lugar" Type="BDPetCenterModel.GHA_Lugar" Multiplicity="1" />
+          <End Role="GHA_Lugar_Hospedaje" Type="BDPetCenterModel.GHA_Lugar_Hospedaje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GHA_Lugar">
+              <PropertyRef Name="CodigoLugar" />
+            </Principal>
+            <Dependent Role="GHA_Lugar_Hospedaje">
+              <PropertyRef Name="CodigoLugar" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GHA_Lugar_Reserva_GHA_Lugar">
+          <End Role="GHA_Lugar" Type="BDPetCenterModel.GHA_Lugar" Multiplicity="1" />
+          <End Role="GHA_Lugar_Reserva" Type="BDPetCenterModel.GHA_Lugar_Reserva" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GHA_Lugar">
+              <PropertyRef Name="CodigoLugar" />
+            </Principal>
+            <Dependent Role="GHA_Lugar_Reserva">
+              <PropertyRef Name="CodigoLugar" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GHA_Lugar_Reserva_GHA_Reserva">
+          <End Role="GHA_Reserva" Type="BDPetCenterModel.GHA_Reserva" Multiplicity="1" />
+          <End Role="GHA_Lugar_Reserva" Type="BDPetCenterModel.GHA_Lugar_Reserva" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GHA_Reserva">
+              <PropertyRef Name="CodigoReserva" />
+            </Principal>
+            <Dependent Role="GHA_Lugar_Reserva">
+              <PropertyRef Name="CodigoReserva" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BDPetCenterModelStoreContainer" CdmEntityContainer="BDPetCenterEntities">
+          <EntitySetMapping Name="GCP_Cliente">
+            <EntityTypeMapping TypeName="BDPetCenterModel.GCP_Cliente">
+              <MappingFragment StoreEntitySet="GCP_Cliente">
+                <ScalarProperty Name="CodigoCliente" ColumnName="CodigoCliente" />
+                <ScalarProperty Name="NombreCliente" ColumnName="NombreCliente" />
+                <ScalarProperty Name="DireccionCliente" ColumnName="DireccionCliente" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GCP_Especie">
+            <EntityTypeMapping TypeName="BDPetCenterModel.GCP_Especie">
+              <MappingFragment StoreEntitySet="GCP_Especie">
+                <ScalarProperty Name="CodigoEspecie" ColumnName="CodigoEspecie" />
+                <ScalarProperty Name="DescripcionEspecie" ColumnName="DescripcionEspecie" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GCP_Mascota">
+            <EntityTypeMapping TypeName="BDPetCenterModel.GCP_Mascota">
+              <MappingFragment StoreEntitySet="GCP_Mascota">
+                <ScalarProperty Name="CodigoMascota" ColumnName="CodigoMascota" />
+                <ScalarProperty Name="CodigoCliente" ColumnName="CodigoCliente" />
+                <ScalarProperty Name="CodigoRaza" ColumnName="CodigoRaza" />
+                <ScalarProperty Name="NombreMascota" ColumnName="NombreMascota" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GCP_Raza">
+            <EntityTypeMapping TypeName="BDPetCenterModel.GCP_Raza">
+              <MappingFragment StoreEntitySet="GCP_Raza">
+                <ScalarProperty Name="CodigoRaza" ColumnName="CodigoRaza" />
+                <ScalarProperty Name="CodigoEspecie" ColumnName="CodigoEspecie" />
+                <ScalarProperty Name="NombreRaza" ColumnName="NombreRaza" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GHA_Hospedaje">
+            <EntityTypeMapping TypeName="BDPetCenterModel.GHA_Hospedaje">
+              <MappingFragment StoreEntitySet="GHA_Hospedaje">
+                <ScalarProperty Name="CodigoHospedaje" ColumnName="CodigoHospedaje" />
+                <ScalarProperty Name="CodigoReserva" ColumnName="CodigoReserva" />
+                <ScalarProperty Name="CodigoCliente" ColumnName="CodigoCliente" />
+                <ScalarProperty Name="CodigoMascota" ColumnName="CodigoMascota" />
+                <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
+                <ScalarProperty Name="EstadoHospedaje" ColumnName="EstadoHospedaje" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GHA_Lugar">
+            <EntityTypeMapping TypeName="BDPetCenterModel.GHA_Lugar">
+              <MappingFragment StoreEntitySet="GHA_Lugar">
+                <ScalarProperty Name="CodigoLugar" ColumnName="CodigoLugar" />
+                <ScalarProperty Name="DescripcionLugar" ColumnName="DescripcionLugar" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GHA_Lugar_Estado">
+            <EntityTypeMapping TypeName="BDPetCenterModel.GHA_Lugar_Estado">
+              <MappingFragment StoreEntitySet="GHA_Lugar_Estado">
+                <ScalarProperty Name="CodigoLugarEstado" ColumnName="CodigoLugarEstado" />
+                <ScalarProperty Name="CodigoLugar" ColumnName="CodigoLugar" />
+                <ScalarProperty Name="Estado_lugar" ColumnName="Estado_lugar" />
+                <ScalarProperty Name="Periodo" ColumnName="Periodo" />
+                <ScalarProperty Name="FechaDia" ColumnName="FechaDia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GHA_Lugar_Hospedaje">
+            <EntityTypeMapping TypeName="BDPetCenterModel.GHA_Lugar_Hospedaje">
+              <MappingFragment StoreEntitySet="GHA_Lugar_Hospedaje">
+                <ScalarProperty Name="CodigoLugarHopedaje" ColumnName="CodigoLugarHopedaje" />
+                <ScalarProperty Name="CodigoHospedaje" ColumnName="CodigoHospedaje" />
+                <ScalarProperty Name="CodigoLugar" ColumnName="CodigoLugar" />
+                <ScalarProperty Name="FechaInicio" ColumnName="FechaInicio" />
+                <ScalarProperty Name="FechaFin" ColumnName="FechaFin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GHA_Lugar_Reserva">
+            <EntityTypeMapping TypeName="BDPetCenterModel.GHA_Lugar_Reserva">
+              <MappingFragment StoreEntitySet="GHA_Lugar_Reserva">
+                <ScalarProperty Name="CodigoLugarReserva" ColumnName="CodigoLugarReserva" />
+                <ScalarProperty Name="CodigoReserva" ColumnName="CodigoReserva" />
+                <ScalarProperty Name="CodigoLugar" ColumnName="CodigoLugar" />
+                <ScalarProperty Name="FechaInicio" ColumnName="FechaInicio" />
+                <ScalarProperty Name="FechaFin" ColumnName="FechaFin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GHA_Reserva">
+            <EntityTypeMapping TypeName="BDPetCenterModel.GHA_Reserva">
+              <MappingFragment StoreEntitySet="GHA_Reserva">
+                <ScalarProperty Name="CodigoReserva" ColumnName="CodigoReserva" />
+                <ScalarProperty Name="CodigoCliente" ColumnName="CodigoCliente" />
+                <ScalarProperty Name="CodigoMascota" ColumnName="CodigoMascota" />
+                <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
+                <ScalarProperty Name="EstadoReserva" ColumnName="EstadoReserva" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="usp_GrabarHospedaje" FunctionName="BDPetCenterModel.Store.usp_GrabarHospedaje" />
+          <FunctionImportMapping FunctionImportName="usp_GrabarReserva" FunctionName="BDPetCenterModel.Store.usp_GrabarReserva" />
+          <FunctionImportMapping FunctionImportName="usp_PlanificarHospedaje" FunctionName="BDPetCenterModel.Store.usp_PlanificarHospedaje" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

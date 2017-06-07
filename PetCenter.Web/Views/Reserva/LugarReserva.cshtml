@@ -1,0 +1,82 @@
+﻿@model PetCenter.Web.Models.DTOGHA_Reserva
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section CSS
+{
+    <style>
+        #FechaInicio {
+            text-align:center
+        }
+        #FechaFin {
+            text-align:center
+        }
+    </style>
+}
+@section JavaScript
+{
+    @Scripts.Render("~/bundles/LugarReserva")
+}
+@{
+    String strAccion = ViewBag.Accion;
+    String strControlador = ViewBag.Controlador;
+}
+@using (Html.BeginForm(strAccion, strControlador, FormMethod.Post, new { id = "form1", @class = "form-horizontal" }))
+{
+    @Html.Hidden("Controlador")
+    @Html.Hidden("FechaInicio")
+    @Html.HiddenFor(model => model.CodigoMascota)
+    @Html.HiddenFor(model => model.CodigoLugar)
+    @Html.HiddenFor(model => model.DescripcionLugar)
+    <fieldset>
+        <legend><i class="fa fa-th-list"></i> Disponibilidad de Lugar</legend>
+        <div class="panel panel-primary panel-shadow">
+            <div class="panel-heading"><i class="fa fa-search"></i> Reservar por</div>
+            <div class="panel-body form-horizontal">
+                <div class="form-group form-group-md">
+                    <div>
+                        @Html.LabelFor(model => model.FechaInicio, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-2">
+                            <div class='input-group date' id='dtFechaInicio'>
+                                @Html.TextBoxFor(model => model.FechaInicio, new { @class = "form-control", @readonly = "readonly" })
+                                @Html.HiddenFor(model => model.FechaInicio)
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                            @Html.ValidationMessageFor(model => model.FechaInicio, "", new { @class = "ErrorSummary" })
+                        </div>
+                    </div>
+                    <div>
+                        @Html.LabelFor(model => model.FechaFin, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-2">
+                            <div class='input-group date' id='dtFechaFin'>
+                                @Html.TextBoxFor(model => model.FechaFin, new { @class = "form-control", @readonly = "readonly" })
+                                @Html.HiddenFor(model => model.FechaFin)
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                            @Html.ValidationMessageFor(model => model.FechaFin, "", new { @class = "ErrorSummary" })
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <button id="btnBuscar" class="btn btn-primary" autofocus>
+                            <span class="glyphicon glyphicon-search"></span> Buscar
+                        </button>
+                    </div>
+                </div>
+                <div id="ContenidoLugar"></div>
+            </div>
+            <div class="panel-footer">
+                <button id="btnSalir" class="btn btn-primary" autofocus>
+                    <span class="glyphicon glyphicon-off"></span> Salir
+                </button>
+            </div>
+        </div>
+        <div>
+            <table id="jqGrid_lista_A"></table>
+            <div id="jqGrid_pager_A"></div>
+        </div>
+    </fieldset>
+}
