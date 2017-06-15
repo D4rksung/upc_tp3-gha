@@ -17,7 +17,15 @@ namespace PetCenter.DataAccess
             entidad.codigoSubcategoria = 1;
             entidad.codigoUnidadMedida = 20;
             entidad.nombre = "Alimento 1";
-            resultadoList.Add(entidad);
+
+            AlimentoBE entidad2 = new AlimentoBE();
+            entidad2.codigo = 1;
+            entidad2.codigoMarca = 100;
+            entidad2.codigoSubcategoria = 1;
+            entidad2.codigoUnidadMedida = 20;
+            entidad2.nombre = "Alimento 2";
+
+            resultadoList.Add(entidad2);
             return resultadoList;
         }
         #endregion
