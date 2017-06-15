@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PetCenter.BusinessLogic", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PetCenter.BusinessEntities", "PetCenter.BusinessEntities\PetCenter.BusinessEntities.csproj", "{F38EB5CA-BA37-4AD2-BF10-D0B039679334}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PetCenter.RESTServices", "PetCenter.rRESTServices\PetCenter.RESTServices.csproj", "{CACF2091-4A83-44AD-BBD0-A12F90A53C79}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PetCenter.RESTServices", "PetCenter.RESTServices\PetCenter.RESTServices.csproj", "{CACF2091-4A83-44AD-BBD0-A12F90A53C79}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
