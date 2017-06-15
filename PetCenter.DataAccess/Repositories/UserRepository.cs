@@ -9,10 +9,10 @@ using PetCenter.BusinessEntities;
 
 namespace PetCenter.DataAccess.Repositories
 {
-    public class UserRepository : Repository<AlimentoBE>
+    public class PlanAlimenticioRepository : Repository<AlimentoBE>
     {
         private DbContext _context;
-        public UserRepository(DbContext context)
+        public PlanAlimenticioRepository(DbContext context)
             : base(context)
         {
             _context = context;
