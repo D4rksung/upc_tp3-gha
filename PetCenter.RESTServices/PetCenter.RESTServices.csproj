@@ -60,9 +60,14 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="PlanAlimenticioService.svc" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IPlanAlimenticioService.cs" />
+    <Compile Include="PlanAlimenticioService.svc.cs">
+      <DependentUpon>PlanAlimenticioService.svc</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -75,6 +80,16 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PetCenter.BusinessEntities\PetCenter.BusinessEntities.csproj">
+      <Project>{f38eb5ca-ba37-4ad2-bf10-d0b039679334}</Project>
+      <Name>PetCenter.BusinessEntities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PetCenter.BusinessLogic\PetCenter.BusinessLogic.csproj">
+      <Project>{2d2255fb-b7e8-4680-8a59-1e85772e5259}</Project>
+      <Name>PetCenter.BusinessLogic</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
