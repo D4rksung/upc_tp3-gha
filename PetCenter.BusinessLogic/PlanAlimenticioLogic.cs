@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using PetCenter.BusinessEntities;
+using PetCenter.DataAccess;
 namespace PetCenter.BusinessLogic
 {
     public class PlanAlimenticioLogic
     {
         public List<AlimentoBE> listarAlimentos() {
-            List<AlimentoBE> listaAlimentos = new List<AlimentoBE>();
-            return listaAlimentos;
+
+            return new PlanAlimenticioData().listarAlimentosData();
         }
     }
 }

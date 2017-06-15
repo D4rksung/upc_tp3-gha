@@ -17,6 +17,7 @@ namespace PetCenter.DataAccess
             entidad.codigoSubcategoria = 1;
             entidad.codigoUnidadMedida = 20;
             entidad.nombre = "Alimento 1";
+            resultadoList.Add(entidad);
             return resultadoList;
         }
         #endregion
