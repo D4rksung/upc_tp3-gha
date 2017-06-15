@@ -1,7 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PetCenter.Web", "PetCenter.Web\PetCenter.Web.csproj", "{35F4AC11-FA79-4246-8C2D-0A909B5812EF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PetCenter.DataAccess", "PetCenter.DataAccess\PetCenter.DataAccess.csproj", "{9C734699-A638-4CE9-9743-165BEE45DF43}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PetCenter.BusinessLogic", "PetCenter.BusinessLogic\PetCenter.BusinessLogic.csproj", "{2D2255FB-B7E8-4680-8A59-1E85772E5259}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PetCenter.BusinessEntities", "PetCenter.BusinessEntities\PetCenter.BusinessEntities.csproj", "{F38EB5CA-BA37-4AD2-BF10-D0B039679334}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PetCenter.RESTServices", "PetCenter.rRESTServices\PetCenter.RESTServices.csproj", "{CACF2091-4A83-44AD-BBD0-A12F90A53C79}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,6 +23,22 @@ Global
 		{35F4AC11-FA79-4246-8C2D-0A909B5812EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{35F4AC11-FA79-4246-8C2D-0A909B5812EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{35F4AC11-FA79-4246-8C2D-0A909B5812EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C734699-A638-4CE9-9743-165BEE45DF43}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C734699-A638-4CE9-9743-165BEE45DF43}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C734699-A638-4CE9-9743-165BEE45DF43}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C734699-A638-4CE9-9743-165BEE45DF43}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D2255FB-B7E8-4680-8A59-1E85772E5259}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D2255FB-B7E8-4680-8A59-1E85772E5259}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D2255FB-B7E8-4680-8A59-1E85772E5259}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D2255FB-B7E8-4680-8A59-1E85772E5259}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F38EB5CA-BA37-4AD2-BF10-D0B039679334}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F38EB5CA-BA37-4AD2-BF10-D0B039679334}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F38EB5CA-BA37-4AD2-BF10-D0B039679334}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F38EB5CA-BA37-4AD2-BF10-D0B039679334}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CACF2091-4A83-44AD-BBD0-A12F90A53C79}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CACF2091-4A83-44AD-BBD0-A12F90A53C79}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CACF2091-4A83-44AD-BBD0-A12F90A53C79}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CACF2091-4A83-44AD-BBD0-A12F90A53C79}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

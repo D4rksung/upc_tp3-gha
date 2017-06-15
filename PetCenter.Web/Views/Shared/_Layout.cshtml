@@ -44,9 +44,14 @@
      @Html.Hidden("hdnRutaWeb",Url.Content("~"))
     @{
         String strOpcionAdministrarLugaresHospedaje = String.Format("{0}{1}",Url.Content("~"),"Lugar\\Planifica");
-        String strOpcionReservacionHospedaje = String.Format("{0}{1}", Url.Content("~"), "Reserva\\Busqueda");
-        String strOpcionServicioHospedajeConReserva = String.Format("{0}{1}", Url.Content("~"), "Hospedaje\\ConReserva");
-        String strOpcionServicioHospedajeSinReserva = String.Format("{0}{1}", Url.Content("~"), "Hospedaje\\SinReservaBusqueda");
+        //String strOpcionReservacionHospedaje = String.Format("{0}{1}", Url.Content("~"), "Reserva\\Busqueda");
+        //String strOpcionServicioHospedajeConReserva = String.Format("{0}{1}", Url.Content("~"), "Hospedaje\\ConReserva");
+        //String strOpcionServicioHospedajeSinReserva = String.Format("{0}{1}", Url.Content("~"), "Hospedaje\\SinReservaBusqueda");
+
+        String urlOperacionesPlanAlimenticio = String.Format("{0}{1}", Url.Content("~"), "PlanAlimenticio\\Index");
+        String urlOperacionesMonitoreoMascota = String.Format("{0}{1}", Url.Content("~"), "Reserva\\Busqueda");
+        String urlOperacionesRecojoMascota = String.Format("{0}{1}", Url.Content("~"), "Hospedaje\\ConReserva");
+        String urlOperacionesControlarCheckout = String.Format("{0}{1}", Url.Content("~"), "Hospedaje\\SinReservaBusqueda");
     }
 
     <div id="ModalContainer"></div>
@@ -83,14 +88,12 @@
                 <ul class="nav navbar-nav navbar-left">
                     <li><a href='#'><i class='fa fa-cog'></i> Operaciones <span class='caret'></span></a>
                         <ul class='dropdown-menu'>
-                            <li><a href='@strOpcionReservacionHospedaje'>Reservación de Hospedaje</a>
-                            </li>
-                            <li><a href='#'>Servicio de Hospedaje <span class='caret'></a>
+                            <li><a href='#'>Operaciones de Hospedaje Premium <span class='caret'></a>
                                 <ul class='dropdown-menu'>
-                                    <li><a href='@strOpcionServicioHospedajeConReserva'>Hospedaje con Reserva</a>
-                                    </li>
-                                    <li><a href='@strOpcionServicioHospedajeSinReserva'>Hospedaje sin Reserva</a>
-                                    </li>
+                                    <li><a href='@urlOperacionesPlanAlimenticio'>Gestionar Plan Alimenticio</a></li>
+                                    <li><a href='@urlOperacionesPlanAlimenticio'>Monitorear de Mascota</a></li>
+                                    <li><a href='@urlOperacionesMonitoreoMascota'>Controlar Checkout de Mascota</a></li>
+                                    <li><a href='@urlOperacionesRecojoMascota'>Gestionar Recojo personalizado de Mascota</a></li>
                                 </ul>
                             </li>
                         </ul>

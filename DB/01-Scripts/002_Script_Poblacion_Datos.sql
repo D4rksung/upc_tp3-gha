@@ -14,9 +14,9 @@ BEGIN
 	SET @CONTADOR = @CONTADOR + 1
 END
 GO
-INSERT INTO dbo.GCP_Cliente (NombreCliente,DireccionCliente) VALUES('Ramos Conde, Juan','Av. Las AmÃ©ricas 7676')
+INSERT INTO dbo.GCP_Cliente (NombreCliente,DireccionCliente) VALUES('Ramos Conde, Juan','Av. Las Américas 7676')
 INSERT INTO dbo.GCP_Cliente (NombreCliente,DireccionCliente) VALUES('Ramos Santos, Irvin','Av. Benavides 4500')
-INSERT INTO dbo.GCP_Cliente (NombreCliente,DireccionCliente) VALUES('PeÃ±a Rios, Luis','Jr. Cusco 206')
+INSERT INTO dbo.GCP_Cliente (NombreCliente,DireccionCliente) VALUES('Peña Rios, Luis','Jr. Cusco 206')
 INSERT INTO dbo.GCP_Cliente (NombreCliente,DireccionCliente) VALUES('Marino Alvarez, Victor','Av. Angamos 2208')
 INSERT INTO dbo.GCP_Cliente (NombreCliente,DireccionCliente) VALUES('Davila Campos, Francisco','Jr. Puno 101')
 INSERT INTO dbo.GCP_Cliente (NombreCliente,DireccionCliente) VALUES('Campos Vasquez, Carlos','Av. Aviacion 2905')
