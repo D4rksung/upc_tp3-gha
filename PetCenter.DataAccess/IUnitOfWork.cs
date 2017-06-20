@@ -5,7 +5,10 @@ using System.Text;
 
 namespace PetCenter.DataAccess
 {
-    class _ConsultasData
+    public interface IUnitOfWork
     {
+        void Dispose();
+
+        void SaveChanges();
     }
 }
