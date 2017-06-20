@@ -46,6 +46,7 @@
     <Compile Include="CategoriaAlimentoBE.cs" />
     <Compile Include="CriterioPlanAlimenticioBE.cs" />
     <Compile Include="DetalleAlimentoComponenteBE.cs" />
+    <Compile Include="GenericoBE.cs" />
     <Compile Include="MarcaBE.cs" />
     <Compile Include="NivelBMIBE.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

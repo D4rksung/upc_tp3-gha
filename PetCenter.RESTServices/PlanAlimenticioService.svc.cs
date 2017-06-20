@@ -13,7 +13,7 @@ namespace PetCenter.RESTServices
         public List<AlimentoBE> listarAlimentos()
         {
             List<AlimentoBE> listaAlimentos = new List<AlimentoBE>();
-            listaAlimentos = new PlanAlimenticioLogic().listarAlimentos();
+            listaAlimentos = new PlanAlimenticioLogic().getAlimentos().ToList();
             return listaAlimentos;
         }
     }

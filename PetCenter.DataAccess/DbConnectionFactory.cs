@@ -21,6 +21,7 @@ namespace PetCenter.DataAccess
             if (connectionName == null) throw new ArgumentNullException("connectionName");
 
             var conStr = ConfigurationManager.ConnectionStrings[connectionName];
+
             if (conStr == null)
                 throw new ConfigurationErrorsException(string.Format("Failed to find connection string named '{0}' in app/web.config.", connectionName));
 

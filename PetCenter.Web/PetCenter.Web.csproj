@@ -292,7 +292,7 @@
     <Content Include="Content\bootstrap\fonts\glyphicons-halflings-regular.woff2" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Shared\_LayoutBase.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Lugar\Planifica.cshtml" />
@@ -353,6 +353,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\PlanAlimenticio\Definicion.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

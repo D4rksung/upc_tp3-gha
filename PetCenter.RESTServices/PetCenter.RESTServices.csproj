@@ -63,11 +63,16 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="MonitoreoService.svc" />
     <Content Include="PlanAlimenticioService.svc" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IMonitoreoService.cs" />
     <Compile Include="IPlanAlimenticioService.cs" />
+    <Compile Include="MonitoreoService.svc.cs">
+      <DependentUpon>MonitoreoService.svc</DependentUpon>
+    </Compile>
     <Compile Include="PlanAlimenticioService.svc.cs">
       <DependentUpon>PlanAlimenticioService.svc</DependentUpon>
     </Compile>

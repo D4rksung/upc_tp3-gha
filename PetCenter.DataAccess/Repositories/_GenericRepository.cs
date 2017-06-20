@@ -9,42 +9,25 @@ using PetCenter.BusinessEntities;
 
 namespace PetCenter.DataAccess.Repositories
 {
-    public class PlanAlimenticioRepository : Repository<AlimentoBE>
+    public class _GenericRepository:Repository<GenericoBE>
     {
         private DbContext _context;
-        public PlanAlimenticioRepository(DbContext context)
+        public _GenericRepository(DbContext context)
             : base(context)
         {
             _context = context;
         }
 
 
-        public IList<AlimentoBE> GetUsers()
+        public IList<GenericoBE> listarMascotasPorRecepcionista(int recepcionista)
         {
-            //using (var command = _context.CreateCommand())
-            //{
-            //    command.CommandText = "exec [dbo].[uspGetUsers]";
-
-            //    return this.ToList(command).ToList();
-            //}
-
-            List<AlimentoBE> resultadoList=new List<AlimentoBE>();
-            AlimentoBE entidad = new AlimentoBE();
-            entidad.codigo = 1;
-            entidad.codigoMarca = 100;
-            entidad.codigoSubcategoria = 1;
-            entidad.codigoUnidadMedida = 20;
-            entidad.nombre = "Alimento 1";
-
-            AlimentoBE entidad2 = new AlimentoBE();
-            entidad2.codigo = 1;
-            entidad2.codigoMarca = 100;
-            entidad2.codigoSubcategoria = 1;
-            entidad2.codigoUnidadMedida = 20;
-            entidad2.nombre = "Alimento 2";
-
-            resultadoList.Add(entidad);
-            return resultadoList;
+            using (var command = _context.CreateCommand())
+            {
+                command.CommandType = CommandType.StoredProcedure;
+                command.CommandText = "usp_GHA_ListarMascotasPorRecepcionista";
+                command.Parameters.Add(command.CreateParameter("@recepcionista", recepcionista));
+                return this.ToList(command).ToList();
+            }
         }
 
         //public User CreateUser(User user)
@@ -96,7 +79,6 @@ namespace PetCenter.DataAccess.Repositories
         //        return this.ToList(command).FirstOrDefault();
         //    }
         //}
-
 
     }
 }
