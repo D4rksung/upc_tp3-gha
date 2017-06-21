@@ -14,10 +14,24 @@ namespace PetCenter.RESTServices
     {
         [OperationContract]
         [WebInvoke(Method = "GET",
-    ResponseFormat = WebMessageFormat.Json,
-    BodyStyle = WebMessageBodyStyle.Bare,
-    UriTemplate = "Mascotas/{recepcionista}")]
+            ResponseFormat = WebMessageFormat.Json,
+            BodyStyle = WebMessageBodyStyle.Bare,
+            UriTemplate = "Monitoreo/Mascotas/Todas/{recepcionista}")]
         List<GenericoBE> listarMascotasPorRecepcionista(string recepcionista);
 
+        [OperationContract]
+        [WebInvoke(Method = "GET",
+            ResponseFormat = WebMessageFormat.Json,
+            BodyStyle = WebMessageBodyStyle.Bare,
+            UriTemplate = "Monitoreo/Mascotas/{filtro}/{recepcionista}")]
+        List<GenericoBE> listarMascotasPorRecepcionistaFiltro(string filtro,string recepcionista);
+
+
+        [OperationContract]
+        [WebInvoke(Method = "GET",
+            ResponseFormat = WebMessageFormat.Json,
+            BodyStyle = WebMessageBodyStyle.Bare,
+            UriTemplate = "Monitoreo/{mascota}")]
+        MonitoreoBE obtenerMonitoreoMascota(string mascota);
     }
 }

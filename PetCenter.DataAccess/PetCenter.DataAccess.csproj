@@ -56,6 +56,8 @@
     <Compile Include="Repositories\_GenericRepository.cs" />
     <Compile Include="Repositories\Repository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
+    <Compile Include="Repositories\_MascotaRepository.cs" />
+    <Compile Include="Repositories\_MonitoreoRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PetCenter.BusinessEntities\PetCenter.BusinessEntities.csproj">

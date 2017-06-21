@@ -12,7 +12,7 @@ namespace PetCenter.BusinessLogic
     {
         private IConnectionFactory connectionFactory;
 
-        public IList<GenericoBE> listarMascotasPorRecepcionista(int recepcionista)
+        public IList<GenericoBE> listarMascotasPorRecepcionista(string filtro, int recepcionista)
         {
             connectionFactory = ConnectionHelper.GetConnection();
 
@@ -20,7 +20,16 @@ namespace PetCenter.BusinessLogic
 
             var genericRep = new _GenericRepository(context);
 
-            return genericRep.listarMascotasPorRecepcionista(recepcionista);
+            return genericRep.listarMascotasPorRecepcionista(filtro,recepcionista);
+        }
+
+        public MonitoreoBE obtenerMonitoreoMascota(int mascota) {
+            connectionFactory = ConnectionHelper.GetConnection();
+            var context = new DbContext(connectionFactory);
+
+            var monitoreoRep = new _MonitoreoRepository(context);
+
+            return monitoreoRep.ObtenerMonitoreo(mascota);
         }
     }
 }
