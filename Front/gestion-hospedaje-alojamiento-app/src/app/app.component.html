@@ -1,0 +1,61 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h1>
+        {{title}}
+      </h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <h3>
+        Datos Básicos (*)
+      </h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group col-md-6">
+      <label for="nombre">Nombre</label>
+      <input type="text" id="nombre" class="form-control">
+    </div>
+    <div class="col-md-3">
+      <label for="especie">Especie</label>
+      <select id="especie" class="form-control">
+        <option value="1">Perro</option>
+        <option value="2">Gato</option>
+      </select>
+    </div>
+    <div class="col-md-3">
+      <label for="condicion_medica">Condición Médica</label>
+      <select id="condicion_medica" class="form-control">
+        <option value="1">Sano</option>
+        <option value="2">Fiebre</option>
+      </select>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <ngb-tabset>
+        <ngb-tab title="Día 1">
+          <ng-template ngbTabContent>
+            <ngb-accordion>
+              <ngb-panel *ngFor="let comida of comidas" title="{{comida.nombre}}">
+                <ng-template ngbPanelContent>
+
+                </ng-template>
+              </ngb-panel>
+            </ngb-accordion>
+          </ng-template>
+        </ngb-tab>
+        <ngb-tab title="+">
+        </ngb-tab>
+      </ngb-tabset>
+    </div>
+  </div>
+
+</div>
