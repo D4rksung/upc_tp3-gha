@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PetCenter.BusinessEntities"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PetCenter.RESTServices", "PetCenter.RESTServices\PetCenter.RESTServices.csproj", "{CACF2091-4A83-44AD-BBD0-A12F90A53C79}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PetCenter.WebPortal", "PetCenter.WebPortal\PetCenter.WebPortal.csproj", "{6D5D589C-ECA6-416E-82E7-6269134BB20F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{CACF2091-4A83-44AD-BBD0-A12F90A53C79}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CACF2091-4A83-44AD-BBD0-A12F90A53C79}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CACF2091-4A83-44AD-BBD0-A12F90A53C79}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D5D589C-ECA6-416E-82E7-6269134BB20F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D5D589C-ECA6-416E-82E7-6269134BB20F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D5D589C-ECA6-416E-82E7-6269134BB20F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D5D589C-ECA6-416E-82E7-6269134BB20F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

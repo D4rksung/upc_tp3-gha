@@ -14,19 +14,17 @@ namespace PetCenter.RESTServices
     {
         public List<GenericoBE> listarMascotasPorRecepcionista(string recepcionista)
         {
-            List<GenericoBE> listaAlimentos = new List<GenericoBE>();
-            return new MonitoreoLogic().listarMascotasPorRecepcionista(string.Empty,int.Parse(recepcionista)).ToList();
+                return new MonitoreoLogic().listarMascotasPorRecepcionista(string.Empty,int.Parse(recepcionista)).ToList();
         }
 
         public List<GenericoBE> listarMascotasPorRecepcionistaFiltro(string filtro,string recepcionista)
         {
-            List<GenericoBE> listaAlimentos = new List<GenericoBE>();
             return new MonitoreoLogic().listarMascotasPorRecepcionista(filtro,int.Parse(recepcionista)).ToList();
         }
 
-        public MonitoreoBE obtenerMonitoreoMascota(string mascota)
+        public MascotaBE obtenerMonitoreoMascota(string mascota)
         {
-            return new MonitoreoLogic().obtenerMonitoreoMascota(int.Parse(mascota));
+            return new MonitoreoLogic().obtenerDatosMascota(int.Parse(mascota));
         }
 
     }

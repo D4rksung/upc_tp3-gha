@@ -143,70 +143,13 @@
     <Compile Include="Clases\JsonResponse.cs" />
     <Compile Include="Clases\Util.cs" />
     <Compile Include="Controllers\CesadoController.cs" />
-    <Compile Include="Controllers\ClienteController.cs" />
-    <Compile Include="Controllers\HospedajeController.cs" />
-    <Compile Include="Controllers\LugarController.cs" />
-    <Compile Include="Controllers\MascotaController.cs" />
+    <Compile Include="Controllers\IndexController.cs" />
     <Compile Include="Controllers\PlanAlimenticioController.cs" />
-    <Compile Include="Controllers\ReservaController.cs" />
-    <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Cesado.cs" />
     <Compile Include="Models\CesadoServiceCliente.cs" />
-    <Compile Include="Models\DTOBase.cs" />
-    <Compile Include="Models\DTOGCP_Cliente.cs" />
-    <Compile Include="Models\DTOGCP_Mascota.cs" />
-    <Compile Include="Models\DTOGHA_Hospedaje.cs" />
-    <Compile Include="Models\DTOGHA_Lugar_Estado.cs" />
-    <Compile Include="Models\DTOGHA_Lugar_Reserva.cs" />
-    <Compile Include="Models\DTOGHA_Reserva.cs" />
-    <Compile Include="Models\GCP_Cliente.cs">
-      <DependentUpon>HospedajeDAO.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\GCP_Especie.cs">
-      <DependentUpon>HospedajeDAO.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\GCP_Mascota.cs">
-      <DependentUpon>HospedajeDAO.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\GCP_Raza.cs">
-      <DependentUpon>HospedajeDAO.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\GHA_Hospedaje.cs">
-      <DependentUpon>HospedajeDAO.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\GHA_Lugar.cs">
-      <DependentUpon>HospedajeDAO.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\GHA_Lugar_Estado.cs">
-      <DependentUpon>HospedajeDAO.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\GHA_Lugar_Hospedaje.cs">
-      <DependentUpon>HospedajeDAO.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\GHA_Lugar_Reserva.cs">
-      <DependentUpon>HospedajeDAO.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\GHA_Reserva.cs">
-      <DependentUpon>HospedajeDAO.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\HospedajeDAO.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>HospedajeDAO.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\HospedajeDAO.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>HospedajeDAO.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\HospedajeDAO.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>HospedajeDAO.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\CesadoViewModel.cs" />
   </ItemGroup>
@@ -220,6 +163,27 @@
     <Content Include="Content\bootstrap\font-awesome.min.css" />
     <Content Include="Content\bootstrap\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\bootstrap\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\estilos\bootstrap-datepicker.css" />
+    <Content Include="Content\estilos\bootstrap-datepicker.min.css" />
+    <Content Include="Content\estilos\bootstrap-theme.css" />
+    <Content Include="Content\estilos\bootstrap-theme.min.css" />
+    <Content Include="Content\estilos\bootstrap.css" />
+    <Content Include="Content\estilos\bootstrap.min.css" />
+    <Content Include="Content\estilos\estilos.css" />
+    <Content Include="Content\estilos\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\js\bootstrap-datepicker.js" />
+    <Content Include="Content\js\bootstrap-datepicker.min.js" />
+    <Content Include="Content\js\bootstrap.js" />
+    <Content Include="Content\js\bootstrap.min.js" />
+    <Content Include="Content\js\jquery-1.11.3.min.js" />
+    <Content Include="Content\js\jquery.min.js" />
+    <Content Include="Content\js\npm.js" />
+    <Content Include="Images\logo.jpg" />
+    <Content Include="Images\logo.png" />
+    <Content Include="Images\newyork.jpg" />
+    <Content Include="Images\paris.jpg" />
+    <Content Include="Images\sanfran.jpg" />
     <Content Include="Content\jquery\jquery.smartmenus.bootstrap.css" />
     <Content Include="Content\jquery\ui.jqgrid-bootstrap.css" />
     <Content Include="Content\Site.css" />
@@ -227,7 +191,6 @@
     <Content Include="Images\Fondo1.jpg" />
     <Content Include="Images\Fondo2.jpg" />
     <Content Include="Images\Fondo3.jpg" />
-    <Content Include="Images\Logo.png" />
     <Content Include="Scripts\bootstrap\bootstrap-datetimepicker.min.js" />
     <Content Include="Scripts\bootstrap\bootstrap-select.min.js" />
     <Content Include="Scripts\bootstrap\bootstrap.min.js" />
@@ -295,60 +258,6 @@
     <Content Include="Views\Shared\_LayoutBase.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Lugar\Planifica.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Usuario\Index.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Reserva\Busqueda.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Cliente\Busqueda.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Reserva\Registro.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Mascota\Busqueda.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Reserva\LugarReserva.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Hospedaje\ConReserva.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Hospedaje\BusquedaReserva.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Hospedaje\SinReservaBusqueda.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Hospedaje\SinReservaRegistro.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EntityDeploy Include="Models\HospedajeDAO.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>HospedajeDAO.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Models\HospedajeDAO.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>HospedajeDAO.edmx</DependentUpon>
-      <LastGenOutput>HospedajeDAO.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\HospedajeDAO.edmx.diagram">
-      <DependentUpon>HospedajeDAO.edmx</DependentUpon>
-    </Content>
-    <Content Include="Models\HospedajeDAO.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>HospedajeDAO.edmx</DependentUpon>
-      <LastGenOutput>HospedajeDAO.cs</LastGenOutput>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\PlanAlimenticio\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -356,6 +265,38 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\_Layout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Index\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\js\bootstrap.min.js.descarga" />
+    <Content Include="Content\estilos\css" />
+    <Content Include="Content\estilos\css%281%29" />
+    <Content Include="Content\js\jquery-1.11.3.min.js.descarga" />
+    <Content Include="Content\js\jquery.min.js.descarga" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\estilos\fonts\glyphicons-halflings-regular.woff2" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\estilos\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\estilos\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\estilos\fonts\glyphicons-halflings-regular.woff" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\estilos\bootstrap-theme.css.map" />
+    <Content Include="Content\estilos\bootstrap-theme.min.css.map" />
+    <Content Include="Content\estilos\bootstrap.css.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\estilos\bootstrap.min.css.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

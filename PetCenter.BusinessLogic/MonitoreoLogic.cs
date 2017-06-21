@@ -23,13 +23,14 @@ namespace PetCenter.BusinessLogic
             return genericRep.listarMascotasPorRecepcionista(filtro,recepcionista);
         }
 
-        public MonitoreoBE obtenerMonitoreoMascota(int mascota) {
+        public MascotaBE obtenerDatosMascota(int mascota)
+        {
             connectionFactory = ConnectionHelper.GetConnection();
             var context = new DbContext(connectionFactory);
 
-            var monitoreoRep = new _MonitoreoRepository(context);
+            var mascotaRep = new _MascotaRepository(context);
 
-            return monitoreoRep.ObtenerMonitoreo(mascota);
+            return mascotaRep.ObtenerDatosMascota(mascota);
         }
     }
 }

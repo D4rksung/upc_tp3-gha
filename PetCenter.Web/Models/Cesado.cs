@@ -5,7 +5,7 @@ using System.Web;
 using System.ComponentModel.DataAnnotations;
 namespace PetCenter.Web.Models
 {
-    public class Cesado:DTOBase
+    public class Cesado
     {
         [Display(Name = "apellidopaterno")]
         public string apellidopaterno { get; set; }

@@ -31,7 +31,7 @@ namespace PetCenter.RESTServices
         [WebInvoke(Method = "GET",
             ResponseFormat = WebMessageFormat.Json,
             BodyStyle = WebMessageBodyStyle.Bare,
-            UriTemplate = "Monitoreo/{mascota}")]
-        MonitoreoBE obtenerMonitoreoMascota(string mascota);
+            UriTemplate = "Monitoreo/Mascota/{mascota}")]
+        MascotaBE obtenerMonitoreoMascota(string mascota);
     }
 }

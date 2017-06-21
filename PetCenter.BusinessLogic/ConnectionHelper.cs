@@ -10,7 +10,7 @@ namespace PetCenter.BusinessLogic
         
         public static IConnectionFactory GetConnection()
         {
-            string cadena = "BDPetCenterEntities";
+            string cadena = "BDPetCenterEntitiesLocal";
             return new DbConnectionFactory(cadena);
         }
     }

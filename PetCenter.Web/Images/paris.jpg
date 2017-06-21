@@ -1,0 +1,17 @@
+<header class="header">
+  <div class="container">
+    <div class="row text-center">
+      <div class="col-sm-12">
+        <img src="http://localhost:90/gvd/public/images/logo.png" alt="Resuelve el Reto" />
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="container contenido">
+
+<div class="row">
+    Error 404
+</div>
+    
+</div>

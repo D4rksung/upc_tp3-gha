@@ -16,14 +16,14 @@ namespace PetCenter.Web
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "PlanAlimenticio", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Index", action = "Index", id = UrlParameter.Optional }
             );
 
-            routes.MapRoute(
-               name: "Default1",
-               url: "{controller}/{action}/{id}/{id2}",
-               defaults: new { controller = "Usuario", action = "Index", id = UrlParameter.Optional, id2 = UrlParameter.Optional }
-           );
+           // routes.MapRoute(
+           //    name: "Default1",
+           //    url: "{controller}/{action}/{id}/{id2}",
+           //    defaults: new { controller = "Usuario", action = "Index", id = UrlParameter.Optional, id2 = UrlParameter.Optional }
+           //);
         }
     }
 }
