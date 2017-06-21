@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { AlimentosService } from './alimentos/alimentos.service';
+import { Alimento } from './models/alimento.model';
+import {Component} from '@angular/core';
+
 
 @Component({
   selector: 'app-root',
@@ -6,9 +9,31 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Definir Plan Alimenticio!';
-  especie = [{id:1,nombre:"perro"},{id:1,nombre:"gato"}];
-  condicion_medica = [{id:1,nombre:"sano"},{id:1,nombre:"gato"}];
-  comidas = [{id:1,nombre:"desayuno"},{id:1,nombre:"almuerzo"},{id:1,nombre:"cena"}];
+
+  title = 'Definir Plan Alimenticio';
+  especies = [{
+    id: 1,
+    nombre: "perro"
+  }, {
+    id: 1,
+    nombre: "gato"
+  }];
+  condiciones_medicas = [{
+    id: 1,
+    nombre: "sano"
+  }, {
+    id: 2,
+    nombre: "gripe"
+  }];
+  comidas = [{
+    id: 1,
+    nombre: "desayuno"
+  }, {
+    id: 2,
+    nombre: "almuerzo"
+  }, {
+    id: 3,
+    nombre: "cena"
+  }];
 
 }

@@ -1,0 +1,106 @@
+{
+  "especie": [
+    {
+      "id": 1,
+      "nombre": "perro"
+    },
+    {
+      "id": 2,
+      "nombre": "gato"
+    }
+  ],
+  "raza": {
+    "1": [
+      {
+        "id": 1,
+        "nombre": "Bulldog"
+      },
+      {
+        "id": 2,
+        "nombre": "Collie"
+      },
+      {
+        "id": 3,
+        "nombre": "Pastor Aleman"
+      }
+    ],
+    "2": [
+      {
+        "id": 8,
+        "nombre": "Siames"
+      },
+      {
+        "id": 9,
+        "nombre": "Calvo"
+      }
+    ]
+  },
+  "condiciones_medicas": {
+    "1": [
+      {
+        "id": 1,
+        "nombre": "sano"
+      },
+      {
+        "id": 2,
+        "nombre": "fiebre perruna"
+      }
+    ],
+    "2": [
+      {
+        "id": 1,
+        "nombre": "sano"
+      },
+      {
+        "id": 3,
+        "nombre": "gripe gatuna"
+      }
+    ]
+  },
+  "niveles_bmi": [
+    {
+      "id": 1,
+      "nombre": "Bajo peso"
+    },
+    {
+      "id": 2,
+      "nombre": "Peso normal"
+    },
+    {
+      "id": 3,
+      "nombre": "Sobre peso"
+    }
+  ],
+  "etapas_vida": [
+    {
+      "id": 1,
+      "nombre": "Cachorro"
+    },
+    {
+      "id": 2,
+      "nombre": "Adulto"
+    },
+    {
+      "id": 1,
+      "nombre": "Senior"
+    }
+  ],
+  "categorias": [
+    {
+      "id": 1,
+      "nombre": "Carnes"
+    }
+  ],
+  "subcategorias": {
+    "1": [
+      {
+        "id": 1,
+        "nombre": "Carne de Cerdo"
+      },
+      {
+        "id": 2,
+        "nombre": "Carne de Res"
+      }
+    ]
+  }
+}

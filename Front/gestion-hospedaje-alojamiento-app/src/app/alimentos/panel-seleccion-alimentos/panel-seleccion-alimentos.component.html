@@ -1,0 +1,26 @@
+<div>
+  <div class="row">
+    <div class="col-md-3">
+      <label for="categoria">Categoria</label>
+      <select id="categoria" class="form-control">
+        <option *ngFor="let categoria of categorias" [value]="categoria.id">{{categoria.nombre}}</option>
+      </select>
+    </div>
+    <div class="col-md-3">
+      <label for="subcategoria">Subcategoria</label>
+      <select id="subcategoria" class="form-control">
+        <option *ngFor="let subcategoria of subcategorias" [value]="subcategoria.id">{{subcategoria.nombre}}</option>
+      </select>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <generic-table [gtClasses]="'table-sm'" #myTable [gtSettings]="configObject.settings" [gtFields]="configObject.fields" [(gtData)]="configObject.data"></generic-table>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <generic-table [gtClasses]="'table-sm'" #myTable [gtSettings]="configObject.settings" [gtFields]="configObject.fields" [(gtData)]="configObject.data"></generic-table>
+    </div>
+  </div>
+</div>
