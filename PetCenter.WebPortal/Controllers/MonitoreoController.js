@@ -1,5 +1,17 @@
 ﻿//#region $(document).ready(function ()
 $(document).ready(function () {
+
+    // Elements for taking the snapshot
+    var canvas = document.getElementById('canvas');
+    var context = canvas.getContext('2d');
+    var video = document.getElementById('video');
+
+    // Trigger photo take
+    document.getElementById("snap").addEventListener("click", function () {
+        event.preventDefault();
+        context.drawImage(video, 0, 0, 640, 480);
+    });
+
     $('ul.tabs li:first').addClass('active');
     $('.block article').hide();
     $('.block article:first').show();
@@ -23,12 +35,27 @@ $(document).ready(function () {
         }
         
     });
+
+    $("#IniciarMonitoreo").click(function () {
+        event.preventDefault();
+        IniciarMonitoreo();
+    });
+
+
     ListarTodasMascotas();
 
     $('#DetalleMonitoreoMascota').css({ "display": "none" });
 })
 //#endregion
 
+//#region getMain(dObj)
+function getMain(dObj) {
+    if (dObj.hasOwnProperty('d'))
+        return dObj.d;
+    else
+        return dObj;
+}
+//#endregion
 
 //#region ListarTodasMascotas
 function ListarTodasMascotas() {
@@ -48,7 +75,7 @@ function ListarTodasMascotas() {
                 $("#prof-list").append(li).promise().done(function () {
                     $(this).on("click", ".info-go", function (e) {
                         e.preventDefault();
-                        alert(data[this.id].codigo);
+                        obtenerDatosMascota(data[this.id].codigo);
                         $('#DetalleMonitoreoMascota').css({ "display": "initial" });
                     });
                 });
@@ -58,7 +85,7 @@ function ListarTodasMascotas() {
 }
 //#endregion
 
-//#region ListarTodasMascotas
+//#region ListarMascotasPorFiltro
 function ListarMascotasPorFiltro(filtro) {
     $.ajax({
         cache: false,
@@ -77,17 +104,9 @@ function ListarMascotasPorFiltro(filtro) {
                 $("#prof-list").append(li).promise().done(function () {
                     $(this).on("click", ".info-go", function (e) {
                         e.preventDefault();
-                        //store the information in the next page's data
-                        $("#details-page").data("info", data[this.id]);
-                        //change the page # to second page. 
-                        //Now the URL in the address bar will read index.html#details-page
-                        //where #details-page is the "id" of the second page
-                        //we're gonna redirect to that now using changePage() method
-                        $.mobile.changePage("#details-page");
+                        obtenerDatosMascota(data[this.id].codigo);
+                        $('#DetalleMonitoreoMascota').css({ "display": "initial" });
                     });
-
-                    //refresh list to enhance its styling.
-                    //$(this).listview("refresh");
                 });
             }
         }
@@ -95,4 +114,109 @@ function ListarMascotasPorFiltro(filtro) {
 }
 //#endregion
 
+//#region obtenerDatosMascota
+function obtenerDatosMascota(mascota) {
+    $.ajax({
+        cache: false,
+        type: 'GET',
+        async: false,
+        dataType: "json",
+        url: 'http://localhost/PetCenter.RESTServices/MonitoreoService.svc/Monitoreo/Mascota/'+mascota,
+        success: function (data, textStatus) {
+            if (textStatus == "success") {
+                if (data != null) {
+                    $('#txtCodigoMascota').val(data.codigo);
+                    $('#txtNombreMascota').val(data.nombre);
+                    $('#txtRazaMascota').val(data.raza);
+                    $('#txtEspecieMascota').val(data.especie);
+                    $('#txtTamanioMascota').val(data.tamanio);
+                    $('#txtTipoHabitacionMascota').val(data.tipoHabitacion);
+                    $('#txtHabitacionMascota').val(data.habitacion);
+                    $('#txtFechaIngresoMascota').val(FormatoFecha(data.fechaEntrada));
+                    $('#txtFechaSalidaMascota').val(FormatoFecha(data.fechaSalida));
+                    $('#txtCodigoCliente').val(data.clienteCodigo);
+                    $('#txtNombreCliente').val(data.cliente);
+                    ListarMonitoreosPorMascota(mascota);
+                    
+                }
+                }
+        }
+    });
+}
+//#endregion
+
+//#region ListarMascotasPorFiltro
+function ListarMonitoreosPorMascota(mascota) {
+    $.ajax({
+        cache: false,
+        type: 'GET',
+        async: false,
+        dataType: "json",
+        url: 'http://localhost/PetCenter.RESTServices/MonitoreoService.svc/Monitoreos/' + mascota,
+        success: function (data, textStatus) {
+            if (textStatus == "success") {
+                if (data != null && $.isArray(data)) {
+                    $("#totalReg").html("Se encontraron " + data.length + "Registros");
+
+                    /* Recorremos tu respuesta con each */
+                    $.each(data, function (index, value) {
+                        /* Vamos agregando a nuestra tabla las filas necesarias */
+                        $("#tblMonitoreos").append("<tr><td>"
+                            + value.codigo + "</td><td>"
+                            + value.observaciones + "</td><td>"
+                            + value.fechaRegistro + "</td></tr>");
+                    });
+                }
+                else {
+                    $("#totalReg").val("No hay información disponible");
+                }
+            }
+        }
+    });
+}
+//#endregion
+
+
+function IniciarMonitoreo() {
+    // Grab elements, create settings, etc.
+    var video = document.getElementById('video');
+
+    // Get access to the camera!
+    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+        // Not adding `{ audio: true }` since we only want video now
+        navigator.mediaDevices.getUserMedia({ video: true }).then(function (stream) {
+            video.src = window.URL.createObjectURL(stream);
+            video.play();
+        });
+    }
+
+    /* Legacy code below: getUserMedia 
+    else if(navigator.getUserMedia) { // Standard
+        navigator.getUserMedia({ video: true }, function(stream) {
+            video.src = stream;
+            video.play();
+        }, errBack);
+    } else if(navigator.webkitGetUserMedia) { // WebKit-prefixed
+        navigator.webkitGetUserMedia({ video: true }, function(stream){
+            video.src = window.webkitURL.createObjectURL(stream);
+            video.play();
+        }, errBack);
+    } else if(navigator.mozGetUserMedia) { // Mozilla-prefixed
+        navigator.mozGetUserMedia({ video: true }, function(stream){
+            video.src = window.URL.createObjectURL(stream);
+            video.play();
+        }, errBack);
+    }
+    */
+
+}
+
+
+function FormatoFecha(Fecha) {
+    var DesdeAno = Fecha.substring(0, 4);
+    var DesdeMes = Fecha.substring(4, 6);
+    var DesdeDia = Fecha.substring(6, 8);
+    Fecha = DesdeDia + "-" + DesdeMes + "-" + DesdeAno;
+    return Fecha;
+}
 

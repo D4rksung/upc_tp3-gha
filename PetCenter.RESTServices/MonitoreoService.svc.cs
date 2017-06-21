@@ -22,10 +22,19 @@ namespace PetCenter.RESTServices
             return new MonitoreoLogic().listarMascotasPorRecepcionista(filtro,int.Parse(recepcionista)).ToList();
         }
 
-        public MascotaBE obtenerMonitoreoMascota(string mascota)
+        public MascotaBE obtenerDatosMascota(string mascota)
         {
             return new MonitoreoLogic().obtenerDatosMascota(int.Parse(mascota));
         }
 
+        public List<MonitoreoBE> listarMonitoreosPorMascota(string mascota)
+        {
+            return new MonitoreoLogic().listarMonitoreosMascota(int.Parse(mascota)).ToList();
+        }
+
+        public List<fotoMonitoreoBE> listarFotosMonitoreosPorMascota(string monitoreo)
+        {
+            return new MonitoreoLogic().listarFotosMonitoreoMascota(int.Parse(monitoreo)).ToList();
+        }
     }
 }

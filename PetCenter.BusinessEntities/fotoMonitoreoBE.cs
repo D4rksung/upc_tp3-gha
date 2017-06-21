@@ -8,7 +8,8 @@ namespace PetCenter.BusinessEntities
 {
     public class fotoMonitoreoBE
     {
-        public int codigo { get; set; }
+        public int monitoreo { get; set; }
+        public int foto { get; set; }
         public string nombre { get; set; }
         public string fechaRegistro { get; set; }
     }

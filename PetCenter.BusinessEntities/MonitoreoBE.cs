@@ -9,10 +9,8 @@ namespace PetCenter.BusinessEntities
     public class MonitoreoBE
     {
         public int codigo { get; set; }
-        public MascotaBE mascota { get; set; }
-        public string observacion { get; set; }
-
-        public List<fotoMonitoreoBE> listaFotos { get; set; }
+        public int mascota { get; set; }
+        public string observaciones { get; set; }
         public string fechaRegistro { get; set; }
 
     }

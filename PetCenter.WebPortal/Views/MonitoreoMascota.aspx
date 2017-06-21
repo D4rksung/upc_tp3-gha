@@ -110,6 +110,15 @@
                                <legend class="scheduler-border">Hospedaje</legend>
                                 <div class="row col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="form-group">
+                                  <label class="sr-only" for="txtTipoHabitacionMascota"></label>
+                                  <div class="input-group">
+                                    <div class="input-group-addon">Tipo Hab.:</div>
+                                    <input type="text" maxlength="100" class="form-control" required="" disabled="" id="txtTipoHabitacionMascota" name="txtTipoHabitacionMascota" value="">
+                                  </div>
+                                </div>
+                                </div>
+                                <div class="row col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group">
                                   <label class="sr-only" for="txtHabitacionMascota"></label>
                                   <div class="input-group">
                                     <div class="input-group-addon">Habitación:</div>
@@ -171,10 +180,24 @@
                           <div class="clr"></div>
                           <section class="block">
                             <article id="tab1">
-                                <br /><br />
-                              <button>Iniciar</button>
-                                <button>Detener</button>
-                                <button>Tomar Captura</button>
+                                <br />
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                         <button id="IniciarMonitoreo" class="btn btn-danger" formnovalidate="formnovalidate" type="submit">Iniciar Monitoreo</button>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                         <button id="DetenerMonitoreo" class="btn btn-danger" formnovalidate="formnovalidate" type="submit">Detener Monitoreo</button>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                        <button id="snap" class="btn btn-danger" formnovalidate="formnovalidate">Tomar Captura</button>
+                                    </div>
+                                </div>
+                                <br />
+                                <div class="row col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <video id="video" width="500" height="400" autoplay></video>
+                                    
+                                <canvas id="canvas" width="500" height="400"></canvas>
+                                </div>
                             </article>
                             <article id="tab2">
                                 <br /><br />
@@ -186,12 +209,11 @@
                                                 <div class="panel-body">
                                                     <div id="table-responsive" class="table-responsive">
 
-                                                        <table id="tblCalendario" name="tblCalendario" class="table table-striped">
+                                                        <table id="tblMonitoreos" class="table table-striped">
                                                             <tbody><tr>
-                                                    <th>Calendario</th>
-                                                    <th>Especie</th>
-                                                    <th>Fecha Inicio</th>
-                                                    <th>Fecha Fin</th>
+                                                    <th>Código</th>
+                                                    <th>Observaciones</th>
+                                                    <th>Fecha de Registro</th>
                                                     <th>Opciones</th>
                                                     </tr></tbody>
                     

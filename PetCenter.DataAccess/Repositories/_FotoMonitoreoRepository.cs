@@ -6,28 +6,26 @@ using System.Text;
 using System.Threading.Tasks;
 using PetCenter.DataAccess.Extensions;
 using PetCenter.BusinessEntities;
+
 namespace PetCenter.DataAccess.Repositories
 {
-    public class _MonitoreoRepository:Repository<MonitoreoBE>
+    public class _FotoMonitoreoRepository : Repository<fotoMonitoreoBE>
     {
         private DbContext _context;
-        public _MonitoreoRepository(DbContext context)
+        public _FotoMonitoreoRepository(DbContext context)
             : base(context)
         {
             _context = context;
         }
-
-        public IList<MonitoreoBE> listaMonitoreosMascota(int mascota)
+        public IList<fotoMonitoreoBE> listaFotosMonitoreosMascota(int monitoreo)
         {
             using (var command = _context.CreateCommand())
             {
                 command.CommandType = CommandType.StoredProcedure;
-                command.CommandText = "usp_GHA_ListarMonitoreoPorMascota";
-                command.Parameters.Add(command.CreateParameter("@mascota", mascota));
+                command.CommandText = "usp_GHA_ListarFotosMonitoreo";
+                command.Parameters.Add(command.CreateParameter("@monitoreo", monitoreo));
                 return this.ToList(command).ToList();
             }
         }
-
-
     }
 }

@@ -32,5 +32,27 @@ namespace PetCenter.BusinessLogic
 
             return mascotaRep.ObtenerDatosMascota(mascota);
         }
+
+        public IList<MonitoreoBE> listarMonitoreosMascota(int mascota)
+        {
+            connectionFactory = ConnectionHelper.GetConnection();
+
+            var context = new DbContext(connectionFactory);
+
+            var monitoreoRep = new _MonitoreoRepository(context);
+
+            return monitoreoRep.listaMonitoreosMascota(mascota);
+        }
+
+        public IList<fotoMonitoreoBE> listarFotosMonitoreoMascota(int monitoreo)
+        {
+            connectionFactory = ConnectionHelper.GetConnection();
+
+            var context = new DbContext(connectionFactory);
+
+            var fotoMonitoreoRep = new _FotoMonitoreoRepository(context);
+
+            return fotoMonitoreoRep.listaFotosMonitoreosMascota(monitoreo);
+        }
     }
 }
