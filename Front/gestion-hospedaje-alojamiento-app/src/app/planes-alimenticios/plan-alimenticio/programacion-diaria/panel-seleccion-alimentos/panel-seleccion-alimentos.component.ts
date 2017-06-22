@@ -1,10 +1,10 @@
-import { AlimentosService } from '../alimentos.service';
-import { Alimento } from '../../models/alimento.model';
+import { Alimento } from './../../../../models/alimento.model';
+import { AlimentosService } from './../../../../alimentos/alimentos.service';
 import { Component, OnInit } from '@angular/core';
 import {GtConfig} from '@angular-generic-table/core';
 
 @Component({
-  selector: 'app-panel-seleccion-alimentos',
+  selector: 'gha-panel-seleccion-alimentos',
   templateUrl: './panel-seleccion-alimentos.component.html',
   styleUrls: ['./panel-seleccion-alimentos.component.css']
 })
