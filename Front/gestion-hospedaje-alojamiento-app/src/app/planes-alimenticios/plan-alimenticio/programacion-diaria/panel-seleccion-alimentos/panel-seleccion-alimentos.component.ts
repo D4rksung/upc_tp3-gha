@@ -12,7 +12,7 @@ export class PanelSeleccionAlimentosComponent implements OnInit {
   public configObject: GtConfig<Alimento>;
 
   constructor(private alimentoService: AlimentosService) {
-    this.configObject={
+    this.configObject = {
       settings: [{
         objectKey: 'id',
         sort: 'asc',
@@ -32,7 +32,7 @@ export class PanelSeleccionAlimentosComponent implements OnInit {
         objectKey: 'nombre'
       }],
       data: []
-    }
+    };
 
   }
 

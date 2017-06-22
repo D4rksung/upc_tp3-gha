@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { GenericTableModule } from '@angular-generic-table/core';
+import { ColumnSettingsModule } from '@angular-generic-table/column-settings/column-settings.module';
 
 import { AppComponent } from './app.component';
 
@@ -27,7 +28,8 @@ import { AppComponent } from './app.component';
     FormsModule,
     HttpModule,
     NgbModule.forRoot(),
-    GenericTableModule
+    GenericTableModule,
+    ColumnSettingsModule
   ],
   providers: [AlimentosService,FiltrosService],
   bootstrap: [AppComponent]
