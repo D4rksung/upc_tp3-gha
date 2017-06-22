@@ -1,3 +1,4 @@
+import { PlanAlimenticio } from './../../models/plan-alimenticio.model';
 import { AlimentosService } from './../../alimentos/alimentos.service';
 import { Alimento } from './../../models/alimento.model';
 import { Component, OnInit } from '@angular/core';
@@ -12,18 +13,20 @@ export class PlanAlimenticioComponent implements OnInit {
   title = 'Definir Plan Alimenticio';
   especies = [{
     id: 1,
-    nombre: "perro"
+    nombre: 'perro'
   }, {
     id: 2,
-    nombre: "gato"
+    nombre: 'gato'
   }];
   condiciones_medicas = [{
     id: 1,
-    nombre: "sano"
+    nombre: 'sano'
   }, {
     id: 2,
-    nombre: "gripe"
+    nombre: 'gripe'
   }];
+
+  planAlimenticio: PlanAlimenticio = new PlanAlimenticio();
 
 
   constructor() { }

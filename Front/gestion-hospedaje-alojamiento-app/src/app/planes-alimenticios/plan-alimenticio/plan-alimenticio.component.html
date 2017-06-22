@@ -1,5 +1,12 @@
 <div class="row">
   <div class="col-md-12">
+    <pre>
+      <code>planAlimenticio: {{planAlimenticio | json}}</code>
+    </pre>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
     <h1>
       {{title}}
     </h1>
@@ -15,17 +22,17 @@
 <div class="row">
   <div class="form-group col-md-6">
     <label for="nombre">Nombre</label>
-    <input type="text" id="nombre" class="form-control">
+    <input type="text" id="nombre" class="form-control" [(ngModel)]="planAlimenticio.nombre">
   </div>
   <div class="form-group col-md-3">
     <label for="especie">Especie</label>
-    <select id="especie" class="form-control">
+    <select id="especie" class="form-control" [(ngModel)]="planAlimenticio.especie">
       <option *ngFor="let especie of especies" [value]="especie.id">{{especie.nombre | titlecase}}</option>
     </select>
   </div>
   <div class="form-group col-md-3">
     <label for="condicion_medica">Condición Médica</label>
-    <select id="condicion_medica" class="form-control">
+    <select id="condicion_medica" class="form-control" [(ngModel)]="planAlimenticio.condicionMedica">
       <option *ngFor="let condicion_medica of condiciones_medicas" [value]="condicion_medica.id">{{condicion_medica.nombre | titlecase}}</option>
     </select>
   </div>
@@ -33,7 +40,7 @@
 <div class="row">
   <div class="form-group col-md-12">
     <label for="descripcion">Descripcion</label>
-    <textarea id="descripcion" class="form-control"></textarea>
+    <textarea id="descripcion" class="form-control" [(ngModel)]="planAlimenticio.descripcion"></textarea>
   </div>
 </div>
 <div class="row">
