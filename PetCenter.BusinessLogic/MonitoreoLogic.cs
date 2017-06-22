@@ -33,7 +33,7 @@ namespace PetCenter.BusinessLogic
             return mascotaRep.ObtenerDatosMascota(mascota);
         }
 
-        public IList<MonitoreoBE> listarMonitoreosMascota(int mascota)
+        public IList<MonitoreoBE> listarMonitoreosMascota(int lugarHospedaje, int mascota)
         {
             connectionFactory = ConnectionHelper.GetConnection();
 
@@ -41,7 +41,7 @@ namespace PetCenter.BusinessLogic
 
             var monitoreoRep = new _MonitoreoRepository(context);
 
-            return monitoreoRep.listaMonitoreosMascota(mascota);
+            return monitoreoRep.listaMonitoreosMascota(lugarHospedaje,mascota);
         }
 
         public IList<fotoMonitoreoBE> listarFotosMonitoreoMascota(int monitoreo)

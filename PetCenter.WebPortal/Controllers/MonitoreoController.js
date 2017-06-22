@@ -142,13 +142,14 @@ function obtenerDatosMascota(mascota) {
                     $('#txtRazaMascota').val(data.raza);
                     $('#txtEspecieMascota').val(data.especie);
                     $('#txtTamanioMascota').val(data.tamanio);
+                    $('#txtHospedaje').val(data.hospedaje);
                     $('#txtTipoHabitacionMascota').val(data.tipoHabitacion);
                     $('#txtHabitacionMascota').val(data.habitacion);
                     $('#txtFechaIngresoMascota').val(FormatoFecha(data.fechaEntrada));
                     $('#txtFechaSalidaMascota').val(FormatoFecha(data.fechaSalida));
                     $('#txtCodigoCliente').val(data.clienteCodigo);
                     $('#txtNombreCliente').val(data.cliente);
-                    ListarMonitoreosPorMascota(mascota);
+                    ListarMonitoreosPorMascota(data.hospedaje,mascota);
                 }
             }
         },
@@ -160,14 +161,14 @@ function obtenerDatosMascota(mascota) {
 //#endregion
 
 //#region ListarMascotasPorFiltro
-function ListarMonitoreosPorMascota(mascota) {
+function ListarMonitoreosPorMascota(lugarHospedaje, mascota) {
     $("#tblMonitoreos").empty();
     $.ajax({
         cache: false,
         type: 'GET',
         async: false,
         dataType: "json",
-        url: 'http://localhost/PetCenter.RESTServices/MonitoreoService.svc/Monitoreos/' + mascota,
+        url: 'http://localhost/PetCenter.RESTServices/MonitoreoService.svc/Monitoreos/' + lugarHospedaje+'/' + mascota,
         success: function (data, textStatus) {
             if (textStatus == "success") {
                 if (data != null && $.isArray(data)) {

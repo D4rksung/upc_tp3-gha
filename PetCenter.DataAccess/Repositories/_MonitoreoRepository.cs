@@ -17,12 +17,13 @@ namespace PetCenter.DataAccess.Repositories
             _context = context;
         }
 
-        public IList<MonitoreoBE> listaMonitoreosMascota(int mascota)
+        public IList<MonitoreoBE> listaMonitoreosMascota(int lugarHospedaje, int mascota)
         {
             using (var command = _context.CreateCommand())
             {
                 command.CommandType = CommandType.StoredProcedure;
                 command.CommandText = "usp_GHA_ListarMonitoreoPorMascota";
+                command.Parameters.Add(command.CreateParameter("@hospedajeLugar", lugarHospedaje));
                 command.Parameters.Add(command.CreateParameter("@mascota", mascota));
                 return this.ToList(command).ToList();
             }

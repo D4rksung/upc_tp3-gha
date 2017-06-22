@@ -38,8 +38,8 @@ namespace PetCenter.RESTServices
         [WebInvoke(Method = "GET",
             ResponseFormat = WebMessageFormat.Json,
             BodyStyle = WebMessageBodyStyle.Bare,
-            UriTemplate = "Monitoreos/{mascota}")]
-        List<MonitoreoBE> listarMonitoreosPorMascota(string mascota);
+            UriTemplate = "Monitoreos/{lugarHospedaje}/{mascota}")]
+        List<MonitoreoBE> listarMonitoreosPorMascota(string lugarHospedaje, string mascota);
 
         [OperationContract]
         [WebInvoke(Method = "GET",
