@@ -1,0 +1,32 @@
+<div class="card">
+  <div class="card-header">
+    <h3>Criterios de Selección</h3>
+  </div>
+  <div class="card-block container">
+    <div class="row">
+      <div class="form-group col-md-4">
+        <label for="raza">Raza</label>
+        <select id="raza" class="form-control">
+          <option *ngFor="let raza of razas" value="raza.id">{{raza.nombre | titlecase}}</option>
+        </select>
+      </div>
+      <div class="form-group col-md-4">
+        <label for="nivel_bmi">Nivel de BMI</label>
+        <select id="nivel_bmi" class="form-control">
+          <option *ngFor="let nivel_bmi of niveles_bmi" value="nivel_bmi.id">{{nivel_bmi.nombre | titlecase}}</option>
+        </select>
+      </div>
+      <div class="form-group col-md-4">
+        <label for="etapa_vida">Etapa de Vida</label>
+        <select id="etapa_vida" class="form-control">
+          <option *ngFor="let etapa_vida of etapas_vida" value="etapa_vida.id">{{etapa_vida.nombre | titlecase}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <button class="btn btn-primary">Agregar Criterio</button>
+      </div>
+    </div>
+  </div>
+</div>

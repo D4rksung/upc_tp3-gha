@@ -1,5 +1,8 @@
+import { PlanAlimenticioComponent } from './planes-alimenticios/plan-alimenticio/plan-alimenticio.component';
+import { CriteriosSeleccionComponent } from './planes-alimenticios/plan-alimenticio/criterios-seleccion/criterios-seleccion.component';
+import { PanelSeleccionAlimentosComponent } from './planes-alimenticios/plan-alimenticio/programacion-diaria/panel-seleccion-alimentos/panel-seleccion-alimentos.component';
+import { ProgramacionDiariaComponent } from './planes-alimenticios/plan-alimenticio/programacion-diaria/programacion-diaria.component';
 import { FiltrosService } from './filtros.service';
-import { PanelSeleccionAlimentosComponent } from './alimentos/panel-seleccion-alimentos/panel-seleccion-alimentos.component';
 import { AlimentosService } from './alimentos/alimentos.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -10,10 +13,14 @@ import { GenericTableModule } from '@angular-generic-table/core';
 
 import { AppComponent } from './app.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
-    PanelSeleccionAlimentosComponent
+    ProgramacionDiariaComponent,
+    PanelSeleccionAlimentosComponent,
+    CriteriosSeleccionComponent,
+    PlanAlimenticioComponent
   ],
   imports: [
     BrowserModule,
