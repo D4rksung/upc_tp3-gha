@@ -6,6 +6,8 @@ $(document).ready(function () {
     var context = canvas.getContext('2d');
     var video = document.getElementById('video');
 
+    $("#DetenerMonitoreo").attr('disabled', 'true');
+    $("#snap").attr('disabled', 'true');
     // Trigger photo take
     document.getElementById("snap").addEventListener("click", function () {
         event.preventDefault();
@@ -38,10 +40,20 @@ $(document).ready(function () {
 
     $("#IniciarMonitoreo").click(function () {
         event.preventDefault();
+        $("#IniciarMonitoreo").attr('disabled', 'true');
+        $("#DetenerMonitoreo").removeAttr("disabled");
+        $("#snap").removeAttr("disabled");
         IniciarMonitoreo();
     });
 
-
+    $("#DetenerMonitoreo").click(function () {
+        event.preventDefault();
+        $("#IniciarMonitoreo").removeAttr("disabled");
+        $("#DetenerMonitoreo").attr('disabled', 'true');
+        $("#snap").attr('disabled', 'true');
+        DetenerMonitoreo();
+    });
+    
     ListarTodasMascotas();
 
     $('#DetalleMonitoreoMascota').css({ "display": "none" });
@@ -137,9 +149,11 @@ function obtenerDatosMascota(mascota) {
                     $('#txtCodigoCliente').val(data.clienteCodigo);
                     $('#txtNombreCliente').val(data.cliente);
                     ListarMonitoreosPorMascota(mascota);
-                    
                 }
-                }
+            }
+        },
+        error: function (xhr) {
+            $('#DetalleMonitoreoMascota').css({ "display": "none" });
         }
     });
 }
@@ -147,6 +161,7 @@ function obtenerDatosMascota(mascota) {
 
 //#region ListarMascotasPorFiltro
 function ListarMonitoreosPorMascota(mascota) {
+    $("#tblMonitoreos").empty();
     $.ajax({
         cache: false,
         type: 'GET',
@@ -157,6 +172,13 @@ function ListarMonitoreosPorMascota(mascota) {
             if (textStatus == "success") {
                 if (data != null && $.isArray(data)) {
                     $("#totalReg").html("Se encontraron " + data.length + "Registros");
+                    $("#tblMonitoreos").append("<tbody><tr>"
+                        +"<th>Código</th>"
+                        +"<th>Observaciones</th>"
+                        +"<th>Fecha de Registro</th>"
+                        +"<th>Capturas</th>"
+                        +"</tr></tbody>"
+                        )
 
                     /* Recorremos tu respuesta con each */
                     $.each(data, function (index, value) {
@@ -164,7 +186,8 @@ function ListarMonitoreosPorMascota(mascota) {
                         $("#tblMonitoreos").append("<tr><td>"
                             + value.codigo + "</td><td>"
                             + value.observaciones + "</td><td>"
-                            + value.fechaRegistro + "</td></tr>");
+                            + value.fechaRegistro + "</td><td>"
+                            + "<a href=\"#\" role=\"button\" data-toggle=\"modal\" data-target=\"#capturas-modal\">Ver</a></td></tr>");
                     });
                 }
                 else {
@@ -186,6 +209,7 @@ function IniciarMonitoreo() {
         // Not adding `{ audio: true }` since we only want video now
         navigator.mediaDevices.getUserMedia({ video: true }).then(function (stream) {
             video.src = window.URL.createObjectURL(stream);
+            localstream = stream;
             video.play();
         });
     }
@@ -211,6 +235,13 @@ function IniciarMonitoreo() {
 
 }
 
+function DetenerMonitoreo() {
+
+    video.pause();
+    video.src = "";
+    localStream.getVideoTracks()[0].stop();
+
+}
 
 function FormatoFecha(Fecha) {
     var DesdeAno = Fecha.substring(0, 4);

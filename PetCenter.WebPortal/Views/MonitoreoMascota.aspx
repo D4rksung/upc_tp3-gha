@@ -24,7 +24,7 @@
                 <div class="item  col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding:0px 2px 0px 2px;">
         <div data-role="page" id="info-page">
                 <div data-role="header" data-theme="b">
-                     <h2> Mis mascotas</h2>
+                     <h2> Mascotas hospedadas hoy</h2>
                 </div>
                   <div class="input-group stylish-input-group">
                         <input type="text" name="txtBusquedaMascotas" id="txtBusquedaMascotas" class="form-control" placeholder="Ingrese nombre de mascota o nombre de cliente" />
@@ -48,13 +48,12 @@
 
     
    <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
-
     <div id="DetalleMonitoreoMascota" class="box">
       <div class="contenido-ficha">
                             <section>
                             <h2>Detalle y gestión de monitoreo de mascota</h2>
                             </section>
- <div class="item  col-lg-4 col-md-4 col-sm-12 col-xs-12">
+    <div class="item  col-lg-4 col-md-4 col-sm-12 col-xs-12">
                            <fieldset class="scheduler-border">
                                <legend class="scheduler-border">Datos de Mascota</legend>
                                 <div class="row col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -110,9 +109,18 @@
                                <legend class="scheduler-border">Hospedaje</legend>
                                 <div class="row col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="form-group">
+                                  <label class="sr-only" for="txtHospedaje"></label>
+                                  <div class="input-group">
+                                    <div class="input-group-addon">Código:</div>
+                                    <input type="text" maxlength="100" class="form-control" required="" disabled="" id="txtHospedaje" name="txtHospedaje" value="">
+                                  </div>
+                                </div>
+                                </div>
+                                <div class="row col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group">
                                   <label class="sr-only" for="txtTipoHabitacionMascota"></label>
                                   <div class="input-group">
-                                    <div class="input-group-addon">Tipo Hab.:</div>
+                                    <div class="input-group-addon">Tipo:</div>
                                     <input type="text" maxlength="100" class="form-control" required="" disabled="" id="txtTipoHabitacionMascota" name="txtTipoHabitacionMascota" value="">
                                   </div>
                                 </div>
@@ -173,6 +181,22 @@
           </div>
 
    <div class="item  col-lg-8 col-md-8 col-sm-12 col-xs-12">
+       <fieldset class="scheduler-border">
+        <legend class="scheduler-border">Datos para monitoreo</legend>
+                            <div class="row" id="divefectos">
+                              <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="sr-only" for="txtObservacionesMonitoreo"></label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon">Observaciones:</div>                                   
+                                        <textarea class="form-control" maxlength="200" rows="2" name="txtObservacionesMonitoreo" id="txtObservacionesMonitoreo"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+          </div>  
+       </fieldset>
+        
+
                                  <ul class="tabs">
                             <li><a href="#tab1">Monitoreo</a></li>
                             <li><a href="#tab2">Historial de monitoreos</a></li>
@@ -210,12 +234,7 @@
                                                     <div id="table-responsive" class="table-responsive">
 
                                                         <table id="tblMonitoreos" class="table table-striped">
-                                                            <tbody><tr>
-                                                    <th>Código</th>
-                                                    <th>Observaciones</th>
-                                                    <th>Fecha de Registro</th>
-                                                    <th>Opciones</th>
-                                                    </tr></tbody>
+
                     
                                                 </table>
                                                         <div id="totalReg"></div>
@@ -237,5 +256,22 @@
                                 
                                    </div>
      </div>
+
+
+    <div class="modal fade" id="capturas-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none; padding-top: 57px;">
+    	<div class="modal-dialog">
+			<div class="modal-content">
+                <div class="modal-header" >
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" ><span aria-hidden="true" onclick="cerrarModal()">&times;</span></button>
+					<h1>Capturas</h1>
+
+                    <div class="modal-footer">'
+                    <button type="button" class="btn btn-primary" id="modal_aceptar" name="modal_aceptar" onclick="cerrarModal()" data-dismiss="modal">Salir</button>
+				    </div>
+			    </div>
+		</div>
+	</div>`
+
+    </div>
 
 </asp:Content>

@@ -16,6 +16,7 @@ namespace PetCenter.BusinessEntities
         public string tamanio { get; set; }
         public int clienteCodigo { get; set; }
         public string cliente { get; set; }
+        public int hospedaje { get; set; }
         public string tipoHabitacion { get; set; }
         public string habitacion { get; set; }
         public string fechaEntrada { get; set; }
