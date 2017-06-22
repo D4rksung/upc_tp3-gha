@@ -1,5 +1,5 @@
-import { Alimento } from './../../../../models/alimento.model';
-import { AlimentosService } from './../../../../alimentos/alimentos.service';
+import { Alimento } from './../../../../../models/alimento.model';
+import { AlimentosService } from './../../../../../alimentos/alimentos.service';
 import { Component, OnInit } from '@angular/core';
 import {GtConfig} from '@angular-generic-table/core';
 

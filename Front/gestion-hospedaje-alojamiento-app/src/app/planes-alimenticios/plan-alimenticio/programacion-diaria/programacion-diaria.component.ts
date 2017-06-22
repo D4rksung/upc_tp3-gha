@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import {NgbTabChangeEvent} from '@ng-bootstrap/ng-bootstrap';
+import { ProgramacionDia } from './../../../models/programacion-dia.model';
 
 @Component({
   selector: 'gha-programacion-diaria',
@@ -6,27 +8,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./programacion-diaria.component.css']
 })
 export class ProgramacionDiariaComponent implements OnInit {
+  @Input() programacionesDia: ProgramacionDia[];
 
-  comidas = [{
-    id: 1,
-    nombre: "desayuno",
-    abreviatura: "d",
-    active: false
-  }, {
-    id: 2,
-    nombre: "almuerzo",
-    abreviatura: "a",
-    active: false
-  }, {
-    id: 3,
-    nombre: "cena",
-    abreviatura: "c",
-    active: false
-  }];
 
   constructor() { }
 
   ngOnInit() {
   }
+
+  public beforeChange($event: NgbTabChangeEvent) {
+    if ($event.nextId === 'add-day') {
+      $event.preventDefault();
+      let count = this.programacionesDia.length;
+      this.programacionesDia.push({numeroDia:count+1,comidas:[]});
+    }
+  };
 
 }

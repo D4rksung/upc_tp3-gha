@@ -124,9 +124,9 @@ export class CriteriosSeleccionComponent implements OnInit {
       etapaVida: this.etapas_vida.find(ev=>ev.id == etapaVida)
     };
     if (this.existeCriterio(criterio)){
-      this.criterios.push(criterio);
-    } else {
       console.log('Ya existe criterio');
+    } else {
+      this.criterios.push(criterio);
     }
   }
 
