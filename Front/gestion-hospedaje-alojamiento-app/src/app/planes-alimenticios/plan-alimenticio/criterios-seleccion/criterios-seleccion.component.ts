@@ -1,6 +1,6 @@
 import { CriterioSeleccion } from './../../../models/criterio-seleccion.model';
 import { GtConfig } from '@angular-generic-table/core';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input} from '@angular/core';
 
 const defaultSeleccion = {raza: -1, nivelBMI: -1, etapaVida: -1};
 interface criterioSeleccionRowData{
@@ -18,6 +18,8 @@ interface criterioSeleccionRowData{
 })
 export class CriteriosSeleccionComponent implements OnInit {
   public configObject: GtConfig<criterioSeleccionRowData>;
+
+  @Input() criterios: CriterioSeleccion[];
 
   seleccion = defaultSeleccion;
 
@@ -116,13 +118,28 @@ export class CriteriosSeleccionComponent implements OnInit {
 
   agregarCriterio() {
     let {raza, nivelBMI, etapaVida} = this.seleccion;
-    let cs = {
+    let criterio:CriterioSeleccion = {
       raza: this.razas.find(r=>r.id == raza),
       nivelBMI: this.niveles_bmi.find(nb=>nb.id == nivelBMI),
       etapaVida: this.etapas_vida.find(ev=>ev.id == etapaVida)
     };
-    this.configObject.data.push({especie: 'perro', raza: cs.raza.nombre, nivelBMI: cs.nivelBMI.nombre, etapaVida: cs.etapaVida.nombre});
-    this.seleccion = defaultSeleccion;
+    if (this.existeCriterio(criterio)){
+      this.criterios.push(criterio);
+    } else {
+      console.log('Ya existe criterio');
+    }
+  }
+
+  existeCriterio(criterio:CriterioSeleccion){
+    return !!this.criterios.find(c=>{
+      return c.etapaVida== criterio.etapaVida
+      && c.nivelBMI == criterio.nivelBMI
+      && c.etapaVida == criterio.etapaVida;
+    });
+  }
+
+  quitarCriterio(idxCriterio: number) {
+    this.criterios.splice(idxCriterio, 1);
   }
 
 }
