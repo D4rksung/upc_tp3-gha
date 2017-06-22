@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ProgramacionDia } from './../../../../models/programacion-dia.model';
+import { Comida, TipoComida } from './../../../../models/comida.model';
 
 @Component({
   selector: 'gha-panel-programacion-dia',
@@ -11,17 +12,17 @@ export class PanelProgramacionDiaComponent implements OnInit {
   @Input() programacionDia:ProgramacionDia;
 
   comidas = [{
-    id: 1,
+    tipoComida: TipoComida.Desayuno,
     nombre: "desayuno",
     abreviatura: "d",
     active: false
   }, {
-    id: 2,
+    tipoComida: TipoComida.Almuerzo,
     nombre: "almuerzo",
     abreviatura: "a",
     active: false
   }, {
-    id: 3,
+    tipoComida: TipoComida.Cena,
     nombre: "cena",
     abreviatura: "c",
     active: false
@@ -30,7 +31,9 @@ export class PanelProgramacionDiaComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    
+    let comidas = this.programacionDia.comidas;
+    let tipos = Array.from(new Set(comidas.map(c=>c.tipo)));
+    this.comidas.map(c=>tipos.includes(c.tipoComida));
   }
 
 }

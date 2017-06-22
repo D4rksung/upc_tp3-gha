@@ -1,5 +1,5 @@
 import {Alimento} from './alimento.model';
-enum TipoComida {
+export enum TipoComida {
   Desayuno = 1, Almuerzo, Cena
 }
 
