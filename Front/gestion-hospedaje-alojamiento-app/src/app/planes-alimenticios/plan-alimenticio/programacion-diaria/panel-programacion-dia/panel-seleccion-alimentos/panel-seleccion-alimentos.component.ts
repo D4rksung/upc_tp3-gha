@@ -1,6 +1,6 @@
-import { Alimento } from './../../../../../models/alimento.model';
+import { Alimento, Categoria, SubCategoria} from './../../../../../models/alimento.model';
 import { AlimentosService } from './../../../../../alimentos/alimentos.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges, SimpleChanges, Input} from '@angular/core';
 import {GtConfig} from '@angular-generic-table/core';
 
 @Component({
@@ -8,7 +8,22 @@ import {GtConfig} from '@angular-generic-table/core';
   templateUrl: './panel-seleccion-alimentos.component.html',
   styleUrls: ['./panel-seleccion-alimentos.component.css']
 })
-export class PanelSeleccionAlimentosComponent implements OnInit {
+export class PanelSeleccionAlimentosComponent implements OnInit, OnChanges {
+  @Input() alimentos: Alimento[];
+  allAlimentos:Alimento[]=[];
+  filteredAlimentos: Alimento[]=[];
+  seleccionAlimentos: Alimento[];
+  filtros={categoria:-1,subcategoria:-1};
+
+  categorias: Categoria[] = [{
+    id: 1, nombre: 'Carnes'
+  }];
+  subcategorias: Categoria[] = [{
+    id: 1, nombre: 'Carne de Res'
+  },{
+    id: 2, nombre: 'Carne de Cerdo'
+  }];
+
   public configObject: GtConfig<Alimento>;
 
   constructor(private alimentoService: AlimentosService) {
@@ -38,14 +53,32 @@ export class PanelSeleccionAlimentosComponent implements OnInit {
 
   ngOnInit() {
     this.getAlimentos();
+    this.filtrarAlimentos();
+  }
+
+  ngOnChanges(changes:SimpleChanges){
+    console.log('onChanges: ',changes);
   }
 
   getAlimentos(){
-    this.configObject.data = [];
     this.alimentoService.getAlimentos()
     .subscribe(alimentos=>{
-      this.configObject.data = alimentos;
+      this.allAlimentos = alimentos;
     });
   }
 
+  filtrarAlimentos(){
+    this.filteredAlimentos = this.allAlimentos.filter(a=>{
+      let {categoria,subcategoria} = this.filtros;
+      if(categoria <0 || subcategoria <0){
+        return true;
+      }else{
+        return a.subCategoria == subcategoria;
+      }
+    });
+  }
+
+  quitarAlimento(idxAlimento:number){
+    this.alimentos.splice(idxAlimento,1);
+  }
 }

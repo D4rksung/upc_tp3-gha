@@ -25,6 +25,7 @@
     {
       "id": 2,
       "nombre": "Costillas",
+      "subCategoria":1,
       "cantidad": 100,
       "unidad": "g",
       "componentes": {

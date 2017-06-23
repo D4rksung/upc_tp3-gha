@@ -12,17 +12,17 @@ export class PanelProgramacionDiaComponent implements OnInit {
   @Input() programacionDia:ProgramacionDia;
 
   comidas = [{
-    tipoComida: TipoComida.Desayuno,
+    tipo: TipoComida.Desayuno,
     nombre: "desayuno",
     abreviatura: "d",
     active: false
   }, {
-    tipoComida: TipoComida.Almuerzo,
+    tipo: TipoComida.Almuerzo,
     nombre: "almuerzo",
     abreviatura: "a",
     active: false
   }, {
-    tipoComida: TipoComida.Cena,
+    tipo: TipoComida.Cena,
     nombre: "cena",
     abreviatura: "c",
     active: false
@@ -33,7 +33,27 @@ export class PanelProgramacionDiaComponent implements OnInit {
   ngOnInit() {
     let comidas = this.programacionDia.comidas;
     let tipos = Array.from(new Set(comidas.map(c=>c.tipo)));
-    this.comidas.map(c=>tipos.includes(c.tipoComida));
+    if(tipos.length){
+      this.comidas.forEach(c=>c.active=tipos.includes(c.tipo));
+    }
+  }
+
+  actualizarEstadoComida(estado:boolean, tipo:TipoComida){
+    let comidasProgramadas = this.programacionDia.comidas;
+    let comida = this.comidas.find(c=>c.tipo == tipo);
+    if(estado){
+      comidasProgramadas.push({tipo,alimentos:[]});
+      comida.active = estado;
+    }else{
+      let comidaProgramada=comidasProgramadas.find(c=>c.tipo==tipo);
+      comidasProgramadas.splice(comidasProgramadas.indexOf(comidaProgramada),1);
+      comida.active = estado;
+    }
+  }
+
+  getAlimentosFromComida(comida){
+    let comidas = this.programacionDia.comidas;
+    return comidas.find(c=>c.tipo == comida.tipo).alimentos;
   }
 
 }
