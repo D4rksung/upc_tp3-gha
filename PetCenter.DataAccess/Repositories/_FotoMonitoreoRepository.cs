@@ -27,5 +27,20 @@ namespace PetCenter.DataAccess.Repositories
                 return this.ToList(command).ToList();
             }
         }
+
+        public fotoMonitoreoBE registrarFotoMonitoreo(fotoMonitoreoBE fotoMonitoreo)
+        {
+            using (var command = _context.CreateCommand())
+            {
+                command.CommandType = CommandType.StoredProcedure;
+                command.CommandText = "usp_GHA_RegistrarFotoMonitoreo";
+
+                command.Parameters.Add(command.CreateParameter("@monitoreo", fotoMonitoreo.monitoreo));
+                command.Parameters.Add(command.CreateParameter("@nombre", fotoMonitoreo.nombre));
+
+                return this.ToList(command).FirstOrDefault();
+            }
+
+        }
     }
 }

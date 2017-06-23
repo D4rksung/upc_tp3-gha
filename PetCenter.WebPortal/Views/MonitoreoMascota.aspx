@@ -26,6 +26,7 @@
                 <div data-role="header" data-theme="b">
                      <h2> Mascotas hospedadas hoy</h2>
                 </div>
+             
                   <div class="input-group stylish-input-group">
                         <input type="text" name="txtBusquedaMascotas" id="txtBusquedaMascotas" class="form-control" placeholder="Ingrese nombre de mascota o nombre de cliente" />
                          
@@ -56,6 +57,12 @@
     <div class="item  col-lg-4 col-md-4 col-sm-12 col-xs-12">
                            <fieldset class="scheduler-border">
                                <legend class="scheduler-border">Datos de Mascota</legend>
+                               <div class="row col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="thumbnail">
+                                        <img id="imagenMascota" class="group list-group-image" src="../public/fotos/1.jpg" alt="" />
+                                </div>
+                                </div>
+
                                 <div class="row col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="form-group">
                                   <label class="sr-only" for="txtCodigoMascota"></label>
@@ -194,8 +201,9 @@
                                 </div>
                             </div>
           </div>  
+           <button id="RegistrarMonitoreo" class="btn btn-danger" formnovalidate="formnovalidate" type="submit">RegistrarMonitoreo</button>
        </fieldset>
-        
+        <br /><br />
 
                                  <ul class="tabs">
                             <li><a href="#tab1">Monitoreo</a></li>

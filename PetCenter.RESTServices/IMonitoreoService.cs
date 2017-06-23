@@ -47,5 +47,20 @@ namespace PetCenter.RESTServices
             BodyStyle = WebMessageBodyStyle.Bare,
             UriTemplate = "Monitoreo/fotos/{monitoreo}")]
         List<fotoMonitoreoBE> listarFotosMonitoreosPorMascota(string monitoreo);
+
+        [OperationContract]
+        [WebInvoke(Method = "POST", 
+            UriTemplate = "Monitoreo",
+            BodyStyle = WebMessageBodyStyle.Bare,
+            RequestFormat =WebMessageFormat.Json,
+            ResponseFormat = WebMessageFormat.Json)]
+        MonitoreoBE registrarMonitoreo(MonitoreoBE monitoreo);
+
+        [OperationContract]
+        [WebInvoke(Method = "POST",
+            UriTemplate = "Monitoreo/Foto",
+            BodyStyle = WebMessageBodyStyle.Bare,
+            ResponseFormat = WebMessageFormat.Json)]
+        fotoMonitoreoBE registrarFotoMonitoreo(fotoMonitoreoBE fotoMonitoreo);
     }
 }

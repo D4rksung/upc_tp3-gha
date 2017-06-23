@@ -23,9 +23,5 @@ namespace PetCenter.BusinessLogic
             return userRep.GetUsers();
         }
 
-        public List<AlimentoBE> listarAlimentos() {
-
-            return new PlanAlimenticioData().listarAlimentosData();
-        }
     }
 }

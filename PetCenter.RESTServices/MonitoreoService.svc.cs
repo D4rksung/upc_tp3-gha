@@ -14,12 +14,12 @@ namespace PetCenter.RESTServices
     {
         public List<GenericoBE> listarMascotasPorRecepcionista(string recepcionista)
         {
-                return new MonitoreoLogic().listarMascotasPorRecepcionista(string.Empty,int.Parse(recepcionista)).ToList();
+            return new MonitoreoLogic().listarMascotasPorRecepcionista(string.Empty, int.Parse(recepcionista)).ToList();
         }
 
-        public List<GenericoBE> listarMascotasPorRecepcionistaFiltro(string filtro,string recepcionista)
+        public List<GenericoBE> listarMascotasPorRecepcionistaFiltro(string filtro, string recepcionista)
         {
-            return new MonitoreoLogic().listarMascotasPorRecepcionista(filtro,int.Parse(recepcionista)).ToList();
+            return new MonitoreoLogic().listarMascotasPorRecepcionista(filtro, int.Parse(recepcionista)).ToList();
         }
 
         public MascotaBE obtenerDatosMascota(string mascota)
@@ -35,6 +35,14 @@ namespace PetCenter.RESTServices
         public List<fotoMonitoreoBE> listarFotosMonitoreosPorMascota(string monitoreo)
         {
             return new MonitoreoLogic().listarFotosMonitoreoMascota(int.Parse(monitoreo)).ToList();
+        }
+
+        public MonitoreoBE registrarMonitoreo(MonitoreoBE monitoreo) {
+            return new MonitoreoLogic().registrarMonitoreo(monitoreo);
+        }
+
+        public fotoMonitoreoBE registrarFotoMonitoreo(fotoMonitoreoBE fotoMonitoreo) {
+            return new MonitoreoLogic().registrarFotoMonitoreo(fotoMonitoreo);    
         }
     }
 }

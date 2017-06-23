@@ -6,8 +6,10 @@ $(document).ready(function () {
     var context = canvas.getContext('2d');
     var video = document.getElementById('video');
 
+    $("#RegistrarMonitoreo").attr('disabled', 'true');
     $("#DetenerMonitoreo").attr('disabled', 'true');
     $("#snap").attr('disabled', 'true');
+
     // Trigger photo take
     document.getElementById("snap").addEventListener("click", function () {
         event.preventDefault();
@@ -42,6 +44,7 @@ $(document).ready(function () {
         event.preventDefault();
         $("#IniciarMonitoreo").attr('disabled', 'true');
         $("#DetenerMonitoreo").removeAttr("disabled");
+        $("#RegistrarMonitoreo").removeAttr("disabled");
         $("#snap").removeAttr("disabled");
         IniciarMonitoreo();
     });
@@ -50,6 +53,7 @@ $(document).ready(function () {
         event.preventDefault();
         $("#IniciarMonitoreo").removeAttr("disabled");
         $("#DetenerMonitoreo").attr('disabled', 'true');
+        $("#RegistrarMonitoreo").removeAttr("disabled");
         $("#snap").attr('disabled', 'true');
         DetenerMonitoreo();
     });
@@ -57,6 +61,25 @@ $(document).ready(function () {
     ListarTodasMascotas();
 
     $('#DetalleMonitoreoMascota').css({ "display": "none" });
+
+
+
+    $("#RegistrarMonitoreo").click(function () {
+        event.preventDefault();
+        var answer = confirm("Estás seguro de registrar este monitoreo?")
+        if (answer) {
+            var hospedaje = $('#txtHospedaje').val();
+            var mascota = $('#txtCodigoMascota').val();
+            var observaciones = $('#txtObservacionesMonitoreo').val();
+
+            if (observaciones.trim().length > 0) {
+                registrarMonitoreo(hospedaje, mascota, observaciones);
+            } else {
+                alert("Debe ingresar una observación");
+            }
+            
+        }
+    });
 })
 //#endregion
 
@@ -96,6 +119,40 @@ function ListarTodasMascotas() {
     });
 }
 //#endregion
+
+
+//#region registrarMonitoreo
+function registrarMonitoreo(lugarHospedaje, mascota, observaciones) {
+    $.ajax({
+        //cache: false,
+        type: 'POST',
+        contentType: "application/json; charset=utf-8",
+        //async: false,
+        
+        url: '../../../Models/MonitoreoModel.asmx/RegistrarMonitoreo',
+        data: "{lugarHospedaje:" + lugarHospedaje + ",mascota:" + mascota + ",observaciones:'" + observaciones + "'}",
+        dataType: "json",
+        success: function (data, textStatus) {
+            if (textStatus == "success") {
+                ListarMonitoreosPorMascota(lugarHospedaje, mascota);
+                $('#txtObservacionesMonitoreo').val();
+                $("#IniciarMonitoreo").removeAttr("disabled");
+                $("#DetenerMonitoreo").attr('disabled', 'true');
+                $("#RegistrarMonitoreo").removeAttr("disabled");
+                $("#snap").attr('disabled', 'true');
+                DetenerMonitoreo();
+                alert("Se registró correctamente");
+               
+            }
+        },
+        error: function (xhr) {
+            alert(xhr);
+        }
+    });
+}
+//#endregion
+
+
 
 //#region ListarMascotasPorFiltro
 function ListarMascotasPorFiltro(filtro) {
@@ -137,6 +194,9 @@ function obtenerDatosMascota(mascota) {
         success: function (data, textStatus) {
             if (textStatus == "success") {
                 if (data != null) {
+
+                    $("#imagenMascota").attr("src", "../public/fotos/" + data.codigo + ".jpg");
+
                     $('#txtCodigoMascota').val(data.codigo);
                     $('#txtNombreMascota').val(data.nombre);
                     $('#txtRazaMascota').val(data.raza);

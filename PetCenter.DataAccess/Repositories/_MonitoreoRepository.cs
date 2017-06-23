@@ -29,6 +29,19 @@ namespace PetCenter.DataAccess.Repositories
             }
         }
 
+        public MonitoreoBE registrarMonitoreo(MonitoreoBE monitoreo)
+        {
+            using (var command = _context.CreateCommand())
+            {
+                command.CommandType = CommandType.StoredProcedure;
+                command.CommandText = "usp_GHA_RegistrarMonitoreo";
 
+                command.Parameters.Add(command.CreateParameter("@lugarHospedaje", monitoreo.lugarHospedaje));
+                command.Parameters.Add(command.CreateParameter("@mascota", monitoreo.mascota));
+                command.Parameters.Add(command.CreateParameter("@observaciones", monitoreo.observaciones));
+
+                return this.ToList(command).FirstOrDefault();
+            }
+        }
     }
 }
