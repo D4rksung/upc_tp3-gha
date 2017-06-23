@@ -1,8 +1,9 @@
 <div class="card">
   <div class="card-block">
     <h3>Programación Diaria</h3>
-    <ngb-tabset  (tabChange)="beforeChange($event)">
-      <ngb-tab *ngFor="let programacionDia of programacionesDia" title="Día {{programacionDia.numeroDia}}">
+    <ngb-tabset #t="ngbTabset" (tabChange)="beforeChange($event,t)">
+      <ngb-tab *ngFor="let programacionDia of programacionesDia" id="dia{{programacionDia.numeroDia}}">
+        <ng-template ngbTabTitle>Día {{programacionDia.numeroDia}}</ng-template>
         <ng-template ngbTabContent>
           <gha-panel-programacion-dia [programacionDia]="programacionDia"></gha-panel-programacion-dia>
         </ng-template>

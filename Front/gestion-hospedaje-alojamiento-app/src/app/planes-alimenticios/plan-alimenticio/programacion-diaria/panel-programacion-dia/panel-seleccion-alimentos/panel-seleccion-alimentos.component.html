@@ -1,5 +1,4 @@
-<pre><code>{{filtros | json}}</code></pre>
-<pre><code>{{filteredAlimentos | json}}</code></pre>
+<pre><code>{{seleccionAlimentos | json}}</code></pre>
 <div class="row">
   <div class="col-md-5">
     <label for="categoria">Categoria</label>
@@ -31,7 +30,7 @@
         </tr>
         <tr *ngFor="let alimento of filteredAlimentos; let i=index">
           <td>
-            <input type="checkbox">
+            <input type="checkbox" (change)="changeSeleccionAlimento($event.target.checked,alimento)" [checked]="alimentoSelected(alimento)">
           </td>
           <td>
             {{alimento.nombre | titlecase}}
@@ -49,7 +48,7 @@
 </div>
 <div class="row">
   <div class="col-md-12">
-    <button class="btn btn-primary">Agregar alimento</button>
+    <button class="btn btn-primary" (click)="agregarAlimentos()" [disabled]="!seleccionAlimentos.length">Agregar alimento</button>
   </div>
 </div>
 <div class="row">

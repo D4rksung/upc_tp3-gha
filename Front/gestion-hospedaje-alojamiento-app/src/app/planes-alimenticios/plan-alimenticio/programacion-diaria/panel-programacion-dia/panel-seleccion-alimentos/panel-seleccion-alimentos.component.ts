@@ -12,7 +12,7 @@ export class PanelSeleccionAlimentosComponent implements OnInit, OnChanges {
   @Input() alimentos: Alimento[];
   allAlimentos:Alimento[]=[];
   filteredAlimentos: Alimento[]=[];
-  seleccionAlimentos: Alimento[];
+  seleccionAlimentos: Alimento[]=[];
   filtros={categoria:-1,subcategoria:-1};
 
   categorias: Categoria[] = [{
@@ -53,7 +53,6 @@ export class PanelSeleccionAlimentosComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     this.getAlimentos();
-    this.filtrarAlimentos();
   }
 
   ngOnChanges(changes:SimpleChanges){
@@ -64,21 +63,43 @@ export class PanelSeleccionAlimentosComponent implements OnInit, OnChanges {
     this.alimentoService.getAlimentos()
     .subscribe(alimentos=>{
       this.allAlimentos = alimentos;
+      this.filtrarAlimentos();
     });
   }
 
   filtrarAlimentos(){
     this.filteredAlimentos = this.allAlimentos.filter(a=>{
-      let {categoria,subcategoria} = this.filtros;
-      if(categoria <0 || subcategoria <0){
-        return true;
-      }else{
-        return a.subCategoria == subcategoria;
+      let {categoria, subcategoria} = this.filtros;
+      let valid = !this.alimentos.map(a=>a.id).includes(a.id);
+      if(categoria < 0 || subcategoria < 0){
+        return valid && true;
       }
+      return valid && a.subCategoria == subcategoria;
     });
+  }
+
+  changeSeleccionAlimento(seleccionado:boolean, alimento:Alimento){
+    if(seleccionado){
+      this.seleccionAlimentos.push(alimento);
+    }else{
+      this.seleccionAlimentos.splice(this.seleccionAlimentos.indexOf(alimento));
+    }
+  }
+
+  alimentoSelected(alimento:Alimento){
+    return this.seleccionAlimentos.includes(alimento);
+  }
+
+  agregarAlimentos(alimento:Alimento){
+    this.seleccionAlimentos.forEach(a=>{
+      this.alimentos.push(a);
+    });
+    this.seleccionAlimentos = [];
+    this.filtrarAlimentos();
   }
 
   quitarAlimento(idxAlimento:number){
     this.alimentos.splice(idxAlimento,1);
+    this.filtrarAlimentos();
   }
 }
