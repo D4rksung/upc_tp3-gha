@@ -5,7 +5,7 @@ import { Observable } from 'rxjs/Observable';
 
 import { CONFIG } from '../core/config';
 
-let alimentosUrl = CONFIG.baseUrls.alimentos;
+const alimentosUrl = CONFIG.baseUrls.alimentos;
 
 @Injectable()
 export class AlimentosService {

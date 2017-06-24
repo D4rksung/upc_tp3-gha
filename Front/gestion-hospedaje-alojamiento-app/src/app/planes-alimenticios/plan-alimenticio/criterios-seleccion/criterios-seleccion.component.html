@@ -48,13 +48,13 @@
             </tr>
             <tr *ngFor="let criterio of criterios; let i=index">
               <td>
-                {{criterio.raza.nombre | titlecase}}
+                {{getNombreRaza(criterio.raza) | titlecase}}
               </td>
               <td>
-                {{criterio.nivelBMI.nombre | titlecase}}
+                {{getNombreNivelBMI(criterio.nivelBMI) | titlecase}}
               </td>
               <td>
-                {{criterio.etapaVida.nombre | titlecase}}
+                {{getNombreEtapaVida(criterio.etapaVida) | titlecase}}
               </td>
               <td>
                 <button class="btn-link" (click)="quitarCriterio(i)">

@@ -1,7 +1,6 @@
 import { Alimento, Categoria, SubCategoria} from './../../../../../models/alimento.model';
 import { AlimentosService } from './../../../../../alimentos/alimentos.service';
 import { Component, OnInit, OnChanges, SimpleChanges, Input} from '@angular/core';
-import {GtConfig} from '@angular-generic-table/core';
 
 @Component({
   selector: 'gha-panel-seleccion-alimentos',
@@ -24,32 +23,7 @@ export class PanelSeleccionAlimentosComponent implements OnInit, OnChanges {
     id: 2, nombre: 'Carne de Cerdo'
   }];
 
-  public configObject: GtConfig<Alimento>;
-
-  constructor(private alimentoService: AlimentosService) {
-    this.configObject = {
-      settings: [{
-        objectKey: 'id',
-        sort: 'asc',
-        sortOrder: 1,
-        columnOrder: 0
-      }, {
-        objectKey: 'nombre',
-        sort: 'asc',
-        sortOrder: 0,
-        columnOrder: 1
-      }],
-      fields: [{
-        name: 'Id',
-        objectKey: 'id'
-      }, {
-        name: 'Nombre',
-        objectKey: 'nombre'
-      }],
-      data: []
-    };
-
-  }
+  constructor(private alimentoService: AlimentosService) {  }
 
   ngOnInit() {
     this.getAlimentos();

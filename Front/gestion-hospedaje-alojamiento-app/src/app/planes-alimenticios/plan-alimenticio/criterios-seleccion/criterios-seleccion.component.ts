@@ -1,5 +1,4 @@
 import { CriterioSeleccion } from './../../../models/criterio-seleccion.model';
-import { GtConfig } from '@angular-generic-table/core';
 import { Component, OnInit, Input} from '@angular/core';
 
 const defaultSeleccion = {raza: -1, nivelBMI: -1, etapaVida: -1};
@@ -17,7 +16,6 @@ interface criterioSeleccionRowData{
   styleUrls: ['./criterios-seleccion.component.css']
 })
 export class CriteriosSeleccionComponent implements OnInit {
-  public configObject: GtConfig<criterioSeleccionRowData>;
 
   @Input() criterios: CriterioSeleccion[];
 
@@ -67,62 +65,14 @@ export class CriteriosSeleccionComponent implements OnInit {
     }
   ];
 
-  constructor() {
-    this.configObject = {
-      settings: [
-      {
-        objectKey: 'especie',
-        columnOrder: 0
-      },
-      {
-        objectKey: 'raza',
-        sort: 'asc',
-        sortOrder: 1,
-        columnOrder: 1
-      },
-      {
-        objectKey: 'nivelBMI',
-        sort: 'asc',
-        sortOrder: 0,
-        columnOrder: 2
-      },
-      {
-        objectKey: 'etapaVida',
-        sort: 'asc',
-        sortOrder: 2,
-        columnOrder: 3
-      }],
-      fields: [
-      {
-        name: 'Especie',
-        objectKey: 'especie'
-      },
-      {
-        name: 'Raza',
-        objectKey: 'raza',
-        render: (row) => { return row.raza + ' 1'; }
-      }, {
-        name: 'Nivel BMI',
-        objectKey: 'nivelBMI'
-      },
-      {
-        name: 'Etapa Vida',
-        objectKey: 'etapaVida'
-      }],
-      data: []
-    };
-  }
+  constructor() {  }
 
   ngOnInit() {
   }
 
   agregarCriterio() {
     let {raza, nivelBMI, etapaVida} = this.seleccion;
-    let criterio:CriterioSeleccion = {
-      raza: this.razas.find(r=>r.id == raza),
-      nivelBMI: this.niveles_bmi.find(nb=>nb.id == nivelBMI),
-      etapaVida: this.etapas_vida.find(ev=>ev.id == etapaVida)
-    };
+    const criterio:CriterioSeleccion = {raza,nivelBMI,etapaVida};
     if (this.existeCriterio(criterio)){
       console.log('Ya existe criterio');
     } else {
@@ -140,6 +90,18 @@ export class CriteriosSeleccionComponent implements OnInit {
 
   quitarCriterio(idxCriterio: number) {
     this.criterios.splice(idxCriterio, 1);
+  }
+
+  getNombreRaza(id:number){
+    return this.razas.find(r=>r.id==id).nombre;
+  }
+
+  getNombreNivelBMI(id:number){
+    return this.niveles_bmi.find(n=>n.id==id).nombre;
+  }
+
+  getNombreEtapaVida(id:number){
+    return this.etapas_vida.find(e=>e.id==id).nombre;
   }
 
 }

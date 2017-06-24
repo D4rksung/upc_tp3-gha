@@ -1,0 +1,37 @@
+{
+  "data": [
+    {
+      "nombre": "abc",
+      "descripcion": "lorem ipsum dolorem",
+      "especie": 1,
+      "condicionMedica": 1,
+      "criterios": [
+        {
+          "raza": 1,
+          "nivelBMI": 2,
+          "etapaVida": 1
+        },
+        {
+          "raza": 3,
+          "nivelBMI": 2,
+          "etapaVida": 1
+        }
+      ],
+      "programacion_dia": [
+        {
+          "numeroDia": 1,
+          "comidas": [
+            {
+              "tipo": 1,
+              "alimentos": [
+                1,
+                2,
+                3
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
