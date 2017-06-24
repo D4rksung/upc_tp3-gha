@@ -10,11 +10,14 @@ namespace PetCenter.RESTServices
 {
     public class PlanAlimenticioService : IPlanAlimenticioService
     {
-        public List<AlimentoBE> listarAlimentos()
+        public List<GenericoBE> listarEspecies()
         {
-            List<AlimentoBE> listaAlimentos = new List<AlimentoBE>();
-            listaAlimentos = new PlanAlimenticioLogic().getAlimentos().ToList();
-            return listaAlimentos;
+            return new PlanAlimenticioLogic().listarEspecies();
+        }
+
+        public List<GenericoBE> listarRazas(int especie)
+        {
+            return new PlanAlimenticioLogic().listarRazas(especie);
         }
     }
 }

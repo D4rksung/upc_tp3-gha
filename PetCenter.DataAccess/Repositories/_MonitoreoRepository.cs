@@ -17,7 +17,7 @@ namespace PetCenter.DataAccess.Repositories
             _context = context;
         }
 
-        public IList<MonitoreoBE> listaMonitoreosMascota(int lugarHospedaje, int mascota)
+        public List<MonitoreoBE> listaMonitoreosMascota(int lugarHospedaje, int mascota)
         {
             using (var command = _context.CreateCommand())
             {

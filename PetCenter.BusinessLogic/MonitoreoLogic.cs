@@ -13,7 +13,7 @@ namespace PetCenter.BusinessLogic
         private IConnectionFactory connectionFactory;
 
         
-        public IList<GenericoBE> listarMascotasPorRecepcionista(string filtro, int recepcionista)
+        public List<GenericoBE> listarMascotasPorRecepcionista(string filtro, int recepcionista)
         {
             connectionFactory = ConnectionHelper.GetConnection();
 
@@ -34,7 +34,7 @@ namespace PetCenter.BusinessLogic
             return mascotaRep.ObtenerDatosMascota(mascota);
         }
 
-        public IList<MonitoreoBE> listarMonitoreosMascota(int lugarHospedaje, int mascota)
+        public List<MonitoreoBE> listarMonitoreosMascota(int lugarHospedaje, int mascota)
         {
             connectionFactory = ConnectionHelper.GetConnection();
 
@@ -45,7 +45,7 @@ namespace PetCenter.BusinessLogic
             return monitoreoRep.listaMonitoreosMascota(lugarHospedaje,mascota);
         }
 
-        public IList<fotoMonitoreoBE> listarFotosMonitoreoMascota(int monitoreo)
+        public List<fotoMonitoreoBE> listarFotosMonitoreoMascota(int monitoreo)
         {
             connectionFactory = ConnectionHelper.GetConnection();
 

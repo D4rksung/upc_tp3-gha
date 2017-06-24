@@ -14,10 +14,16 @@ namespace PetCenter.RESTServices
     {
         [OperationContract]
         [WebInvoke(Method = "GET",
-    ResponseFormat = WebMessageFormat.Json,
-    BodyStyle = WebMessageBodyStyle.Bare,
-    UriTemplate = "Alimentos")]
-        List<AlimentoBE> listarAlimentos();
+            ResponseFormat = WebMessageFormat.Json,
+            BodyStyle = WebMessageBodyStyle.Bare,
+            UriTemplate = "PlanAlimenticio/Especies")]
+        List<GenericoBE> listarEspecies();
 
+        [OperationContract]
+        [WebInvoke(Method = "GET",
+            ResponseFormat = WebMessageFormat.Json,
+            BodyStyle = WebMessageBodyStyle.Bare,
+            UriTemplate = "PlanAlimenticio/Razas/{especie}")]
+        List<GenericoBE> listarRazas(int especie);
     }
 }

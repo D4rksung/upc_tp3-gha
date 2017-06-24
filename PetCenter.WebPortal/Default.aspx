@@ -342,13 +342,13 @@ $(document).ready(function(){
                 <div id="div-forms">
                 
                     <!-- Begin # Login Form -->
-                    <form id="login-form" action="main/usuario" method="POST">
+                    <form id="login-form" action="Views/MonitoreoMascota.aspx" method="POST">
 		                <div class="modal-body">
 				    		<div id="div-login-msg">
                                 <div id="icon-login-msg" class="glyphicon glyphicon-chevron-right"></div>
                                 <span id="text-login-msg">Type your username and password.</span>
                             </div>
-				    		<input name="login_username" id="login_username" class="form-control" type="text" placeholder="Username (type ERROR for error effect)" required>
+				    		<input name="login_username" id="login_username" class="form-control" type="text" placeholder="Username" required>
 				    		<input name="login_password" id="login_password" class="form-control" type="password" placeholder="Password" required>
                             <div class="checkbox">
                                 <label>
@@ -375,7 +375,7 @@ $(document).ready(function(){
                                 <div id="icon-lost-msg" class="glyphicon glyphicon-chevron-right"></div>
                                 <span id="text-lost-msg">Type your e-mail.</span>
                             </div>
-		    				<input id="lost_email" class="form-control" type="text" placeholder="E-Mail (type ERROR for error effect)" required>
+		    				<input id="lost_email" class="form-control" type="text" placeholder="E-Mail" required>
             			</div>
 		    		    <div class="modal-footer">
                             <div>
@@ -396,7 +396,7 @@ $(document).ready(function(){
                                 <div id="icon-register-msg" class="glyphicon glyphicon-chevron-right"></div>
                                 <span id="text-register-msg">Register an account.</span>
                             </div>
-		    				<input id="register_username" class="form-control" type="text" placeholder="Username (type ERROR for error effect)" required>
+		    				<input id="register_username" class="form-control" type="text" placeholder="Username" required>
                             <input id="register_email" class="form-control" type="text" placeholder="E-Mail" required>
                             <input id="register_password" class="form-control" type="password" placeholder="Password" required>
             			</div>

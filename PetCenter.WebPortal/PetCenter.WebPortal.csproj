@@ -60,9 +60,13 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Controllers\RecojoMascotaController.js" />
+    <Content Include="Controllers\PlanAlimenticioController.js" />
     <Content Include="Controllers\MonitoreoController.js" />
     <Content Include="Default.aspx" />
     <Content Include="Models\MonitoreoModel.asmx" />
+    <Content Include="Models\PlanAlimenticioModel.asmx" />
+    <Content Include="Models\RecojoModel.asmx" />
     <Content Include="public\css\bootstrap.min.css" />
     <Content Include="public\css\css\demo-ie8.css" />
     <Content Include="public\css\css\demo.css" />
@@ -78,6 +82,7 @@
     <Content Include="public\css\jquery.bootgrid.min.css" />
     <Content Include="public\css\print.css" />
     <Content Include="public\css\style.css" />
+    <Content Include="public\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="public\fotos\1.jpg" />
     <Content Include="public\fotos\2.jpg" />
     <Content Include="public\fotos\3.jpg" />
@@ -142,6 +147,8 @@
     <Content Include="public\lib\bootstrap-3\js\bootstrap.min.js" />
     <Content Include="public\lib\bootstrap-3\js\npm.js" />
     <Content Include="Views\MonitoreoMascota.aspx" />
+    <Content Include="Views\PlanAlimenticioMascota.aspx" />
+    <Content Include="Views\RecojoMascota.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -154,6 +161,14 @@
     </Compile>
     <Compile Include="Models\MonitoreoModel.asmx.cs">
       <DependentUpon>MonitoreoModel.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Models\PlanAlimenticioModel.asmx.cs">
+      <DependentUpon>PlanAlimenticioModel.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Models\RecojoModel.asmx.cs">
+      <DependentUpon>RecojoModel.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -171,6 +186,20 @@
     <Compile Include="Views\MonitoreoMascota.aspx.designer.cs">
       <DependentUpon>MonitoreoMascota.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\PlanAlimenticioMascota.aspx.cs">
+      <DependentUpon>PlanAlimenticioMascota.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\PlanAlimenticioMascota.aspx.designer.cs">
+      <DependentUpon>PlanAlimenticioMascota.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RecojoMascota.aspx.cs">
+      <DependentUpon>RecojoMascota.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\RecojoMascota.aspx.designer.cs">
+      <DependentUpon>RecojoMascota.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="public\lib\bootstrap-3\css\bootstrap-theme.css.map" />
@@ -182,6 +211,10 @@
     <Content Include="public\lib\bootstrap-3\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="public\lib\bootstrap-3\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="Views\commons\Layout.Master" />
+    <Content Include="public\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="public\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="public\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="public\fonts\glyphicons-halflings-regular.woff2" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
