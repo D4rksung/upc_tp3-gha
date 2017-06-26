@@ -1,8 +1,8 @@
 export let CONFIG = {
   baseUrls: {
     config: 'commands/config',
-    alimentos: 'assets/api/alimentos.json',
-    filtros: 'assets/api/filtros.json',
-    planesAlimenticios:'assets/api/planesAlimenticios.json'
+    alimentos: 'http://localhost:3000/alimentos',
+    filtros: 'http://localhost:3000/filtros',
+    planesAlimenticios:'http://localhost:3000/planesAlimenticios'
   }
 };

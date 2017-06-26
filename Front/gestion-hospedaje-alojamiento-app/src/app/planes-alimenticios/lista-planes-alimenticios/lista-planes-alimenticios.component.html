@@ -1,4 +1,9 @@
-<table class="table table-condensed table-striped">
+<div class="row">
+  <div class="col-md-12">
+
+  </div>
+  <div class="col-md-12">
+    <table class="table table-condensed table-striped">
   <thead>
     <tr>
       <th>Nombre</th>
@@ -22,7 +27,7 @@
         {{planAlimenticio.condicionMedica}}
       </td>
       <td>
-        <button class="btn-link">
+        <button class="btn-link" [routerLink]="['/planesAlimenticios',planAlimenticio.id]">
           <i class="fa fa-pencil"></i>
         </button>
         <button class="btn-link">
@@ -32,3 +37,6 @@
     </tr>
   </tbody>
 </table>
+  </div>
+</div>
+

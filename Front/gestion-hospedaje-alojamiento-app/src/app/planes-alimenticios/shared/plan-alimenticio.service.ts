@@ -24,6 +24,18 @@ export class PlanAlimenticioService {
     .map(res => this.extractData<PlanAlimenticio>(res));
   }
 
+  addPlanAlimenticio(planAlimenticio:PlanAlimenticio){
+    return <Observable<PlanAlimenticio>>this.http
+      .post(`${planesAlimenticiosUrl}`, JSON.stringify(planAlimenticio))
+      .map(res => this.extractData<PlanAlimenticio>(res));
+  }
+
+  updatePlanAlimenticio(planAlimenticio:PlanAlimenticio){
+    return <Observable<PlanAlimenticio>>this.http
+      .put(`${planesAlimenticiosUrl}/${planAlimenticio.id}`, JSON.stringify(planAlimenticio))
+      .map(res => <PlanAlimenticio>res.json().data);
+  }
+
   private extractData<T>(res: Response) {
     if (res.status < 200 || res.status >= 300) {
       throw new Error('Bad response status: ' + res.status);

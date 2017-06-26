@@ -1,7 +1,12 @@
+import { CondicionMedica } from './../../models/condicion-medica.model';
+import { Especie } from './../../models/especie.model';
+import { FiltrosService } from './../../filtros.service';
+import { PlanAlimenticioService } from './../shared/plan-alimenticio.service';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PlanAlimenticio } from './../../models/plan-alimenticio.model';
 import { AlimentosService } from './../../alimentos/alimentos.service';
 import { Alimento } from './../../models/alimento.model';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'gha-plan-alimenticio',
@@ -11,27 +16,46 @@ import { Component, OnInit } from '@angular/core';
 export class PlanAlimenticioComponent implements OnInit {
 
   title = 'Definir Plan Alimenticio';
-  especies = [{
-    id: 1,
-    nombre: 'perro'
-  }, {
-    id: 2,
-    nombre: 'gato'
-  }];
-  condiciones_medicas = [{
-    id: 1,
-    nombre: 'sano'
-  }, {
-    id: 2,
-    nombre: 'gripe'
-  }];
+  especies:Especie[];
+  condicionesMedicas:CondicionMedica[] = [];
 
-  planAlimenticio: PlanAlimenticio = new PlanAlimenticio();
+  @Input() planAlimenticio: PlanAlimenticio;
 
-
-  constructor() { }
+  constructor(private filtrosService: FiltrosService,
+    private planAlimenticioService: PlanAlimenticioService,
+    private route: ActivatedRoute,
+    private router: Router) { }
 
   ngOnInit() {
+    this.route.data.subscribe((data: { planAlimenticio: PlanAlimenticio }) => {
+      this.setPlanAlimenticio(data.planAlimenticio);
+    });
+    this.especies = this.filtrosService.getEspecies();
+  }
+
+  onchangeEspecie(especie: number){
+    this.condicionesMedicas = this.filtrosService.getCondicionesMedicas(especie);
+  }
+
+  setPlanAlimenticio(planAlimenticio:PlanAlimenticio){
+    this.planAlimenticio = planAlimenticio;
+  }
+
+  guardar(){
+    if(this.planAlimenticio == null){
+      this.planAlimenticioService.addPlanAlimenticio(this.planAlimenticio);
+    }else{
+      this.planAlimenticioService.updatePlanAlimenticio(this.planAlimenticio);
+    }
+    this.gotoListaPlanesAlimenticios();
+  }
+
+  cancelar(){
+    this.gotoListaPlanesAlimenticios();
+  }
+
+  gotoListaPlanesAlimenticios(){
+    this.router.navigate(['/planesAlimenticios']);
   }
 
 }

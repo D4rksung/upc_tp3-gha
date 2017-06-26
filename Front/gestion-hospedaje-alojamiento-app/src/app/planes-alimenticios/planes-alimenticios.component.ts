@@ -1,3 +1,4 @@
+import { FiltrosService } from './../filtros.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PlanesAlimenticiosComponent implements OnInit {
 
-  constructor() { }
+  constructor(private filtrosService:FiltrosService) { }
 
   ngOnInit() {
+    this.filtrosService.loadFiltros();
   }
 
 }

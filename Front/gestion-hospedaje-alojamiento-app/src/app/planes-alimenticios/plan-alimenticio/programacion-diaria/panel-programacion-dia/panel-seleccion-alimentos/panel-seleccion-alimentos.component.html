@@ -1,14 +1,15 @@
-<pre><code>{{seleccionAlimentos | json}}</code></pre>
 <div class="row">
   <div class="col-md-5">
     <label for="categoria">Categoria</label>
     <select id="categoria" class="form-control" [(ngModel)]="filtros.categoria" (change)="filtrarAlimentos()">
+      <option value="-1">Seleccionar</option>
       <option *ngFor="let categoria of categorias" [value]="categoria.id">{{categoria.nombre}}</option>
     </select>
   </div>
   <div class="col-md-5">
     <label for="subcategoria">Subcategoria</label>
     <select id="subcategoria" class="form-control" [(ngModel)]="filtros.subcategoria" (change)="filtrarAlimentos()">
+      <option value="-1">Seleccionar</option>
       <option *ngFor="let subcategoria of subcategorias" [value]="subcategoria.id">{{subcategoria.nombre}}</option>
     </select>
   </div>
@@ -25,12 +26,12 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngIf="filteredAlimentos.length==0">
+        <tr *ngIf="!seleccionTable.totalRows">
           <td colspan="4" class="text-center">No se seleccionaron alimentos, debe ingresar por lo menos uno</td>
         </tr>
-        <tr *ngFor="let alimento of filteredAlimentos; let i=index">
+        <tr *ngFor="let alimento of seleccionTable.itemsFiltered; let i=index">
           <td>
-            <input type="checkbox" (change)="changeSeleccionAlimento($event.target.checked,alimento)" [checked]="alimentoSelected(alimento)">
+            <input type="checkbox" [(ngModel)]="alimento.selected">
           </td>
           <td>
             {{alimento.nombre | titlecase}}
@@ -48,7 +49,7 @@
 </div>
 <div class="row">
   <div class="col-md-12">
-    <button class="btn btn-primary" (click)="agregarAlimentos()" [disabled]="!seleccionAlimentos.length">Agregar alimento</button>
+    <button class="btn btn-primary" (click)="agregarAlimentos()" [disabled]="!getTotalSeleccionados()">Agregar alimento</button>
   </div>
 </div>
 <div class="row">
@@ -63,10 +64,10 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngIf="alimentos.length==0">
+        <tr *ngIf="!alimentosTable.totalRows">
           <td colspan="4" class="text-center">No se seleccionaron alimentos, debe ingresar por lo menos uno</td>
         </tr>
-        <tr *ngFor="let alimento of alimentos; let i=index">
+        <tr *ngFor="let alimento of alimentosTable.items; let i=index">
           <td>
             {{alimento.nombre | titlecase}}
           </td>

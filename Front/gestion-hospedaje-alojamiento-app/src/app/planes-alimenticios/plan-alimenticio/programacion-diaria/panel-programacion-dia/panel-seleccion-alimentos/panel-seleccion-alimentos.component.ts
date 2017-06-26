@@ -1,17 +1,22 @@
 import { Alimento, Categoria, SubCategoria} from './../../../../../models/alimento.model';
 import { AlimentosService } from './../../../../../alimentos/alimentos.service';
-import { Component, OnInit, OnChanges, SimpleChanges, Input} from '@angular/core';
+import { Component, OnInit, Input} from '@angular/core';
+import {NgDataGridModel} from 'angular2-datagrid';
+
+class SeleccionAlimento extends Alimento{
+  selected: boolean = false;
+}
 
 @Component({
   selector: 'gha-panel-seleccion-alimentos',
   templateUrl: './panel-seleccion-alimentos.component.html',
   styleUrls: ['./panel-seleccion-alimentos.component.css']
 })
-export class PanelSeleccionAlimentosComponent implements OnInit, OnChanges {
-  @Input() alimentos: Alimento[];
+export class PanelSeleccionAlimentosComponent implements OnInit{
+  @Input() alimentos: number[];
+  alimentosTable:NgDataGridModel<Alimento>  = new NgDataGridModel<Alimento>([]);
+  seleccionTable:NgDataGridModel<SeleccionAlimento>  = new NgDataGridModel<SeleccionAlimento>([]);
   allAlimentos:Alimento[]=[];
-  filteredAlimentos: Alimento[]=[];
-  seleccionAlimentos: Alimento[]=[];
   filtros={categoria:-1,subcategoria:-1};
 
   categorias: Categoria[] = [{
@@ -29,50 +34,48 @@ export class PanelSeleccionAlimentosComponent implements OnInit, OnChanges {
     this.getAlimentos();
   }
 
-  ngOnChanges(changes:SimpleChanges){
-    console.log('onChanges: ',changes);
-  }
-
   getAlimentos(){
     this.alimentoService.getAlimentos()
     .subscribe(alimentos=>{
       this.allAlimentos = alimentos;
+      alimentos.forEach(a=>{
+        if(this.alimentos.includes(a.id)){
+          this.alimentosTable.items.push(a);
+        }
+      });
       this.filtrarAlimentos();
     });
   }
 
   filtrarAlimentos(){
-    this.filteredAlimentos = this.allAlimentos.filter(a=>{
+    this.seleccionTable = new NgDataGridModel<SeleccionAlimento>([]);
+    this.allAlimentos.filter(a=>{
       let {categoria, subcategoria} = this.filtros;
-      let valid = !this.alimentos.map(a=>a.id).includes(a.id);
+      let valid = !this.alimentos.includes(a.id);
       if(categoria < 0 || subcategoria < 0){
         return valid && true;
       }
-      return valid && a.subCategoria == subcategoria;
-    });
-  }
-
-  changeSeleccionAlimento(seleccionado:boolean, alimento:Alimento){
-    if(seleccionado){
-      this.seleccionAlimentos.push(alimento);
-    }else{
-      this.seleccionAlimentos.splice(this.seleccionAlimentos.indexOf(alimento));
-    }
-  }
-
-  alimentoSelected(alimento:Alimento){
-    return this.seleccionAlimentos.includes(alimento);
+      return valid && a.subCategoria== subcategoria;
+    })
+    .forEach(a=>this.seleccionTable.items.push({...a, selected: false}));
   }
 
   agregarAlimentos(alimento:Alimento){
-    this.seleccionAlimentos.forEach(a=>{
-      this.alimentos.push(a);
+    this.seleccionTable.items.forEach((a:SeleccionAlimento)=>{
+      if(a.selected){
+        this.alimentos.push(a.id);
+        this.alimentosTable.items.push(a);
+      }
     });
-    this.seleccionAlimentos = [];
     this.filtrarAlimentos();
   }
 
+  getTotalSeleccionados(){
+    return this.seleccionTable.items.filter(a=>(<SeleccionAlimento>a).selected).length;
+  }
+
   quitarAlimento(idxAlimento:number){
+    this.alimentosTable.items.splice(idxAlimento,1);
     this.alimentos.splice(idxAlimento,1);
     this.filtrarAlimentos();
   }

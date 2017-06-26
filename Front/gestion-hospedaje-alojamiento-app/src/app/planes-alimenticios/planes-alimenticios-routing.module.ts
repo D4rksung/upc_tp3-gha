@@ -1,5 +1,9 @@
+import { PanelProgramacionDiaComponent } from './plan-alimenticio/programacion-diaria/panel-programacion-dia/panel-programacion-dia.component';
+import { PanelSeleccionAlimentosComponent } from './plan-alimenticio/programacion-diaria/panel-programacion-dia/panel-seleccion-alimentos/panel-seleccion-alimentos.component';
+import { ProgramacionDiariaComponent } from './plan-alimenticio/programacion-diaria/programacion-diaria.component';
+import { CriteriosSeleccionComponent } from './plan-alimenticio/criterios-seleccion/criterios-seleccion.component';
+import { PlanAlimenticioComponent } from './plan-alimenticio/plan-alimenticio.component';
 import { PlanAlimenticioResolver } from './shared/plan-alimenticio-resolver.service';
-import { PlanAlimenticio } from './../models/plan-alimenticio.model';
 import { PlanesAlimenticiosComponent } from './planes-alimenticios.component';
 import { ListaPlanesAlimenticiosComponent } from './lista-planes-alimenticios/lista-planes-alimenticios.component';
 import { NgModule } from '@angular/core';
@@ -14,7 +18,7 @@ const routes:Routes = [{
   },
   {
     path: ':id',
-    component: PlanAlimenticio,
+    component: PlanAlimenticioComponent,
     resolve: {
       planAlimenticio: PlanAlimenticioResolver
     }
@@ -22,10 +26,20 @@ const routes:Routes = [{
 }];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
+  imports: [
+    RouterModule.forChild(routes)
+  ],
   exports: [RouterModule],
   providers: [PlanAlimenticioResolver]
 })
 export class PlanesAlimenticiosRoutingModule { }
 
-export const routedComponents = [PlanesAlimenticiosComponent, ListaPlanesAlimenticiosComponent, PlanAlimenticio];
+export const routedComponents = [
+  PlanesAlimenticiosComponent,
+  ListaPlanesAlimenticiosComponent,
+  PlanAlimenticioComponent,
+  CriteriosSeleccionComponent,
+  ProgramacionDiariaComponent,
+  PanelProgramacionDiaComponent,
+  PanelSeleccionAlimentosComponent
+  ];

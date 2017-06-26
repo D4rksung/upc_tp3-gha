@@ -16,7 +16,7 @@ export class NavComponent implements OnInit {
 
   ngOnInit() {
     this.navItems = [
-      {label:'Gestionar Plan Alimenticio',link:['/planAlimenticio']},
+      {label:'Gestionar Plan Alimenticio',link:['/planesAlimenticios']},
       {label:'Recoger Mascota',link:['/recogerMascota']}
     ];
   }
