@@ -1,5 +1,6 @@
-import { FiltrosService } from './../filtros.service';
+import { FiltrosService, FiltrosState } from './../filtros.service';
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-planes-alimenticios',
@@ -8,10 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PlanesAlimenticiosComponent implements OnInit {
 
-  constructor(private filtrosService:FiltrosService) { }
+  visible:boolean = false;
+  private filtrosStateChanged: Subscription;
+
+  constructor(private filtrosService: FiltrosService) { }
 
   ngOnInit() {
     this.filtrosService.loadFiltros();
+    this.filtrosStateChanged = this.filtrosService.filtrosState
+    .subscribe((state:FiltrosState)=>this.visible = state.loaded);
   }
 
 }

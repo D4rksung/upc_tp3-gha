@@ -19,7 +19,7 @@
   </div>
   <div class="form-group col-md-3">
     <label for="especie">Especie</label>
-    <select id="especie" class="form-control" [(ngModel)]="planAlimenticio.especie"  (change)="onchangeEspecie(planAlimenticio.especie.id)">
+    <select id="especie" class="form-control" [(ngModel)]="planAlimenticio.especie"  (change)="onchangeEspecie(planAlimenticio.especie)">
       <option value="-1">Seleccionar</option>
       <option *ngFor="let especie of especies" [value]="especie.id">{{especie.nombre | titlecase}}</option>
     </select>

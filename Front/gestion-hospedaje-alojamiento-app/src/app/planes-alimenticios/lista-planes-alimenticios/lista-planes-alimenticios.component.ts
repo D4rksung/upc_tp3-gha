@@ -1,3 +1,6 @@
+import { CondicionMedica } from './../../models/condicion-medica.model';
+import { Especie } from './../../models/especie.model';
+import { FiltrosService } from './../../filtros.service';
 import { PlanAlimenticioService } from './../shared/plan-alimenticio.service';
 import { PlanAlimenticio } from './../../models/plan-alimenticio.model';
 import { Component, OnInit } from '@angular/core';
@@ -8,22 +11,47 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./lista-planes-alimenticios.component.css']
 })
 export class ListaPlanesAlimenticiosComponent implements OnInit {
+  title:string = 'Gestionar Planes Alimenticios';
+  filtros={
+    nombre: '',
+    especie: -1,
+    condicionMedica: -1
+  };
+  especies: Especie[];
+  condicionesMedicas: CondicionMedica[];
+
   planesAlimenticios:PlanAlimenticio[]=[];
   filteredPlanesAlimenticios:PlanAlimenticio[]=[];
 
-  constructor(private planAlimenticioService:PlanAlimenticioService) { }
+  constructor(private filtrosService:FiltrosService ,private planAlimenticioService:PlanAlimenticioService) { }
 
   ngOnInit() {
-     this.planAlimenticioService.getPlanesAlimenticios()
-     .subscribe(planesAlimenticios=> {
+    this.planAlimenticioService.getPlanesAlimenticios()
+    .subscribe(planesAlimenticios=> {
       this.planesAlimenticios = planesAlimenticios;
-      this.filtrarPlanesAlimenticios();
     });
+    this.especies = this.filtrosService.getEspecies();
+    this.condicionesMedicas = [];
   }
 
-  filtrarPlanesAlimenticios(){
-    this.filteredPlanesAlimenticios = this.planesAlimenticios.filter(p=>{
-      return true;
+  onchangeEspecie(especie: number){
+    this.filtros.condicionMedica = -1;
+    this.condicionesMedicas = especie>=0?this.filtrosService.getCondicionesMedicas(especie):[];
+  }
+
+  buscarPlanesAlimenticios(){
+    let params = new URLSearchParams();
+    let {nombre, especie, condicionMedica} = this.filtros;
+    params.set('nombre',nombre);
+    if(especie>0){
+      params.set('especie',`${especie}`);
+    }
+    if(condicionMedica>0){
+      params.set('condicionMedica',`${condicionMedica}`);
+    }
+    this.planAlimenticioService.getPlanesAlimenticiosWithFilter(params)
+     .subscribe(planesAlimenticios=> {
+      this.planesAlimenticios = planesAlimenticios;
     });
   }
 

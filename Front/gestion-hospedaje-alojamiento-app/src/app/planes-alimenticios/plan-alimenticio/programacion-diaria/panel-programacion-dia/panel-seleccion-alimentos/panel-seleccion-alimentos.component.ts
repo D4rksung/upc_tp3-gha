@@ -1,3 +1,4 @@
+import { FiltrosService } from './../../../../../filtros.service';
 import { Alimento, Categoria, SubCategoria} from './../../../../../models/alimento.model';
 import { AlimentosService } from './../../../../../alimentos/alimentos.service';
 import { Component, OnInit, Input} from '@angular/core';
@@ -19,19 +20,21 @@ export class PanelSeleccionAlimentosComponent implements OnInit{
   allAlimentos:Alimento[]=[];
   filtros={categoria:-1,subcategoria:-1};
 
-  categorias: Categoria[] = [{
-    id: 1, nombre: 'Carnes'
-  }];
-  subcategorias: Categoria[] = [{
-    id: 1, nombre: 'Carne de Res'
-  },{
-    id: 2, nombre: 'Carne de Cerdo'
-  }];
+  categorias: Categoria[];
+  subcategorias: SubCategoria[];
 
-  constructor(private alimentoService: AlimentosService) {  }
+  constructor(private filtrosService: FiltrosService,private alimentoService: AlimentosService) {
+    this.categorias = this.filtrosService.getCategorias();
+  }
 
   ngOnInit() {
     this.getAlimentos();
+  }
+
+  onchangeCategoria(categoria: number){
+    this.filtros.subcategoria = -1;
+    this.subcategorias = categoria>=0?this.filtrosService.getSubCategorias(categoria):[];
+    this.filtrarAlimentos();
   }
 
   getAlimentos(){
@@ -52,8 +55,11 @@ export class PanelSeleccionAlimentosComponent implements OnInit{
     this.allAlimentos.filter(a=>{
       let {categoria, subcategoria} = this.filtros;
       let valid = !this.alimentos.includes(a.id);
-      if(categoria < 0 || subcategoria < 0){
-        return valid && true;
+      if(categoria < 0){
+        return valid && (subcategoria < 0);
+      }else if (subcategoria < 0){
+
+        return this.subcategorias.map(s=>s.id).includes(a.subCategoria);
       }
       return valid && a.subCategoria== subcategoria;
     })

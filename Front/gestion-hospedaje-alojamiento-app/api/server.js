@@ -4,6 +4,7 @@ const router = jsonServer.router('db.json')
 const middlewares = jsonServer.defaults()
 
 router.render = (req,res) =>{
+  console.log(req.body);
   res.jsonp({
     data: res.locals.data
   })

@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-md-5">
     <label for="categoria">Categoria</label>
-    <select id="categoria" class="form-control" [(ngModel)]="filtros.categoria" (change)="filtrarAlimentos()">
+    <select id="categoria" class="form-control" [(ngModel)]="filtros.categoria" (change)="onchangeCategoria(filtros.categoria)">
       <option value="-1">Seleccionar</option>
       <option *ngFor="let categoria of categorias" [value]="categoria.id">{{categoria.nombre}}</option>
     </select>

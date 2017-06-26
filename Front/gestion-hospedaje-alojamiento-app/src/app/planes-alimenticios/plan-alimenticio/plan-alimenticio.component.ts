@@ -24,17 +24,20 @@ export class PlanAlimenticioComponent implements OnInit {
   constructor(private filtrosService: FiltrosService,
     private planAlimenticioService: PlanAlimenticioService,
     private route: ActivatedRoute,
-    private router: Router) { }
+    private router: Router) {
+      this.especies = this.filtrosService.getEspecies();
+    }
 
   ngOnInit() {
     this.route.data.subscribe((data: { planAlimenticio: PlanAlimenticio }) => {
       this.setPlanAlimenticio(data.planAlimenticio);
+      this.condicionesMedicas = this.filtrosService.getCondicionesMedicas(this.planAlimenticio.especie);
     });
-    this.especies = this.filtrosService.getEspecies();
   }
 
   onchangeEspecie(especie: number){
-    this.condicionesMedicas = this.filtrosService.getCondicionesMedicas(especie);
+    this.planAlimenticio.condicionMedica = -1;
+    this.condicionesMedicas = especie>=0?this.filtrosService.getCondicionesMedicas(especie):[];
   }
 
   setPlanAlimenticio(planAlimenticio:PlanAlimenticio){
@@ -42,12 +45,17 @@ export class PlanAlimenticioComponent implements OnInit {
   }
 
   guardar(){
-    if(this.planAlimenticio == null){
-      this.planAlimenticioService.addPlanAlimenticio(this.planAlimenticio);
+    if(this.planAlimenticio.id == null){
+      this.planAlimenticioService.addPlanAlimenticio(this.planAlimenticio)
+      .subscribe(p=>{
+        this.gotoListaPlanesAlimenticios()
+      });
     }else{
-      this.planAlimenticioService.updatePlanAlimenticio(this.planAlimenticio);
+      this.planAlimenticioService.updatePlanAlimenticio(this.planAlimenticio)
+      .subscribe(p=>{
+        this.gotoListaPlanesAlimenticios();
+      });
     }
-    this.gotoListaPlanesAlimenticios();
   }
 
   cancelar(){

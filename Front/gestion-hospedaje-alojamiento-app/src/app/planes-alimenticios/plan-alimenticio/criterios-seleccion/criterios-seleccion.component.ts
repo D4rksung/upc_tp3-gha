@@ -2,13 +2,6 @@ import { CriterioSeleccion } from './../../../models/criterio-seleccion.model';
 import { Component, OnInit, Input} from '@angular/core';
 
 const defaultSeleccion = {raza: -1, nivelBMI: -1, etapaVida: -1};
-interface criterioSeleccionRowData{
-  especie: string,
-  raza: string,
-  nivelBMI: string,
-  etapaVida: string
-}
-
 
 @Component({
   selector: 'gha-criterios-seleccion',

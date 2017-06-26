@@ -10,12 +10,14 @@ export class PlanAlimenticioResolver implements Resolve <PlanAlimenticio> {
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     let id = +route.params['id'];
+    if(isNaN(id)){
+      return new PlanAlimenticio();
+    }
     return this.planAlimenticioService.getPlanAlimenticio(id)
     .map(planAlimenticio =>{
       if(planAlimenticio){
         return planAlimenticio;
       }
-      return new PlanAlimenticio
     })
   }
 

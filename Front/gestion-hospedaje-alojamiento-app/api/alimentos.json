@@ -3,10 +3,13 @@
     {
       "id": 1,
       "nombre": "Chuletas",
+      "subCategoria":2,
       "cantidad": 100,
       "unidad": "g",
-      "componentes": {
-        "vitaminas": [
+      "composicion": [{
+        "id": 1,
+        "nombre": "vitaminas",
+        "componentes": [
           {
             "id": 1,
             "nombre": "A",
@@ -20,7 +23,7 @@
             "unidad": "g"
           }
         ]
-      }
+      }]
     },
     {
       "id": 2,
@@ -28,8 +31,10 @@
       "subCategoria":1,
       "cantidad": 100,
       "unidad": "g",
-      "componentes": {
-        "vitaminas": [
+      "composicion": [{
+        "id": 1,
+        "nombre": "vitaminas",
+        "componentes": [
           {
             "id": 1,
             "nombre": "A",
@@ -43,16 +48,18 @@
             "unidad": "g"
           }
         ]
-      }
+      }]
     },
-        {
+    {
       "id": 3,
       "nombre": "Lomo Fino",
       "subCategoria":1,
       "cantidad": 100,
       "unidad": "g",
-      "componentes": {
-        "vitaminas": [
+      "composicion": [{
+        "id": 1,
+        "nombre": "vitaminas",
+        "componentes": [
           {
             "id": 1,
             "nombre": "A",
@@ -66,7 +73,7 @@
             "unidad": "g"
           }
         ]
-      }
+      }]
     }
   ]
 }
