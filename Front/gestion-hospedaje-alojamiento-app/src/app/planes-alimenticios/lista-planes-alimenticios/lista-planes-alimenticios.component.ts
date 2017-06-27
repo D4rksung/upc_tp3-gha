@@ -4,6 +4,7 @@ import { FiltrosService } from './../../filtros.service';
 import { PlanAlimenticioService } from './../shared/plan-alimenticio.service';
 import { PlanAlimenticio } from './../../models/plan-alimenticio.model';
 import { Component, OnInit } from '@angular/core';
+import { URLSearchParams } from '@angular/http';
 
 @Component({
   selector: 'gha-lista-planes-alimenticios',
@@ -42,7 +43,9 @@ export class ListaPlanesAlimenticiosComponent implements OnInit {
   buscarPlanesAlimenticios(){
     let params = new URLSearchParams();
     let {nombre, especie, condicionMedica} = this.filtros;
-    params.set('nombre',nombre);
+    if(nombre && nombre.length){
+      params.set('nombre',nombre);
+    }
     if(especie>0){
       params.set('especie',`${especie}`);
     }
@@ -53,6 +56,11 @@ export class ListaPlanesAlimenticiosComponent implements OnInit {
      .subscribe(planesAlimenticios=> {
       this.planesAlimenticios = planesAlimenticios;
     });
+  }
+
+  eliminar(planAlimenticio:PlanAlimenticio){
+    this.planAlimenticioService.deletePlanAlimenticio(planAlimenticio)
+    .subscribe(a=>this.buscarPlanesAlimenticios());
   }
 
 }

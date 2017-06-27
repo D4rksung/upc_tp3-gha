@@ -10,6 +10,7 @@ import { ProgramacionDia } from './../../../models/programacion-dia.model';
 export class ProgramacionDiariaComponent implements OnInit {
   @Input() programacionesDia: ProgramacionDia[];
   lastTab:number = 1;
+  quitarTab: boolean;
 
   constructor() { }
 
@@ -17,14 +18,30 @@ export class ProgramacionDiariaComponent implements OnInit {
   }
 
   public beforeChange($event: NgbTabChangeEvent,ts:NgbTabset) {
-    if ($event.nextId === 'add-day') {
+    if(!this.quitarTab){
+      if ($event.nextId === 'add-day') {
+        $event.preventDefault();
+        let num = this.programacionesDia.length+1;
+        this.programacionesDia.push({numeroDia:num,comidas:[]});
+        let lastTabId = `dia${this.lastTab}`;
+        ts.select(lastTabId);
+        this.lastTab = num;
+      }
+    }else{
       $event.preventDefault();
-      let num = this.programacionesDia.length+1;
-      this.programacionesDia.push({numeroDia:num,comidas:[]});
-      let lastTabId = `dia${this.lastTab}`;
-      ts.select(lastTabId);
-      this.lastTab = num;
+      this.quitarTab = false;
     }
   };
+
+  public quitarProgramacionDia($event,idxProgramacionDia:number){
+    $event.preventDefault();
+    this.quitarTab = true;
+    this.programacionesDia.splice(idxProgramacionDia,1);
+    this.programacionesDia.forEach((p, i) =>{
+      if(i >= idxProgramacionDia){
+        p.numeroDia = i + 1;
+      }
+    });
+  }
 
 }

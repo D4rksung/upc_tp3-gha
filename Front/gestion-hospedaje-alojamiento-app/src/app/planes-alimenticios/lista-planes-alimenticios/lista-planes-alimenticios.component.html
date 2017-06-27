@@ -46,7 +46,7 @@
       </thead>
       <tbody>
         <tr *ngIf="planesAlimenticios.length==0">
-          <td colspan="4" class="text-center">No se ingresaron criterios, debe ingresar por lo menos uno</td>
+          <td colspan="4" class="text-center">No existen planes alimenticios que coincidan con los criterios ingresados</td>
         </tr>
         <tr *ngFor="let planAlimenticio of planesAlimenticios; let i=index">
           <td>
@@ -62,7 +62,7 @@
             <button class="btn-link" [routerLink]="['/planesAlimenticios',planAlimenticio.id]">
           <i class="fa fa-pencil"></i>
         </button>
-            <button class="btn-link">
+            <button class="btn-link" (click)="eliminar(planAlimenticio)">
           <i class="fa fa-trash"></i>
         </button>
           </td>

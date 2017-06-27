@@ -1,7 +1,7 @@
 import { PlanAlimenticio } from './../../models/plan-alimenticio.model';
 import { CONFIG } from './../../core/config';
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { Http, Response, RequestOptions, URLSearchParams } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
@@ -27,8 +27,10 @@ export class PlanAlimenticioService {
   }
 
   getPlanesAlimenticiosWithFilter(params: URLSearchParams){
+    let myParams = new URLSearchParams();
+    myParams.set('especie','2');
     return <Observable<PlanAlimenticio[]>>this.http
-    .get(planesAlimenticiosUrl,{search: params})
+    .get(planesAlimenticiosUrl, {params})
     .map(res => this.extractData<PlanAlimenticio[]>(res));
   }
 
@@ -50,6 +52,12 @@ export class PlanAlimenticioService {
   updatePlanAlimenticio(planAlimenticio:PlanAlimenticio){
     return <Observable<PlanAlimenticio>>this.http
       .put(`${planesAlimenticiosUrl}/${planAlimenticio.id}`, planAlimenticio)
+      .map(res => <PlanAlimenticio>res.json().data);
+  }
+
+  deletePlanAlimenticio(planAlimenticio:PlanAlimenticio){
+    return <Observable<PlanAlimenticio>>this.http
+      .delete(`${planesAlimenticiosUrl}/${planAlimenticio.id}`)
       .map(res => <PlanAlimenticio>res.json().data);
   }
 
