@@ -45,17 +45,52 @@ export class PlanAlimenticioComponent implements OnInit {
   }
 
   guardar(){
-    if(this.planAlimenticio.id == null){
-      this.planAlimenticioService.addPlanAlimenticio(this.planAlimenticio)
-      .subscribe(p=>{
-        this.gotoListaPlanesAlimenticios()
-      });
-    }else{
-      this.planAlimenticioService.updatePlanAlimenticio(this.planAlimenticio)
-      .subscribe(p=>{
-        this.gotoListaPlanesAlimenticios();
-      });
+    if(this.validarDatos()){
+      if(this.planAlimenticio.id == null){
+        this.planAlimenticioService.addPlanAlimenticio(this.planAlimenticio)
+        .subscribe(p=>{
+          this.gotoListaPlanesAlimenticios()
+        });
+      }else{
+        this.planAlimenticioService.updatePlanAlimenticio(this.planAlimenticio)
+        .subscribe(p=>{
+          this.gotoListaPlanesAlimenticios();
+        });
+      }
     }
+  }
+
+  validarDatos(){
+    let result = false;
+    const {nombre,especie,condicionMedica,criterios,programacionesDia} = this.planAlimenticio;
+    if(!(nombre && nombre.length)){
+      result = false;
+      alert('Debe ingresar un nombre');
+    }else if(especie<0){
+      result = false;
+      alert('Debe seleccionar una especie');
+    }else if(condicionMedica<0){
+      result = false;
+      alert('Debe seleccionar una condicionMedica');
+    }else if(!(criterios && criterios.length)){
+      result = false;
+      alert('Debe ingresar por lo menos un criterio');
+    }else{
+      /*programacionesDia.forEach(p=>{
+        if(!(p.comidas && p.comidas.length)){
+          result = false;
+          alert
+        }else{
+          p.comidas.forEach(c=>{
+
+          });
+        }
+      });*/
+    }
+    if(!result){
+      alert('Debe ingresar todos los campos solicitados');
+    }
+    return result;
   }
 
   cancelar(){
