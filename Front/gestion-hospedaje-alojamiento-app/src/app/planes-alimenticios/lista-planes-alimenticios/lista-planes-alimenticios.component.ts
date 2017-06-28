@@ -59,8 +59,10 @@ export class ListaPlanesAlimenticiosComponent implements OnInit {
   }
 
   eliminar(planAlimenticio:PlanAlimenticio){
-    this.planAlimenticioService.deletePlanAlimenticio(planAlimenticio)
-    .subscribe(a=>this.buscarPlanesAlimenticios());
+    if(!confirm(`¿Está seguro que desea eliminar el plan alimenticio ${planAlimenticio.nombre}?`)){
+      this.planAlimenticioService.deletePlanAlimenticio(planAlimenticio)
+      .subscribe(a=>this.buscarPlanesAlimenticios());
+    }
   }
 
 }
