@@ -122,5 +122,28 @@ namespace PetCenter.WebPortal.Controllers
         }
         #endregion
 
+        #region RegistrarFotoMonitoreo
+        [HttpPost]
+        public JsonResult registrarFotoMonitoreo(FotoMonitoreoModel param1)
+        {
+
+            string postdata = "{\"codigo\":0,\"lugarHospedaje\":" + param1.lugarHospedaje + ",\"mascota\":" + param1.mascota + ",\"observaciones\":\"" + param1.observaciones + "\"}";
+            byte[] data = Encoding.UTF8.GetBytes(postdata);
+            HttpWebRequest req = (HttpWebRequest)WebRequest.Create("http://localhost/PetCenter.RESTServices/MonitoreoService.svc/Monitoreo");
+            req.Method = "POST";
+            req.ContentLength = data.Length;
+            req.ContentType = "application/json";
+            var reqStream = req.GetRequestStream();
+            reqStream.Write(data, 0, data.Length);
+            var res = (HttpWebResponse)req.GetResponse();
+            StreamReader reader = new StreamReader(res.GetResponseStream());
+            string fotoMonitoreoJson = reader.ReadToEnd();
+            JavaScriptSerializer js = new JavaScriptSerializer();
+            FotoMonitoreoModel fotoMonitoreoCreado = js.Deserialize<FotoMonitoreoModel>(fotoMonitoreoJson);
+            var resultado = fotoMonitoreoCreado;
+            //returning josn result  
+            return Json(resultado, JsonRequestBehavior.AllowGet);
+        }
+        #endregion
     }
 }

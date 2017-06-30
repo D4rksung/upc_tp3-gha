@@ -12,5 +12,6 @@ namespace PetCenter.BusinessEntities
         public int codigoMarca { get; set; }
         public int codigoUnidadMedida { get; set; }
         public int codigoSubcategoria { get; set; }
+        public int cantidad { get; set; }
     }
 }

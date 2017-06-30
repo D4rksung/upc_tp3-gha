@@ -17,6 +17,18 @@ namespace PetCenter.DataAccess.Repositories
             _context = context;
         }
 
+        public List<MascotaBE> listarMascotasPorRecepcionista(string filtro, int recepcionista)
+        {
+            using (var command = _context.CreateCommand())
+            {
+                command.CommandType = CommandType.StoredProcedure;
+                command.CommandText = "usp_GHA_ListarMascotasPorRecepcionista";
+                command.Parameters.Add(command.CreateParameter("@filtro", filtro));
+                command.Parameters.Add(command.CreateParameter("@recepcionista", recepcionista));
+                return this.ToList(command).ToList();
+            }
+        }
+
         public MascotaBE ObtenerDatosMascota(int mascota)
         {
             using (var command = _context.CreateCommand())

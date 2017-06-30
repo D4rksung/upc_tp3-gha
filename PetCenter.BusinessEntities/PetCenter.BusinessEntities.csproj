@@ -44,14 +44,20 @@
   <ItemGroup>
     <Compile Include="AlimentoBE.cs" />
     <Compile Include="CategoriaAlimentoBE.cs" />
+    <Compile Include="ComidaBE.cs" />
+    <Compile Include="CondicionMedicaBE.cs" />
     <Compile Include="CriterioPlanAlimenticioBE.cs" />
     <Compile Include="DetalleAlimentoComponenteBE.cs" />
+    <Compile Include="etapaVidaBE.cs" />
     <Compile Include="fotoMonitoreoBE.cs" />
     <Compile Include="GenericoBE.cs" />
     <Compile Include="MarcaBE.cs" />
     <Compile Include="MascotaBE.cs" />
     <Compile Include="MonitoreoBE.cs" />
     <Compile Include="NivelBMIBE.cs" />
+    <Compile Include="PlanAlimenticioBE.cs" />
+    <Compile Include="planProgramacionDiaBE.cs" />
+    <Compile Include="PlatoBE.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SubCategoriaAlimentoBE.cs" />
     <Compile Include="TipoComponenteAlimenticioBE.cs" />

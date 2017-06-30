@@ -1,4 +1,6 @@
-﻿$(document).ready(function () {
+﻿
+//#region $(document).ready
+$(document).ready(function () {
 
     //#region Inicializaciones
     $('#DetalleMonitoreoMascota').css({ "display": "none" });
@@ -87,7 +89,7 @@
     });
     //#endregion
 });
-
+//#endregion
 
 //#region ListarTodasMascotas
 function ListarTodasMascotas() {

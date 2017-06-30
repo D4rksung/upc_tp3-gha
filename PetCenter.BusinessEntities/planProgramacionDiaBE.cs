@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace PetCenter.BusinessEntities
 {
-    public class CategoriaAlimentoBE
+    public class planProgramacionDiaBE
     {
         public int codigo { get; set; }
-        public string nombre { get; set; }
+        public int planALimenticio { get; set; }
+        public int numeroDia { get; set; }
     }
 }
