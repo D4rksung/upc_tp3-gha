@@ -68,6 +68,7 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DTOEntities\MonitoreoDTO.cs" />
     <Compile Include="IMonitoreoService.cs" />
     <Compile Include="IPlanAlimenticioService.cs" />
     <Compile Include="MonitoreoService.svc.cs">
@@ -83,6 +84,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\PublishProfiles\PetCenter.RESTServices.pubxml" />
+    <None Include="Properties\PublishProfiles\RESTServices.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

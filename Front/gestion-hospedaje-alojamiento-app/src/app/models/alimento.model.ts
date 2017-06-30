@@ -1,3 +1,4 @@
+import { TipoComponente } from './tipo-componente.model';
 export class Categoria{
   id: number;
   nombre: string;
@@ -15,4 +16,5 @@ export class Alimento {
   subCategoria: number;
   cantidad: number;
   unidad: string;
+  composicion: TipoComponente[];
 }

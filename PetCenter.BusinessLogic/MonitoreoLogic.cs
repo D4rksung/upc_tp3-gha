@@ -12,15 +12,16 @@ namespace PetCenter.BusinessLogic
     {
         private IConnectionFactory connectionFactory;
 
-        public IList<GenericoBE> listarMascotasPorRecepcionista(string filtro, int recepcionista)
+        
+        public List<MascotaBE> listarMascotasPorRecepcionista(string filtro, int recepcionista)
         {
             connectionFactory = ConnectionHelper.GetConnection();
 
             var context = new DbContext(connectionFactory);
 
-            var genericRep = new _GenericRepository(context);
+            var mascotaRep = new _MascotaRepository(context);
 
-            return genericRep.listarMascotasPorRecepcionista(filtro,recepcionista);
+            return mascotaRep.listarMascotasPorRecepcionista(filtro,recepcionista);
         }
 
         public MascotaBE obtenerDatosMascota(int mascota)
@@ -33,7 +34,7 @@ namespace PetCenter.BusinessLogic
             return mascotaRep.ObtenerDatosMascota(mascota);
         }
 
-        public IList<MonitoreoBE> listarMonitoreosMascota(int lugarHospedaje, int mascota)
+        public List<MonitoreoBE> listarMonitoreosMascota(int lugarHospedaje, int mascota)
         {
             connectionFactory = ConnectionHelper.GetConnection();
 
@@ -44,7 +45,7 @@ namespace PetCenter.BusinessLogic
             return monitoreoRep.listaMonitoreosMascota(lugarHospedaje,mascota);
         }
 
-        public IList<fotoMonitoreoBE> listarFotosMonitoreoMascota(int monitoreo)
+        public List<fotoMonitoreoBE> listarFotosMonitoreoMascota(int monitoreo)
         {
             connectionFactory = ConnectionHelper.GetConnection();
 
@@ -53,6 +54,27 @@ namespace PetCenter.BusinessLogic
             var fotoMonitoreoRep = new _FotoMonitoreoRepository(context);
 
             return fotoMonitoreoRep.listaFotosMonitoreosMascota(monitoreo);
+        }
+
+        public MonitoreoBE registrarMonitoreo(MonitoreoBE monitoreo) {
+            connectionFactory = ConnectionHelper.GetConnection();
+
+            var context = new DbContext(connectionFactory);
+
+            var monitoreoRep = new _MonitoreoRepository(context);
+
+            return monitoreoRep.registrarMonitoreo(monitoreo);
+        }
+
+        public fotoMonitoreoBE registrarFotoMonitoreo(fotoMonitoreoBE fotoMonitoreo)
+        {
+            connectionFactory = ConnectionHelper.GetConnection();
+
+            var context = new DbContext(connectionFactory);
+
+            var fotoMonitoreoRep = new _FotoMonitoreoRepository(context);
+
+            return fotoMonitoreoRep.registrarFotoMonitoreo(fotoMonitoreo);
         }
     }
 }

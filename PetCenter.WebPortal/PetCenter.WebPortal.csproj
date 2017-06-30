@@ -1,5 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -7,19 +9,22 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{6D5D589C-ECA6-416E-82E7-6269134BB20F}</ProjectGuid>
+    <ProjectGuid>{DCAD515A-CCA9-4D16-AE3C-F330300642D5}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>PetCenter.WebPortal</RootNamespace>
     <AssemblyName>PetCenter.WebPortal</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <WebGreaseLibPath>..\packages\WebGrease.1.5.2\lib</WebGreaseLibPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -39,7 +44,19 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Antlr3.Runtime, Version=3.4.1.9004, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.5.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -49,6 +66,10 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
@@ -56,116 +77,133 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
+    <Reference Include="WebGrease, Version=1.5.2.14234, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Controllers\MonitoreoController.js" />
-    <Content Include="Default.aspx" />
-    <Content Include="public\css\css\demo-ie8.css" />
-    <Content Include="public\css\css\demo.css" />
-    <Content Include="public\css\css\jquery.fileupload-noscript.css" />
-    <Content Include="public\css\css\jquery.fileupload-ui-noscript.css" />
-    <Content Include="public\css\css\jquery.fileupload-ui.css" />
-    <Content Include="public\css\css\jquery.fileupload.css" />
-    <Content Include="public\css\css\style.css" />
-    <Content Include="public\css\dashboard.css" />
-    <Content Include="public\css\estilos.css" />
-    <Content Include="public\css\estilos_1.css" />
-    <Content Include="public\css\jquery.bootgrid.css" />
-    <Content Include="public\css\jquery.bootgrid.min.css" />
-    <Content Include="public\css\print.css" />
-    <Content Include="public\css\style.css" />
-    <Content Include="public\images\bg-linea.jpg" />
-    <Content Include="public\images\bg-pass.png" />
-    <Content Include="public\images\bg-user.png" />
-    <Content Include="public\images\favicon.ico" />
-    <Content Include="public\images\icon-agua.png" />
-    <Content Include="public\images\icon-desague.png" />
-    <Content Include="public\images\icon-internet.png" />
-    <Content Include="public\images\icon-luz.png" />
-    <Content Include="public\images\img\loading.gif" />
-    <Content Include="public\images\img\logo.png" />
-    <Content Include="public\images\img\progressbar.gif" />
-    <Content Include="public\images\logo-maba.png" />
-    <Content Include="public\images\logo-minedu.jpg" />
-    <Content Include="public\images\logo-sileitic.png" />
-    <Content Include="public\js\admin.js" />
-    <Content Include="public\js\administrador\detalle.js" />
-    <Content Include="public\js\administrador\jquery.redirect.js" />
-    <Content Include="public\js\administrador\main.js" />
-    <Content Include="public\js\denuncia.js" />
-    <Content Include="public\js\index.js" />
-    <Content Include="public\js\jquery-1.11.3.min.js" />
-    <Content Include="public\js\jquery.bootgrid.fa.js" />
-    <Content Include="public\js\jquery.bootgrid.fa.min.js" />
-    <Content Include="public\js\jquery.bootgrid.js" />
-    <Content Include="public\js\jquery.bootgrid.min.js" />
-    <Content Include="public\js\js\app.js" />
-    <Content Include="public\js\js\cors\jquery.postmessage-transport.js" />
-    <Content Include="public\js\js\cors\jquery.xdr-transport.js" />
-    <Content Include="public\js\js\jquery.fileupload-angular.js" />
-    <Content Include="public\js\js\jquery.fileupload-audio.js" />
-    <Content Include="public\js\js\jquery.fileupload-image.js" />
-    <Content Include="public\js\js\jquery.fileupload-jquery-ui.js" />
-    <Content Include="public\js\js\jquery.fileupload-process.js" />
-    <Content Include="public\js\js\jquery.fileupload-ui.js" />
-    <Content Include="public\js\js\jquery.fileupload-validate.js" />
-    <Content Include="public\js\js\jquery.fileupload-video.js" />
-    <Content Include="public\js\js\jquery.fileupload.js" />
-    <Content Include="public\js\js\jquery.iframe-transport.js" />
-    <Content Include="public\js\js\main.js" />
-    <Content Include="public\js\js\vendor\jquery.ui.widget.js" />
-    <Content Include="public\js\maba.js" />
-    <Content Include="public\js\maba_interno.js" />
-    <Content Include="public\js\modernizr.js" />
-    <Content Include="public\lib\bootstrap-3\css\bootstrap-datepicker.css" />
-    <Content Include="public\lib\bootstrap-3\css\bootstrap-datepicker.min.css" />
-    <Content Include="public\lib\bootstrap-3\css\bootstrap-theme.css" />
-    <Content Include="public\lib\bootstrap-3\css\bootstrap-theme.min.css" />
-    <Content Include="public\lib\bootstrap-3\css\bootstrap.css" />
-    <Content Include="public\lib\bootstrap-3\css\bootstrap.min.css" />
-    <Content Include="public\lib\bootstrap-3\fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="public\lib\bootstrap-3\js\bootstrap-datepicker.js" />
-    <Content Include="public\lib\bootstrap-3\js\bootstrap-datepicker.min.js" />
-    <Content Include="public\lib\bootstrap-3\js\bootstrap.js" />
-    <Content Include="public\lib\bootstrap-3\js\bootstrap.min.js" />
-    <Content Include="public\lib\bootstrap-3\js\npm.js" />
-    <Content Include="Views\MonitoreoMascota.aspx" />
+    <Reference Include="System.Web.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.3\lib\net45\System.Web.Webpages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Deployment">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.3\lib\net45\System.Web.Webpages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.3\lib\net45\System.Web.Webpages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Helpers">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\fotos\1.jpg" />
+    <Content Include="Content\fotos\2.jpg" />
+    <Content Include="Content\fotos\3.jpg" />
+    <Content Include="Content\fotos\4.jpg" />
+    <Content Include="Content\fotos\6.jpg" />
+    <Content Include="Content\Styles.css" />
+    <Content Include="Content\themes\base\accordion.css" />
+    <Content Include="Content\themes\base\all.css" />
+    <Content Include="Content\themes\base\autocomplete.css" />
+    <Content Include="Content\themes\base\base.css" />
+    <Content Include="Content\themes\base\button.css" />
+    <Content Include="Content\themes\base\core.css" />
+    <Content Include="Content\themes\base\datepicker.css" />
+    <Content Include="Content\themes\base\dialog.css" />
+    <Content Include="Content\themes\base\draggable.css" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_444444_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_555555_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_777620_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_777777_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cc0000_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Content\themes\base\jquery-ui.css" />
+    <Content Include="Content\themes\base\jquery-ui.min.css" />
+    <Content Include="Content\themes\base\menu.css" />
+    <Content Include="Content\themes\base\progressbar.css" />
+    <Content Include="Content\themes\base\resizable.css" />
+    <Content Include="Content\themes\base\selectable.css" />
+    <Content Include="Content\themes\base\selectmenu.css" />
+    <Content Include="Content\themes\base\slider.css" />
+    <Content Include="Content\themes\base\sortable.css" />
+    <Content Include="Content\themes\base\spinner.css" />
+    <Content Include="Content\themes\base\tabs.css" />
+    <Content Include="Content\themes\base\theme.css" />
+    <Content Include="Content\themes\base\tooltip.css" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <None Include="Scripts\jquery-3.1.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.1.1.js" />
+    <Content Include="Scripts\jquery-3.1.1.min.js" />
+    <Content Include="Scripts\jquery-3.1.1.slim.js" />
+    <Content Include="Scripts\jquery-3.1.1.slim.min.js" />
+    <Content Include="Scripts\jquery-ui-1.12.1.js" />
+    <Content Include="Scripts\jquery-ui-1.12.1.min.js" />
+    <Content Include="Scripts\_hospedajeMonitoreo.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Default.aspx.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MonitoreoController.cs" />
+    <Compile Include="Controllers\PlanAlimenticioController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Default.aspx.designer.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
-    </Compile>
+    <Compile Include="Models\FotoMonitoreoModel.cs" />
+    <Compile Include="Models\InformacionMascotaModel.cs" />
+    <Compile Include="Models\MascotaHospedadaModel.cs" />
+    <Compile Include="Models\MonitoreoMascotaModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Views\commons\Layout.Master.cs">
-      <DependentUpon>Layout.Master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\commons\Layout.Master.designer.cs">
-      <DependentUpon>Layout.Master</DependentUpon>
-    </Compile>
-    <Compile Include="Views\MonitoreoMascota.aspx.cs">
-      <DependentUpon>MonitoreoMascota.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\MonitoreoMascota.aspx.designer.cs">
-      <DependentUpon>MonitoreoMascota.aspx</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="public\lib\bootstrap-3\css\bootstrap-theme.css.map" />
-    <Content Include="public\lib\bootstrap-3\css\bootstrap-theme.min.css.map" />
-    <Content Include="public\lib\bootstrap-3\css\bootstrap.css.map" />
-    <Content Include="public\lib\bootstrap-3\css\bootstrap.min.css.map" />
-    <Content Include="public\lib\bootstrap-3\fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="public\lib\bootstrap-3\fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="public\lib\bootstrap-3\fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="public\lib\bootstrap-3\fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="Views\commons\Layout.Master" />
+    <Content Include="Views\web.config" />
+    <Content Include="packages.config" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Scripts\jquery-3.1.1.min.map" />
+    <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Monitoreo\Index.cshtml" />
+    <Content Include="Views\PlanAlimenticio\Index.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\_ViewStart.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -174,7 +212,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Models\" />
+    <Folder Include="App_Data\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -189,9 +227,9 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>38460</DevelopmentServerPort>
+          <DevelopmentServerPort>1514</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:38460/</IISUrl>
+          <IISUrl>http://localhost:1514/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
@@ -201,6 +239,13 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

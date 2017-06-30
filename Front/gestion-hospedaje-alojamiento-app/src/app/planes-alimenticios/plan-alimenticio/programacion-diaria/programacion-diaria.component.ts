@@ -36,6 +36,11 @@ export class ProgramacionDiariaComponent implements OnInit {
   public quitarProgramacionDia($event,idxProgramacionDia:number){
     $event.preventDefault();
     this.quitarTab = true;
+    if(this.programacionesDia[idxProgramacionDia].comidas.length
+    && !confirm('¿Está seguro que desea quitar el día de la programación?')){
+      return;
+    }
+
     this.programacionesDia.splice(idxProgramacionDia,1);
     this.programacionesDia.forEach((p, i) =>{
       if(i >= idxProgramacionDia){

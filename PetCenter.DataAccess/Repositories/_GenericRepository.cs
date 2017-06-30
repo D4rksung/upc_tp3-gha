@@ -18,19 +18,76 @@ namespace PetCenter.DataAccess.Repositories
             _context = context;
         }
 
-
-        public IList<GenericoBE> listarMascotasPorRecepcionista(string filtro,int recepcionista)
+        public List<GenericoBE> listarEspecies()
         {
             using (var command = _context.CreateCommand())
             {
                 command.CommandType = CommandType.StoredProcedure;
-                command.CommandText = "usp_GHA_ListarMascotasPorRecepcionista";
-                command.Parameters.Add(command.CreateParameter("@filtro",filtro));
-                command.Parameters.Add(command.CreateParameter("@recepcionista", recepcionista));
+                command.CommandText = "usp_GHA_ListarEspecies";
                 return this.ToList(command).ToList();
             }
         }
 
+        public List<GenericoBE> listarRazas(int especie)
+        {
+            using (var command = _context.CreateCommand())
+            {
+                command.CommandType = CommandType.StoredProcedure;
+                command.CommandText = "usp_GHA_ListarRaza";
+                command.Parameters.Add(command.CreateParameter("@especie", especie));
+                return this.ToList(command).ToList();
+            }
+        }
+
+        public List<GenericoBE> listarCondicionesMedicas()
+        {
+            using (var command = _context.CreateCommand())
+            {
+                command.CommandType = CommandType.StoredProcedure;
+                command.CommandText = "usp_GHA_ListarCondicionesMedicas";
+                return this.ToList(command).ToList();
+            }
+        }
+
+        public List<GenericoBE> listarNivelBMI()
+        {
+            using (var command = _context.CreateCommand())
+            {
+                command.CommandType = CommandType.StoredProcedure;
+                command.CommandText = "usp_GHA_ListarBMI";
+                return this.ToList(command).ToList();
+            }
+        }
+        public List<GenericoBE> listarEtapasVida()
+        {
+            using (var command = _context.CreateCommand())
+            {
+                command.CommandType = CommandType.StoredProcedure;
+                command.CommandText = "usp_GHA_ListarEtapaVida";
+                return this.ToList(command).ToList();
+            }
+        }
+
+        public List<GenericoBE> listarCategoria()
+        {
+            using (var command = _context.CreateCommand())
+            {
+                command.CommandType = CommandType.StoredProcedure;
+                command.CommandText = "usp_GHA_ListarCategoriaAlimento";
+                return this.ToList(command).ToList();
+            }
+        }
+
+        public List<GenericoBE> listarSubCategoria(int categoria)
+        {
+            using (var command = _context.CreateCommand())
+            {
+                command.CommandType = CommandType.StoredProcedure;
+                command.CommandText = "usp_GHA_ListarSubCategoriaAlimento";
+                command.Parameters.Add(command.CreateParameter("@categoria", categoria));
+                return this.ToList(command).ToList();
+            }
+        }
         //public User CreateUser(User user)
         //{
         //    using (var command = _context.CreateCommand())

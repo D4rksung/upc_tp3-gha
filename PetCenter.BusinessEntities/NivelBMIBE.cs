@@ -5,7 +5,11 @@ using System.Text;
 
 namespace PetCenter.BusinessEntities
 {
-    class NivelBMIBE
+    public class NivelBMIBE
     {
+        public int codigo { get; set; }
+        public int nombre { get; set; }
+        public double minimo { get; set; }
+        public double maximo { get; set; }
     }
 }

@@ -5,10 +5,11 @@ import { NgModule } from '@angular/core';
 import { PlanesAlimenticiosComponent } from './planes-alimenticios.component';
 import { CommonModule } from '@angular/common';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { InformacionNutricionalComponent } from './informacion-nutricional/informacion-nutricional.component';
 
 @NgModule({
   imports: [PlanesAlimenticiosRoutingModule,CommonModule,FormsModule,NgbModule],
-  declarations: [routedComponents],
+  declarations: [routedComponents, InformacionNutricionalComponent],
   providers: [PlanAlimenticioService]
 })
 export class PlanesAlimenticiosModule { }

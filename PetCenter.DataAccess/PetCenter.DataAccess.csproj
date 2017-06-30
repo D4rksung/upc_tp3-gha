@@ -12,6 +12,7 @@
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
+    <WebGreaseLibPath>..\packages\WebGrease.1.5.2\lib</WebGreaseLibPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -53,18 +54,26 @@
     <Compile Include="IUnitOfWork.cs" />
     <Compile Include="PlanAlimenticioData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\_AlimentoRepository.cs" />
+    <Compile Include="Repositories\_CriterioPlanAlimenticioRepository.cs" />
     <Compile Include="Repositories\_FotoMonitoreoRepository.cs" />
     <Compile Include="Repositories\_GenericRepository.cs" />
     <Compile Include="Repositories\Repository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="Repositories\_MascotaRepository.cs" />
     <Compile Include="Repositories\_MonitoreoRepository.cs" />
+    <Compile Include="Repositories\_PlanAlimenticioRepository.cs" />
+    <Compile Include="Repositories\_PlanProgramacionDiaRepository.cs" />
+    <Compile Include="Repositories\_PlatoRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PetCenter.BusinessEntities\PetCenter.BusinessEntities.csproj">
       <Project>{f38eb5ca-ba37-4ad2-bf10-d0b039679334}</Project>
       <Name>PetCenter.BusinessEntities</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
