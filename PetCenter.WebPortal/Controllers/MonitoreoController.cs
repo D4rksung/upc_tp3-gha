@@ -99,6 +99,26 @@ namespace PetCenter.WebPortal.Controllers
 
         #endregion
 
+        #region listaCapturasMonitoreos
+        [HttpGet]
+        public JsonResult listaCapturasMonitoreos(string param1)
+        {
+            //listar
+            HttpWebRequest req = (HttpWebRequest)WebRequest
+                .Create(string.Format("http://localhost/PetCenter.RESTServices/MonitoreoService.svc/Monitoreo/fotos/{0}", param1));
+            req.Method = "GET";
+            HttpWebResponse res = (HttpWebResponse)req.GetResponse();
+            StreamReader reader = new StreamReader(res.GetResponseStream());
+            string CapturasMonitoreoJson = reader.ReadToEnd();
+            JavaScriptSerializer js = new JavaScriptSerializer();
+            List<FotoMonitoreoModel> listaCapturasMonitoreo = js.Deserialize<List<FotoMonitoreoModel>>(CapturasMonitoreoJson);
+            var resultado = listaCapturasMonitoreo;
+            //returning josn result  
+            return Json(resultado, JsonRequestBehavior.AllowGet);
+        }
+
+        #endregion
+
         #region RegistrarMonitoreo
         [HttpPost]
         public JsonResult registrarMonitoreo(MonitoreoMascotaModel param1)

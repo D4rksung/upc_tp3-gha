@@ -10,6 +10,7 @@ namespace PetCenter.WebPortal.Models
         public int monitoreo { get; set; }
         public int foto { get; set; }
         public string nombre { get; set; }
+        public string contenido { get; set; }
         public string fechaRegistro { get; set; }
     }
 }

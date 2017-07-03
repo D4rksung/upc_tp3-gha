@@ -98,10 +98,16 @@ $(document).ready(function () {
             alert("Debe ingresar una observación");
         }
     });
-    var contadorCapturas = 0;
     $("#modal_RegistrarCaptura").click(function () {
         event.preventDefault();
-        agregarCaptura(contadorCapturas);
+        var nFilas = $("#tblCapturasRealizadaMonitoreo tr").length;
+        if (nFilas > 3) {
+            alert('No puedes agregar más de 3 capturas para un monitoreo');
+        }
+        else {
+            agregarCaptura(nFilas);
+        }
+        
     });
     //#endregion
 });
@@ -297,7 +303,7 @@ function ListarMonitoreosPorMascota(lugarHospedaje, mascota) {
 }
 //#endregion
 
-//#region registrarMonitoreo
+//#region ListarCapturasPorMonitoreo
 /**
 
  * Descripción
@@ -311,56 +317,135 @@ function ListarMonitoreosPorMascota(lugarHospedaje, mascota) {
  * @return Devuelve la lista de monitoreos asociados a una mascota y a un hospedaje específico.
 
  */
-function registrarMonitoreo(lugarHospedaje, mascota, observaciones) {
-    var jsonObject = {
-        "codigo": 0,
-        "lugarHospedaje": lugarHospedaje,
-        "mascota": mascota,
-        "observaciones": observaciones,
-        "fechaRegistro":""
-    };
+function ListarCapturasPorMonitoreo(monitoreo) {
+    $("#tblCapturasMonitoreo").empty();
     $.ajax({
-        //cache: false,
-        type: 'POST',
-        contentType: "application/json; charset=utf-8",
-        //async: false,
-
-        url: '/Monitoreo/registrarMonitoreo',
-        data: JSON.stringify(jsonObject),
+        cache: false,
+        type: 'GET',
+        async: false,
         dataType: "json",
+        url: '/Monitoreo/listaCapturasMonitoreos/' + monitoreo,
         success: function (data, textStatus) {
             if (textStatus == "success") {
-                ListarMonitoreosPorMascota(lugarHospedaje, mascota);
-                $('#txtObservacionesMonitoreo').val('');
-                $("#IniciarMonitoreo").removeAttr("disabled");
-                $("#DetenerMonitoreo").attr('disabled', 'true');
-                $("#RegistrarMonitoreo").attr('disabled', 'true');
-                $("#snap").attr('disabled', 'true');
-                DetenerMonitoreo();
-                alert("Se registró correctamente");
+                if (data != null && $.isArray(data)) {
+                    if (data.length > 0) {
+                        $("#totalCapturas").html("Se encontraron " + data.length + " capturas");
+                        $("#tblCapturasMonitoreo").append("<tbody><tr>"
+                            + "<th>Fecha Hora</th>"
+                            + "<th>Captura</th>"
+                            + "</tr></tbody>"
+                            )
+
+                        /* Recorremos tu respuesta con each */
+                        $.each(data, function (index, value) {
+                            var nombreImagenCaptura = "imagenCaptura" + index;
+                            /* Vamos agregando a nuestra tabla las filas necesarias */
+                            $("#tblCapturasMonitoreo").append("<tr><td>"
+                                + value.fechaRegistro + "</td><td>"
+                                + "<img id=" + nombreImagenCaptura + " width='250' heigth='250' alt='' /></td>"
+                                + "</tr>");
+
+                            $("#" + nombreImagenCaptura).attr('src', 'data:image/png;base64,' + value.contenido);
+                        });
+                    }
+                    else {
+                        $("#totalCapturas").html("No hay capturas disponibles");
+                    }
+                }
+                else {
+                    $("#totalCapturas").html("No hay capturas disponible");
+                }
             }
-        },
-        error: function (xhr) {
-            alert(xhr);
         }
     });
 }
 //#endregion
 
-//#region registrar capturas en Monitoreo
-function registrarCapturasParaMonitoreo() {
 
-}
-//#endregion
 
-//#region Agregar Captura a lista 
-function agregarCaptura(contadorCapturas) {
-    contadorCapturas++
-    var nombreArchivo = obtenerNombreArchivoCaptura(contadorCapturas);
-    if (contadorCapturas > 3) {
-        alert('No puedes agregar más de 3 capturas para un monitoreo');
+    //#region registrarMonitoreo
+    /**
+    
+     * Descripción
+    
+     * @method ListarMonitoreosPorMascota
+    
+     * @param lugarHospedaje Integer
+     
+     * @param mascota Integer
+    
+     * @return Devuelve la lista de monitoreos asociados a una mascota y a un hospedaje específico.
+    
+     */
+function registrarMonitoreo(lugarHospedaje, mascota, observaciones) {
+
+    registrarCapturasParaMonitoreo();
+        //var jsonObject = {
+        //    "codigo": 0,
+        //    "lugarHospedaje": lugarHospedaje,
+        //    "mascota": mascota,
+        //    "observaciones": observaciones,
+        //    "fechaRegistro":""
+        //};
+        //$.ajax({
+        //    //cache: false,
+        //    type: 'POST',
+        //    contentType: "application/json; charset=utf-8",
+        //    //async: false,
+
+        //    url: '/Monitoreo/registrarMonitoreo',
+        //    data: JSON.stringify(jsonObject),
+        //    dataType: "json",
+        //    success: function (data, textStatus) {
+        //        if (textStatus == "success") {
+        //            ListarMonitoreosPorMascota(lugarHospedaje, mascota);
+        //            $('#txtObservacionesMonitoreo').val('');
+        //            $("#IniciarMonitoreo").removeAttr("disabled");
+        //            $("#DetenerMonitoreo").attr('disabled', 'true');
+        //            $("#RegistrarMonitoreo").attr('disabled', 'true');
+        //            $("#snap").attr('disabled', 'true');
+        //            DetenerMonitoreo();
+        //            alert("Se registró correctamente");
+        //        }
+        //    },
+        //    error: function (xhr) {
+        //        alert(xhr);
+        //    }
+        //});
     }
-    else {
+    //#endregion
+
+    //#region registrar capturas en Monitoreo
+    function registrarCapturasParaMonitoreo() {
+        var numeroCapturasRealizadas = $("#tblCapturasRealizadaMonitoreo tr").length - 1;
+        if (numeroCapturasRealizadas > 0) {
+            var listaCapturasRealizadas = [];
+            $("#tblCapturasRealizadaMonitoreo tbody tr").each(function (index) {
+                if (index > 0) {
+                    
+                    var nombreArchivoCapturaRealizada;
+                    $(this).children("td").each(function (index2) {
+                        switch (index2) {
+                            case 0: nombreArchivoCapturaRealizada = $(this).text();
+                                break;
+                        }
+                    })
+                    listaCapturasRealizadas.push(nombreArchivoCapturaRealizada);
+                }
+            })
+            //TODO: convertir a Base64 como String y enviarlo como param Contenido.
+            for (var ele in listaCapturasRealizadas) {
+                alert(listaCapturasRealizadas[ele]);
+            }
+        }
+
+
+    }
+    //#endregion
+
+    //#region Agregar Captura a lista 
+    function agregarCaptura(posicion) {
+        var nombreArchivo = obtenerNombreArchivoCaptura(posicion);
         var dataURL = canvas.toDataURL();
         dataURL = dataURL.replace('data:image/png;base64,', '')
         var jsonObject = {
@@ -377,50 +462,45 @@ function agregarCaptura(contadorCapturas) {
                 alert(xhr);
             }
         }).done(function (data) {
-            alert(data);
             $('#divCapturasRealizadasMonitoreo').css({ "display": "initial" });
-            $("#tblCapturasRealizadaMonitoreo").append("<tr><td>"
-                + nombreArchivo
-                + "</td><td></tr>");
-        });
-    } 
-
-
-}
-//#endregion
-
-//#region ObtenerNombreArchivoCaptura
-function obtenerNombreArchivoCaptura(contadorCapturas) {
-    return obtenerFechaFormatoyyyMMddHHmmss() + contadorCapturas + ".jpg";
-}
-//#endregion
-
-
-//#region IniciarMonitoreo
-function IniciarMonitoreo() {
-    $("#divSeccionVideo").css({ "display": "initial" });
-    // Grab elements, create settings, etc.
-    var video = document.getElementById('video');
-
-    // Get access to the camera!
-    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-        // Not adding `{ audio: true }` since we only want video now
-        navigator.mediaDevices.getUserMedia({ video: true }).then(function (stream) {
-            video.src = window.URL.createObjectURL(stream);
-            localstream = stream;
-            video.play();
+            $("#tblCapturasRealizadaMonitoreo")
+                .append("<tr><td>" + nombreArchivo + "</td><td><a>Ver captura</a></td></tr>");
         });
     }
-}
-//#endregion
+    //#endregion
 
-//#region DetenerMonitoreo
-function DetenerMonitoreo() {
-    $("#divSeccionVideo").css({ "display": "none" });
-    video.pause();
-    video.src = "";
-    //localStream.getVideoTracks()[0].stop();
+    //#region ObtenerNombreArchivoCaptura
+    function obtenerNombreArchivoCaptura(posicion) {
+        return obtenerFechaFormatoyyyMMddHHmmss()+"_" + posicion + ".jpg";
+    }
+    //#endregion
 
-}
-//#endregion
+
+    //#region IniciarMonitoreo
+    function IniciarMonitoreo() {
+        $("#divSeccionVideo").css({ "display": "initial" });
+        // Grab elements, create settings, etc.
+        var video = document.getElementById('video');
+
+        // Get access to the camera!
+        if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+            // Not adding `{ audio: true }` since we only want video now
+            navigator.mediaDevices.getUserMedia({ video: true }).then(function (stream) {
+                video.src = window.URL.createObjectURL(stream);
+                localstream = stream;
+                video.play();
+            });
+        }
+    }
+    //#endregion
+
+    //#region DetenerMonitoreo
+    function DetenerMonitoreo() {
+        $("#divSeccionVideo").css({ "display": "none" });
+        video.pause();
+        video.src = "";
+        //localStream.getVideoTracks()[0].stop();
+
+    }
+    //#endregion
 

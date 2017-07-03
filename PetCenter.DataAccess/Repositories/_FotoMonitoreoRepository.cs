@@ -37,6 +37,7 @@ namespace PetCenter.DataAccess.Repositories
 
                 command.Parameters.Add(command.CreateParameter("@monitoreo", fotoMonitoreo.monitoreo));
                 command.Parameters.Add(command.CreateParameter("@nombre", fotoMonitoreo.nombre));
+                command.Parameters.Add(command.CreateParameter("@contenido", fotoMonitoreo.contenido));
 
                 return this.ToList(command).FirstOrDefault();
             }
