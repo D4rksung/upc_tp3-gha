@@ -1,13 +1,33 @@
-﻿
+﻿/**
+ * @fileoverview Monitoreo de Mascota
+ *
+ * @version                               1.2
+ *
+ * @author              Luis Chumpitaz <chumpisc@gmail.com>
+ * @copyright           TP3-PetCenter
+ *
+ * History
+ * v2.2 – Se mejoró el efecto de expansión de los submenús dándole efecto aceleración
+ * v2.0 – Se evitó que quedaran supersupuestos textos de submenús
+ * v1.1 – Se mejoró la compatibilidad con navegadores Opera
+ * ----
+ * La primera versión de aprMenu fue Luis Chumpitaz
+**/
+
+
 //#region $(document).ready
 $(document).ready(function () {
 
     //#region Inicializaciones
-    $('#DetalleMonitoreoMascota').css({ "display": "none" });
+    $('#divDetalleMonitoreoMascota').css({ "display": "none" });
+    $("#divSeccionVideo").css({ "display": "none" });
+    $('#divCapturasRealizadasMonitoreo').css({ "display": "none" });
     ListarTodasMascotas();
     $("#RegistrarMonitoreo").attr('disabled', 'true');
     $("#DetenerMonitoreo").attr('disabled', 'true');
+    
     $("#snap").attr('disabled', 'true');
+    $("#txtObservacionesMonitoreo").attr('readonly', 'true');
     //#endregion
 
     //#region Tabs
@@ -31,7 +51,7 @@ $(document).ready(function () {
     // Trigger photo take
     document.getElementById("snap").addEventListener("click", function () {
         event.preventDefault();
-        context.drawImage(video, 0, 0, 400, 300);
+        context.drawImage(video, 0, 0, 500, 400);
         //TODO: terminar de agrgar fotos en local para grabar.
     });
     //#endregion
@@ -42,6 +62,7 @@ $(document).ready(function () {
         $("#IniciarMonitoreo").attr('disabled', 'true');
         $("#DetenerMonitoreo").removeAttr("disabled");
         $("#RegistrarMonitoreo").removeAttr("disabled");
+        $("#txtObservacionesMonitoreo").removeAttr('readonly');
         $("#snap").removeAttr("disabled");
         IniciarMonitoreo();
     });
@@ -80,18 +101,24 @@ $(document).ready(function () {
     var contadorCapturas = 0;
     $("#modal_RegistrarCaptura").click(function () {
         event.preventDefault();
-        contadorCapturas++;
-        var nombreArchivo = "20170627203000" + contadorCapturas + ".jpg";
-        $("#tblCapturasRealizadaMonitoreo").append("<tr><td>"
-            + nombreArchivo
-            + "</td><td></tr>");
-        if (contadorCapturas > 3) alert('No puedes agregar más de 3 capturas para un monitoreo');
+        agregarCaptura(contadorCapturas);
     });
     //#endregion
 });
 //#endregion
 
 //#region ListarTodasMascotas
+/**
+
+ * Descripción
+
+ * @method ListarTodasMascotas
+
+ * @param Parámetro A
+
+ * @return Devuelve un lista de mascotas que pueden ser monitoreadas el día actual con un formato HTML y CSS
+
+ */
 function ListarTodasMascotas() {
     $.getJSON("/Monitoreo/listaMascotas", function (data) {
         var textoHTML = "";
@@ -109,7 +136,8 @@ function ListarTodasMascotas() {
             $(this).on("click", ".info-go", function (e) {
                 e.preventDefault();
                 obtenerDatosMascota(data[this.id].codigo);
-                $('#DetalleMonitoreoMascota').css({ "display": "initial" });
+                $('#divDetalleMonitoreoMascota').css({ "display": "initial" });
+                $('#divCapturasRealizadasMonitoreo').css({ "display": "none" });
             });
         });
     });
@@ -117,6 +145,17 @@ function ListarTodasMascotas() {
 //#endregion
 
 //#region ListarMascotasPorFiltro
+/**
+
+ * Descripción
+
+ * @method ListarMascotasPorFiltro
+
+ * @param filtro String
+
+ * @return Devuelve una lista de mascotas según un filtro de búsqueda que pueden ser monitoreadas el día actual con un formato HTML y CSS
+
+ */
 function ListarMascotasPorFiltro(filtro) {
     $.ajax({
         cache: false,
@@ -139,7 +178,8 @@ function ListarMascotasPorFiltro(filtro) {
                     $(this).on("click", ".info-go", function (e) {
                         e.preventDefault();
                         obtenerDatosMascota(data[this.id].codigo);
-                        $('#DetalleMonitoreoMascota').css({ "display": "initial" });
+                        $('#divDetalleMonitoreoMascota').css({ "display": "initial" });
+                        $('#divCapturasRealizadasMonitoreo').css({ "display": "none" });
                     });
                 });
             }
@@ -149,6 +189,17 @@ function ListarMascotasPorFiltro(filtro) {
 //#endregion
 
 //#region obtenerDatosMascota
+/**
+
+ * Descripción
+
+ * @method obtenerDatosMascota
+
+ * @param mascota Integer
+
+ * @return Devuelve los atributos de una mascota para mostrarlos en los label respectivos
+
+ */
 function obtenerDatosMascota(mascota) {
     $.ajax({
         cache: false,
@@ -184,13 +235,26 @@ function obtenerDatosMascota(mascota) {
             }
         },
         error: function (xhr) {
-            $('#DetalleMonitoreoMascota').css({ "display": "none" });
+            $('#divDetalleMonitoreoMascota').css({ "display": "none" });
         }
     });
 }
 //#endregion
 
 //#region ListarMonitoreosPorMascota
+/**
+
+ * Descripción
+
+ * @method ListarMonitoreosPorMascota
+
+ * @param lugarHospedaje Integer
+ 
+ * @param mascota Integer
+
+ * @return Devuelve la lista de monitoreos asociados a una mascota y a un hospedaje específico.
+
+ */
 function ListarMonitoreosPorMascota(lugarHospedaje, mascota) {
     $("#tblMonitoreos").empty();
     $.ajax({
@@ -234,6 +298,19 @@ function ListarMonitoreosPorMascota(lugarHospedaje, mascota) {
 //#endregion
 
 //#region registrarMonitoreo
+/**
+
+ * Descripción
+
+ * @method ListarMonitoreosPorMascota
+
+ * @param lugarHospedaje Integer
+ 
+ * @param mascota Integer
+
+ * @return Devuelve la lista de monitoreos asociados a una mascota y a un hospedaje específico.
+
+ */
 function registrarMonitoreo(lugarHospedaje, mascota, observaciones) {
     var jsonObject = {
         "codigo": 0,
@@ -270,9 +347,58 @@ function registrarMonitoreo(lugarHospedaje, mascota, observaciones) {
 }
 //#endregion
 
+//#region registrar capturas en Monitoreo
+function registrarCapturasParaMonitoreo() {
+
+}
+//#endregion
+
+//#region Agregar Captura a lista 
+function agregarCaptura(contadorCapturas) {
+    contadorCapturas++
+    var nombreArchivo = obtenerNombreArchivoCaptura(contadorCapturas);
+    if (contadorCapturas > 3) {
+        alert('No puedes agregar más de 3 capturas para un monitoreo');
+    }
+    else {
+        var dataURL = canvas.toDataURL();
+        dataURL = dataURL.replace('data:image/png;base64,', '')
+        var jsonObject = {
+            "param1": nombreArchivo,
+            "param2": dataURL
+        };
+        $.ajax({
+            type: "POST",
+            contentType: "application/json; charset=utf-8",
+            url: "/Monitoreo/subirCaptura",
+            data: JSON.stringify(jsonObject),
+            dataType: "json",
+            error: function (xhr) {
+                alert(xhr);
+            }
+        }).done(function (data) {
+            alert(data);
+            $('#divCapturasRealizadasMonitoreo').css({ "display": "initial" });
+            $("#tblCapturasRealizadaMonitoreo").append("<tr><td>"
+                + nombreArchivo
+                + "</td><td></tr>");
+        });
+    } 
+
+
+}
+//#endregion
+
+//#region ObtenerNombreArchivoCaptura
+function obtenerNombreArchivoCaptura(contadorCapturas) {
+    return obtenerFechaFormatoyyyMMddHHmmss() + contadorCapturas + ".jpg";
+}
+//#endregion
+
 
 //#region IniciarMonitoreo
 function IniciarMonitoreo() {
+    $("#divSeccionVideo").css({ "display": "initial" });
     // Grab elements, create settings, etc.
     var video = document.getElementById('video');
 
@@ -290,7 +416,7 @@ function IniciarMonitoreo() {
 
 //#region DetenerMonitoreo
 function DetenerMonitoreo() {
-
+    $("#divSeccionVideo").css({ "display": "none" });
     video.pause();
     video.src = "";
     //localStream.getVideoTracks()[0].stop();
@@ -298,12 +424,3 @@ function DetenerMonitoreo() {
 }
 //#endregion
 
-//#region FormatoFecha
-function FormatoFecha(Fecha) {
-    var DesdeAno = Fecha.substring(0, 4);
-    var DesdeMes = Fecha.substring(4, 6);
-    var DesdeDia = Fecha.substring(6, 8);
-    Fecha = DesdeDia + "-" + DesdeMes + "-" + DesdeAno;
-    return Fecha;
-}
-//#endregion

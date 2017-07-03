@@ -48,7 +48,7 @@
 </div>
 
 <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
-    <div id="DetalleMonitoreoMascota" class="box">
+    <div id="divDetalleMonitoreoMascota" class="box" hidden="hidden">
         <div class="contenido-ficha">
             <section>
                 <h2>Detalle y gestión de monitoreo de mascota</h2>
@@ -208,23 +208,23 @@
                             </div>
                         </div>
                         <br />
-                        <div class="row col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <video id="video" width="500" height="400" autoplay></video>
+                        <div id="divSeccionVideo" class="row col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <video id="video" width="600" height="500" autoplay></video>
                         </div>
                         <br /><br />
                         <div class="row col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <div class="table-responsive">
-                                <table id="tblCapturasRealizadaMonitoreo" class="table table-striped">
-                                    <tbody>
-                                        <tr>
-                                            <th>Capturas</th>
-                                            <th>Imagen</th>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                <div id="totalCapturasRealizadas"></div>
+                                <div id="divCapturasRealizadasMonitoreo" class="table-responsive">
+                                    <table id="tblCapturasRealizadaMonitoreo" class="table table-striped">
+                                        <tbody>
+                                            <tr>
+                                                <th>Capturas</th>
+                                                <th>Imagen</th>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <div id="totalCapturasRealizadas"></div>
+                                </div>
                             </div>
-                        </div>
 
                     </article>
                     <article id="tab2">
@@ -289,7 +289,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" id="modal_RegistrarCaptura" name="modal_RegistrarCaptura" data-dismiss="modal">Agregar Captura</button>
-                <button type="button" class="btn btn-primary" id="modal_CancelarCaptura" name="modal_CancelarCaptura" onclick="cerrarModal()" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" id="modal_CancelarCaptura" name="modal_CancelarCaptura" data-dismiss="modal">Cancelar</button>
             </div>
         </div>
     </div>
@@ -305,7 +305,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" id="modal_RegistrarMonitoreo" name="modal_RegistrarMonitoreo" data-dismiss="modal">Aceptar</button>
-                <button type="button" class="btn btn-primary" id="modal_CancelarMonitoreo" name="modal_CancelarMonitoreo" onclick="cerrarModal()" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" id="modal_CancelarMonitoreo" name="modal_CancelarMonitoreo"  data-dismiss="modal">Cancelar</button>
             </div>
 
         </div>

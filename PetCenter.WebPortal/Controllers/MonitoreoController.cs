@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Net;
 using System.IO;
+using System.Drawing;
 using System.Text;
 using System.Web.Script.Serialization;
 using System.Web.Mvc;
@@ -12,7 +13,7 @@ namespace PetCenter.WebPortal.Controllers
 {
     public class MonitoreoController : Controller
     {
-        // GET: Monitoreo
+        
         public ActionResult Index()
         {
             return View();
@@ -127,9 +128,9 @@ namespace PetCenter.WebPortal.Controllers
         public JsonResult registrarFotoMonitoreo(FotoMonitoreoModel param1)
         {
 
-            string postdata = "{\"codigo\":0,\"lugarHospedaje\":" + param1.lugarHospedaje + ",\"mascota\":" + param1.mascota + ",\"observaciones\":\"" + param1.observaciones + "\"}";
+            string postdata = "{\"codigo\":0,\"monitoreo\":" + param1.monitoreo + ",\"nombre\":\"" + param1.nombre + "\"}";
             byte[] data = Encoding.UTF8.GetBytes(postdata);
-            HttpWebRequest req = (HttpWebRequest)WebRequest.Create("http://localhost/PetCenter.RESTServices/MonitoreoService.svc/Monitoreo");
+            HttpWebRequest req = (HttpWebRequest)WebRequest.Create("http://localhost/PetCenter.RESTServices/MonitoreoService.svc/Monitoreo/Foto");
             req.Method = "POST";
             req.ContentLength = data.Length;
             req.ContentType = "application/json";
@@ -142,6 +143,24 @@ namespace PetCenter.WebPortal.Controllers
             FotoMonitoreoModel fotoMonitoreoCreado = js.Deserialize<FotoMonitoreoModel>(fotoMonitoreoJson);
             var resultado = fotoMonitoreoCreado;
             //returning josn result  
+            return Json(resultado, JsonRequestBehavior.AllowGet);
+        }
+        #endregion
+
+        #region RegistrarMonitoreo
+        [HttpPost]
+        public JsonResult subirCaptura(string param1,string  param2)
+        {
+            // Convert base 64 string to byte[]
+            byte[] imageBytes = Convert.FromBase64String(param2);
+            // Convert byte[] to Image
+            using (var ms = new MemoryStream(imageBytes, 0, imageBytes.Length))
+            {
+                Image image = Image.FromStream(ms, true);
+                image.Save(Server.MapPath(string.Format("~/Content/capturas/{0}", param1)));
+            }
+            //returning josn result 
+            var resultado = "OK"; 
             return Json(resultado, JsonRequestBehavior.AllowGet);
         }
         #endregion
