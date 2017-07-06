@@ -23,31 +23,71 @@ namespace PetCenter.RESTServices
         [WebInvoke(Method = "GET",
             ResponseFormat = WebMessageFormat.Json,
             BodyStyle = WebMessageBodyStyle.Bare,
-            UriTemplate = "PlanAlimenticio/Razas/{especie}")]
-        List<GenericoBE> listarRazas(int especie);
+            UriTemplate = "PlanAlimenticio/CondicionesMedicas")]
+        List<GenericoBE> listarCondicionesMedicas();
 
+        [OperationContract]
+        [WebInvoke(Method = "GET",
+            ResponseFormat = WebMessageFormat.Json,
+            BodyStyle = WebMessageBodyStyle.Bare,
+            UriTemplate = "PlanAlimenticio/Razas/{especie}")]
+        List<GenericoBE> listarRazas(string especie);
+
+        [OperationContract]
+        [WebInvoke(Method = "GET",
+            ResponseFormat = WebMessageFormat.Json,
+            BodyStyle = WebMessageBodyStyle.Bare,
+            UriTemplate = "PlanAlimenticio/EtapasVida")]
+        List<GenericoBE> listarEtapasVida();
+
+        [OperationContract]
+        [WebInvoke(Method = "GET",
+            ResponseFormat = WebMessageFormat.Json,
+            BodyStyle = WebMessageBodyStyle.Bare,
+            UriTemplate = "PlanAlimenticio/NivelesBMI")]
+        List<GenericoBE> listarNivelesBMI();
 
         [OperationContract]
         [WebInvoke(Method = "GET",
             ResponseFormat = WebMessageFormat.Json,
             BodyStyle = WebMessageBodyStyle.Bare,
             UriTemplate = "PlanAlimenticios/{filtro}/{especie}/{condicionMedica}")]
-        List<PlanAlimenticioBE> listarPlanesAlimenticios(string filtro, int especie, int condicionMedica);
+        List<PlanAlimenticioBE> listarPlanesAlimenticios(string filtro, string especie, string condicionMedica);
 
-        //[OperationContract]
-        //[WebInvoke(Method = "GET",
-        //    ResponseFormat = WebMessageFormat.Json,
-        //    BodyStyle = WebMessageBodyStyle.Bare,
-        //    UriTemplate = "PlanAlimenticio/{codigo}")]
-        //PlanAlimenticioBE obtenerPlanAlimenticio(int codigo);
+        [OperationContract]
+        [WebInvoke(Method = "GET",
+        ResponseFormat = WebMessageFormat.Json,
+        BodyStyle = WebMessageBodyStyle.Bare,
+        UriTemplate = "PlanAlimenticio/Categorias")]
+        List<GenericoBE> listarCategorias();
 
-        //[OperationContract]
-        //[WebInvoke(Method = "POST",
-        //    ResponseFormat = WebMessageFormat.Json,
-        //    BodyStyle = WebMessageBodyStyle.Bare,
-        //    UriTemplate = "PlanAlimenticio/{planAlimenticio}")]
-        //PlanAlimenticioBE registrarPlanAlimenticio(PlanAlimenticioBE planAlimenticio);
+        [OperationContract]
+        [WebInvoke(Method = "GET",
+        ResponseFormat = WebMessageFormat.Json,
+        BodyStyle = WebMessageBodyStyle.Bare,
+        UriTemplate = "PlanAlimenticio/SubCategorias/{categoria}")]
+        List<GenericoBE> listarSubCategorias(string categoria);
+
+        [OperationContract]
+        [WebInvoke(Method = "GET",
+        ResponseFormat = WebMessageFormat.Json,
+        BodyStyle = WebMessageBodyStyle.Bare,
+        UriTemplate = "PlanAlimenticio/Alimentos/{subcategoria}")]
+        List<AlimentoBE> listarAlimentosPorSubcategoria(string subcategoria);
+            //[OperationContract]
+            //[WebInvoke(Method = "GET",
+            //    ResponseFormat = WebMessageFormat.Json,
+            //    BodyStyle = WebMessageBodyStyle.Bare,
+            //    UriTemplate = "PlanAlimenticio/{codigo}")]
+            //PlanAlimenticioBE obtenerPlanAlimenticio(int codigo);
+
+            //[OperationContract]
+            //[WebInvoke(Method = "POST",
+            //    ResponseFormat = WebMessageFormat.Json,
+            //    BodyStyle = WebMessageBodyStyle.Bare,
+            //    UriTemplate = "PlanAlimenticio/{planAlimenticio}")]
+            //PlanAlimenticioBE registrarPlanAlimenticio(PlanAlimenticioBE planAlimenticio);
 
 
-    }
+        }
 }

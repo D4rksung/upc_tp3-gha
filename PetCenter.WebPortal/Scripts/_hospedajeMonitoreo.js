@@ -379,39 +379,39 @@ function ListarCapturasPorMonitoreo(monitoreo) {
      */
 function registrarMonitoreo(lugarHospedaje, mascota, observaciones) {
 
-    registrarCapturasParaMonitoreo();
-        //var jsonObject = {
-        //    "codigo": 0,
-        //    "lugarHospedaje": lugarHospedaje,
-        //    "mascota": mascota,
-        //    "observaciones": observaciones,
-        //    "fechaRegistro":""
-        //};
-        //$.ajax({
-        //    //cache: false,
-        //    type: 'POST',
-        //    contentType: "application/json; charset=utf-8",
-        //    //async: false,
+    //registrarCapturasParaMonitoreo();
+        var jsonObject = {
+            "codigo": 0,
+            "lugarHospedaje": lugarHospedaje,
+            "mascota": mascota,
+            "observaciones": observaciones,
+            "fechaRegistro":""
+        };
+        $.ajax({
+            //cache: false,
+            type: 'POST',
+            contentType: "application/json; charset=utf-8",
+            //async: false,
 
-        //    url: '/Monitoreo/registrarMonitoreo',
-        //    data: JSON.stringify(jsonObject),
-        //    dataType: "json",
-        //    success: function (data, textStatus) {
-        //        if (textStatus == "success") {
-        //            ListarMonitoreosPorMascota(lugarHospedaje, mascota);
-        //            $('#txtObservacionesMonitoreo').val('');
-        //            $("#IniciarMonitoreo").removeAttr("disabled");
-        //            $("#DetenerMonitoreo").attr('disabled', 'true');
-        //            $("#RegistrarMonitoreo").attr('disabled', 'true');
-        //            $("#snap").attr('disabled', 'true');
-        //            DetenerMonitoreo();
-        //            alert("Se registró correctamente");
-        //        }
-        //    },
-        //    error: function (xhr) {
-        //        alert(xhr);
-        //    }
-        //});
+            url: '/Monitoreo/registrarMonitoreo',
+            data: JSON.stringify(jsonObject),
+            dataType: "json",
+            success: function (data, textStatus) {
+                if (textStatus == "success") {
+                    ListarMonitoreosPorMascota(lugarHospedaje, mascota);
+                    $('#txtObservacionesMonitoreo').val('');
+                    $("#IniciarMonitoreo").removeAttr("disabled");
+                    $("#DetenerMonitoreo").attr('disabled', 'true');
+                    $("#RegistrarMonitoreo").attr('disabled', 'true');
+                    $("#snap").attr('disabled', 'true');
+                    DetenerMonitoreo();
+                    alert("Se registró correctamente");
+                }
+            },
+            error: function (xhr) {
+                alert(xhr);
+            }
+        });
     }
     //#endregion
 

@@ -173,6 +173,7 @@
     <Content Include="Scripts\jquery-3.1.1.slim.min.js" />
     <Content Include="Scripts\jquery-ui-1.12.1.js" />
     <Content Include="Scripts\jquery-ui-1.12.1.min.js" />
+    <Content Include="Scripts\_hospedajePlanAlimenticio.js" />
     <Content Include="Scripts\_hospedajeMonitoreo.js" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -185,8 +186,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AlimentoModel.cs" />
+    <Compile Include="Models\comidaGeneradoModel.cs" />
     <Compile Include="Models\FotoMonitoreoModel.cs" />
+    <Compile Include="Models\GenericoModel.cs" />
     <Compile Include="Models\InformacionMascotaModel.cs" />
+    <Compile Include="Models\InformacionPlanAlimenticioNuevoModel.cs" />
     <Compile Include="Models\MascotaHospedadaModel.cs" />
     <Compile Include="Models\MonitoreoMascotaModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -205,6 +210,7 @@
     <Content Include="Views\PlanAlimenticio\Index.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\PlanAlimenticio\Nuevo.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

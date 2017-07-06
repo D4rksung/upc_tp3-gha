@@ -85,6 +85,16 @@ namespace PetCenter.BusinessLogic
             return genericoRep.listarSubCategoria(categoria);
         }
 
+        public List<AlimentoBE> listarAlimentosPorSubCategoria(int subcategoria) {
+            connectionFactory = ConnectionHelper.GetConnection();
+
+            var context = new DbContext(connectionFactory);
+
+            var alimentosRep = new _AlimentoRepository(context);
+
+            return alimentosRep.listaAlimentosPorSubcategoria(subcategoria);
+        }
+
         public PlanAlimenticioBE registrarPlanAlimenticio(PlanAlimenticioBE planAlimenticio)
         {
             connectionFactory = ConnectionHelper.GetConnection();

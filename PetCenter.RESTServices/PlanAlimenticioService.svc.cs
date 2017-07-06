@@ -14,14 +14,35 @@ namespace PetCenter.RESTServices
         {
             return new PlanAlimenticioLogic().listarEspecies();
         }
-
-        public List<GenericoBE> listarRazas(int especie)
+        public List<GenericoBE> listarCondicionesMedicas()
         {
-            return new PlanAlimenticioLogic().listarRazas(especie);
+            return new PlanAlimenticioLogic().listarCondicionesMedicas();
+        }
+        public List<GenericoBE> listarRazas(string especie)
+        {
+            return new PlanAlimenticioLogic().listarRazas(int.Parse(especie));
         }
 
-        public List<PlanAlimenticioBE> listarPlanesAlimenticios(string filtro, int especie, int condicionMedica) {
-            return new PlanAlimenticioLogic().listarPlanAlimenticio(filtro,especie,condicionMedica);
+        public List<GenericoBE> listarEtapasVida() {
+            return new PlanAlimenticioLogic().listarEtapasVida();
+        }
+        public List<GenericoBE> listarNivelesBMI() {
+            return new PlanAlimenticioLogic().listarNivelBMI();
+        }
+
+        public List<GenericoBE> listarCategorias() {
+            return new PlanAlimenticioLogic().listarCategorias();
+        }
+
+        public List<GenericoBE> listarSubCategorias(string categoria) {
+            return new PlanAlimenticioLogic().listarSubCategorias(int.Parse(categoria));
+        }
+
+        public List<AlimentoBE> listarAlimentosPorSubcategoria(string subcategoria) {
+            return new PlanAlimenticioLogic().listarAlimentosPorSubCategoria(int.Parse(subcategoria));
+        }
+        public List<PlanAlimenticioBE> listarPlanesAlimenticios(string filtro, string especie, string condicionMedica) {
+            return new PlanAlimenticioLogic().listarPlanAlimenticio(filtro,int.Parse(especie),int.Parse(condicionMedica));
         }
     }
 }

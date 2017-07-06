@@ -1,0 +1,618 @@
+﻿
+@{
+    ViewBag.Title = "Nuevo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="~/Scripts/_hospedajePlanAlimenticio.js"></script>
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="box">
+        <div class="contenido-ficha">
+            <section>
+                <h1 class="text-center">Definir Plan Alimenticio </h1>
+            </section>
+
+        </div>
+    </div>
+</div>
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div id="divDefinicionPlanAlimenticio" class="box">
+        <div class="contenido-ficha">
+            <div class="item  col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <fieldset class="scheduler-border">
+                    <legend class="scheduler-border">Datos básicos (*)</legend>
+
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" >
+                        <div class="row col-lg-5 col-md-5 col-sm-5 col-xs-12">
+                            <div class="form-group">
+                                <label class="sr-only" for="txtNombrePlanAlimenticio"></label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">Nombre:</div>
+                                    <input type="text" name="txtNombrePlanAlimenticio" id="txtNombrePlanAlimenticio" class="form-control" placeholder="Ingrese nombre de plan alimenticio" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row col-lg-1 col-md-1 col-sm-1 col-xs-12"></div>
+                        <div class="row col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                            <div class="input-group">
+                                <div class="input-group-addon">Especie:<font size="2" color="red"> </font></div>
+                                <select required="" class="form-control" name="cbEspecies" id="cbEspecies">
+                                    <option value="">Todos</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row col-lg-1 col-md-1 col-sm-1 col-xs-12"></div>
+                        <div class="row col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                            <div class="input-group">
+                                <div class="input-group-addon">Condición Médica:<font size="2" color="red"> </font></div>
+                                <select required="" class="form-control" name="cbCondicionesMedicas" id="cbCondicionesMedicas">
+                                    <option value="">Todos</option>
+                                </select>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label class="sr-only" for="txtDescripcionPlanAlimenticio"></label>
+                            <div class="input-group">
+                                <div class="input-group-addon">Descripción:</div>
+                                <textarea class="form-control" maxlength="200" rows="2" name="txtDescripcionPlanAlimenticio" id="txtDescripcionPlanAlimenticio"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <fieldset class="scheduler-border">
+                    <legend class="scheduler-border">Criterios de selección</legend>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="row col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                            <div class="input-group">
+                                <div class="input-group-addon">Raza:<font size="2" color="red"> </font></div>
+                                <select required="" class="form-control" name="cbRazas" id="cbRazas">
+                                    <option value="">Todos</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row col-lg-1 col-md-1 col-sm-1 col-xs-12"></div>
+                        <div class="row col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                <div class="input-group">
+                                    <div class="input-group-addon">Nivel de BMI:<font size="2" color="red"> </font></div>
+                                    <select required="" class="form-control" name="cbNivelesBMI" id="cbNivelesBMI">
+                                        <option value="">Todos</option>
+                                    </select>
+                                </div>
+                            </div>
+                        <div class="row col-lg-1 col-md-1 col-sm-1 col-xs-12"></div>
+                        <div class="row col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                <div class="input-group">
+                                    <div class="input-group-addon">Etapa de vida:<font size="2" color="red"> </font></div>
+                                    <select required="" class="form-control" name="cbEtapasVida" id="cbEtapasVida">
+                                        <option value="">Todos</option>
+                                    </select>
+                                </div>
+                            </div>
+                        <div class="row col-lg-1 col-md-1 col-sm-1 col-xs-12"></div>
+                        <div class="row col-lg-1 col-md-1 col-sm-1 col-xs-12">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <a href="#" id="AgregarCriterio" class="btn btn-danger" role="button">Agregar criterio</a>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+
+                    <div class="row col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div id="divCriterios" class="table-responsive">
+                            <table id="tblCriterios" class="table table-striped">
+                                <tbody>
+                                    <tr>
+                                        <th>Raza</th>
+                                        <th>Nivel BMI</th>
+                                        <th>Etapa Vida</th>
+                                        <th>Quitar</th>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <fieldset class="scheduler-border">
+                    <legend class="scheduler-border">Programación diaria</legend>
+                    <div class="row col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="container">
+                            <h1>Bootstrap Dynamic Tabs</h1>
+                            <div class="well">
+
+                                <a href="#" id="btnAdd"><i class="icon-plus-sign-alt"></i> Add Tab</a>
+                                <br><br>
+                                <ul class="nav nav-tabs" id="tabs">
+                                    <li class="active"><a href="#tab1">Tab 1</a></li>
+                                </ul>
+
+                                <div class="tab-content">
+                                    <div class="tab-pane active" id="tab1">Hello tab #1 content...</div>
+                                </div>
+                            </div>
+                            <a href="http://www.bootply.com/61679">Edit on Bootply</a>..
+                        </div>
+
+
+                        <ul class="tabs">
+                            <li><a href="#tab1">Día 1</a></li>
+                            <li><a href="#tab2">+</a></li>
+                        </ul>
+                        <div class="clr"></div>
+                        <section class="block">
+                            <article id="tab1">
+                                <div class="container" style="margin:20px 0">
+                                    <div class="row">
+                                        <div class="form-group col-md-4">
+                                            <label for="comidas">Comidas Programadas</label>
+                                            <div class="btn-group" data-toggle="buttons" id="comidas">
+                                                <label class="btn btn-danger">
+                                                    <input type="checkbox" >D
+                                                </label><label _ngcontent-c7="" class="btn btn-danger active">
+                                                    <input type="checkbox" >A
+                                                </label><label _ngcontent-c7="" class="btn btn-danger">
+                                                    <input type="checkbox" >C
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="panel-group" id="accordion">
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                <h4 class="panel-title">
+                                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                                                        Desayuno
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapseOne" class="panel-collapse collapse in">
+                                                contenido desayuno.
+                                            </div>
+                                        </div>
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                <h4 class="panel-title">
+                                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                                                        Almuerzo
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapseTwo" class="panel-collapse collapse">
+                                               Contenido Almuerzo.
+                                            </div>
+                                        </div>
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                <h4 class="panel-title">
+                                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                                                        Cena
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapseThree" class="panel-collapse collapse">
+                                                Contenido Cena.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+                            <article id="tab2">
+                                <br /><br />
+                                Holi
+
+                            </article>
+                        </section>
+                    </div>
+
+
+                </fieldset>
+            </div>
+
+            
+
+        </div>
+
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+<div _ngcontent-c0="" class="container">
+    <router-outlet _ngcontent-c0=""></router-outlet><app-planes-alimenticios _nghost-c1="">
+        <!--bindings={
+          "ng-reflect-ng-if": "true"
+        }-->
+        <div _ngcontent-c1="">
+            <router-outlet _ngcontent-c1=""></router-outlet><gha-plan-alimenticio _nghost-c3="">
+                <div _ngcontent-c3="" class="row">
+                    <div _ngcontent-c3="" class="col-md-12">
+                        <h1 _ngcontent-c3="">
+                            Definir Plan Alimenticio
+                        </h1>
+                    </div>
+                </div>
+                <div _ngcontent-c3="" class="row">
+                    <div _ngcontent-c3="" class="col-md-12">
+                        <h3 _ngcontent-c3="">
+                            Datos Básicos (*)
+                        </h3>
+                    </div>
+                </div>
+                <div _ngcontent-c3="" class="row">
+                    <div _ngcontent-c3="" class="form-group col-md-6">
+                        <label _ngcontent-c3="" for="nombre">Nombre</label>
+                        <input _ngcontent-c3="" class="form-control ng-untouched ng-pristine ng-valid" id="nombre" type="text" ng-reflect-model="efg" wtx-context="093EFCD0-E0A8-4E04-B606-A007D0982EC1">
+                    </div>
+                    <div _ngcontent-c3="" class="form-group col-md-3">
+                        <label _ngcontent-c3="" for="especie">Especie</label>
+                        <select _ngcontent-c3="" class="form-control ng-untouched ng-pristine ng-valid" id="especie" ng-reflect-model="1" wtx-context="D088DF13-884E-4969-8687-65D91EB04C2B">
+                            <option _ngcontent-c3="" value="-1" ng-reflect-value="-1">Seleccionar</option>
+                            <!--bindings={
+                              "ng-reflect-ng-for-of": "[object Object],[object Object"
+                            }-->
+                            <option _ngcontent-c3="" value="1" ng-reflect-value="1">Perro</option>
+                            <option _ngcontent-c3="" value="2" ng-reflect-value="2">Gato</option>
+                        </select>
+                    </div>
+                    <div _ngcontent-c3="" class="form-group col-md-3">
+                        <label _ngcontent-c3="" for="condicion_medica">Condición Médica</label>
+                        <select _ngcontent-c3="" class="form-control ng-untouched ng-pristine ng-valid" id="condicion_medica" ng-reflect-model="1" wtx-context="C7669DEB-0807-48EE-8845-58ABA3142539">
+                            <option _ngcontent-c3="" value="-1" ng-reflect-value="-1">Seleccionar</option>
+                            <!--bindings={
+                              "ng-reflect-ng-for-of": "[object Object],[object Object"
+                            }-->
+                            <option _ngcontent-c3="" value="1" ng-reflect-value="1">Sano</option>
+                            <option _ngcontent-c3="" value="2" ng-reflect-value="2">Fiebre Perruna</option>
+                        </select>
+                    </div>
+                </div>
+                <div _ngcontent-c3="" class="row">
+                    <div _ngcontent-c3="" class="form-group col-md-12">
+                        <label _ngcontent-c3="" for="descripcion">Descripcion</label>
+                        <textarea _ngcontent-c3="" class="form-control ng-untouched ng-pristine ng-valid" id="descripcion"></textarea>
+                    </div>
+                </div>
+                <div _ngcontent-c3="" class="row">
+                    <div _ngcontent-c3="" class="col-md-12">
+                        <gha-criterios-seleccion _ngcontent-c3="" _nghost-c4="" ng-reflect-criterios="[object Object]">
+                            <div _ngcontent-c4="" class="card">
+                                <div _ngcontent-c4="" class="card-header">
+                                    <h3 _ngcontent-c4="">Criterios de Selección</h3>
+                                </div>
+                                <div _ngcontent-c4="" class="card-block container">
+                                    <div _ngcontent-c4="" class="row">
+                                        <div _ngcontent-c4="" class="form-group col-md-4">
+                                            <label _ngcontent-c4="" for="raza">Raza</label>
+                                            <select _ngcontent-c4="" class="form-control ng-untouched ng-pristine ng-valid" id="raza" ng-reflect-model="-1" wtx-context="94BCFF66-EC75-4AEF-8C40-EBF6018FB971">
+                                                <option _ngcontent-c4="" value="-1" ng-reflect-value="-1">Seleccionar</option>
+                                                <!--bindings={
+                                                  "ng-reflect-ng-for-of": "[object Object],[object Object"
+                                                }-->
+                                                <option _ngcontent-c4="" value="1" ng-reflect-value="1">Pequinez</option>
+                                                <option _ngcontent-c4="" value="2" ng-reflect-value="2">Shitzu</option>
+                                            </select>
+                                        </div>
+                                        <div _ngcontent-c4="" class="form-group col-md-4">
+                                            <label _ngcontent-c4="" for="nivel_bmi">Nivel de BMI</label>
+                                            <select _ngcontent-c4="" class="form-control ng-untouched ng-pristine ng-valid" id="nivel_bmi" ng-reflect-model="-1" wtx-context="C9B292C0-1174-4EDF-8912-532C66687997">
+                                                <option _ngcontent-c4="" value="-1" ng-reflect-value="-1">Seleccionar</option>
+                                                <!--bindings={
+                                                  "ng-reflect-ng-for-of": "[object Object],[object Object"
+                                                }-->
+                                                <option _ngcontent-c4="" value="1" ng-reflect-value="1">Bajo Peso</option>
+                                                <option _ngcontent-c4="" value="2" ng-reflect-value="2">Peso Normal</option>
+                                                <option _ngcontent-c4="" value="3" ng-reflect-value="3">Sobre Peso</option>
+                                            </select>
+                                        </div>
+                                        <div _ngcontent-c4="" class="form-group col-md-4">
+                                            <label _ngcontent-c4="" for="etapa_vida">Etapa de Vida</label>
+                                            <select _ngcontent-c4="" class="form-control ng-untouched ng-pristine ng-valid" id="etapa_vida" ng-reflect-model="-1" wtx-context="4163416B-0DE6-4460-9796-4FC4922321DE">
+                                                <option _ngcontent-c4="" value="-1" ng-reflect-value="-1">Seleccionar</option>
+                                                <!--bindings={
+                                                  "ng-reflect-ng-for-of": "[object Object],[object Object"
+                                                }-->
+                                                <option _ngcontent-c4="" value="1" ng-reflect-value="1">Cachorro</option>
+                                                <option _ngcontent-c4="" value="2" ng-reflect-value="2">Adulto</option>
+                                                <option _ngcontent-c4="" value="3" ng-reflect-value="3">Senior</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div _ngcontent-c4="" class="row">
+                                        <div _ngcontent-c4="" class="col-md-12">
+                                            <button _ngcontent-c4="" class="btn btn-primary">Agregar Criterio</button>
+                                        </div>
+                                    </div>
+                                    <div _ngcontent-c4="" class="row">
+                                        <div _ngcontent-c4="" class="col-md-12">
+                                            <table _ngcontent-c4="" class="table table-condensed table-striped">
+                                                <thead _ngcontent-c4="">
+                                                    <tr _ngcontent-c4="">
+                                                        <th _ngcontent-c4="">Raza</th>
+                                                        <th _ngcontent-c4="">Nivel BMI</th>
+                                                        <th _ngcontent-c4="">Etapa Vida</th>
+                                                        <th _ngcontent-c4="">Quitar</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody _ngcontent-c4="">
+                                                    <!--bindings={
+                                                      "ng-reflect-ng-if": "false"
+                                                    }-->
+                                                    <!--bindings={
+                                                      "ng-reflect-ng-for-of": "[object Object]"
+                                                    }-->
+                                                    <tr _ngcontent-c4="">
+                                                        <td _ngcontent-c4="">
+                                                            Pequinez
+                                                        </td>
+                                                        <td _ngcontent-c4="">
+                                                            Bajo Peso
+                                                        </td>
+                                                        <td _ngcontent-c4="">
+                                                            Adulto
+                                                        </td>
+                                                        <td _ngcontent-c4="">
+                                                            <button _ngcontent-c4="" class="btn-link">
+                                                                <i _ngcontent-c4="" class="fa fa-trash"></i>
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </gha-criterios-seleccion>
+                    </div>
+                </div>
+                <div _ngcontent-c3="" class="row">
+                    <div _ngcontent-c3="" class="col-md-12">
+                        <gha-programacion-diaria _ngcontent-c3="" _nghost-c5="" ng-reflect-programaciones-dia="[object Object]">
+                            <div _ngcontent-c5="" class="card">
+                                <div _ngcontent-c5="" class="card-block">
+                                    <h3 _ngcontent-c5="">Programación Diaria</h3>
+                                    <ngb-tabset _ngcontent-c5="">
+                                        <ul role="tablist" class="nav nav-tabs justify-content-start">
+                                            <!--bindings={
+                                              "ng-reflect-ng-for-of": "[object Object],[object Object"
+                                            }-->
+                                            <li class="nav-item">
+                                                <a class="nav-link active" href="" role="tab" id="dia1" aria-controls="dia1-panel" aria-expanded="true" aria-disabled="false">
+                                                    <!--bindings={
+                                                      "ng-reflect-ng-template-outlet": "[object Object]"
+                                                    }-->
+                                                    <!--bindings={
+                                                      "ng-reflect-ng-if": "false"
+                                                    }-->
+                                                    Día 1
+
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="" role="tab" id="add-day" aria-expanded="false" aria-disabled="false">
+                                                    +
+                                                    <!--bindings={
+                                                      "ng-reflect-ng-template-outlet": null
+                                                    }-->
+                                                </a>
+                                            </li>
+                                        </ul>
+                                        <div class="tab-content">
+                                            <!--bindings={
+                                              "ng-reflect-ng-for-of": "[object Object],[object Object"
+                                            }-->
+                                            <!--bindings={
+                                              "ng-reflect-ng-if": "true"
+                                            }-->
+                                            <div role="tabpanel" class="tab-pane active" aria-labelledby="dia1" id="dia1-panel" aria-expanded="true">
+                                                <!--bindings={
+                                                  "ng-reflect-ng-template-outlet": "[object Object]"
+                                                }-->
+                                                <gha-panel-programacion-dia _ngcontent-c5="" _nghost-c7="" ng-reflect-programacion-dia="[object Object]">
+                                                    <div _ngcontent-c7="" class="container" style="margin:20px 0">
+                                                        <div _ngcontent-c7="" class="row">
+                                                            <div _ngcontent-c7="" class="form-group col-md-4">
+                                                                <label _ngcontent-c7="" for="comidas">Comidas Programadas</label>
+                                                                <div _ngcontent-c7="" class="btn-group" data-toggle="buttons" id="comidas">
+                                                                    <!--bindings={
+                                                                      "ng-reflect-ng-for-of": "[object Object],[object Object"
+                                                                    }-->
+                                                                    <label _ngcontent-c7="" class="btn btn-primary">
+                                                                        <input _ngcontent-c7="" type="checkbox" wtx-context="E49ED4B5-97BB-4CFB-9D6E-A54EFF7F7025">D
+                                                                    </label><label _ngcontent-c7="" class="btn btn-primary active">
+                                                                        <input _ngcontent-c7="" type="checkbox" wtx-context="D5C545EA-D064-483D-8821-2039E3DD19DD">A
+                                                                    </label><label _ngcontent-c7="" class="btn btn-primary">
+                                                                        <input _ngcontent-c7="" type="checkbox" wtx-context="8B6D9083-5FCE-4573-B709-068455CE8950">C
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div _ngcontent-c7="" class="row">
+                                                            <div _ngcontent-c7="" class="col-md-12">
+                                                                <ngb-accordion _ngcontent-c7="" role="tablist" ng-reflect-close-other-panels="true" aria-multiselectable="false">
+                                                                    <div class="card">
+                                                                        <!--bindings={
+                                                                          "ng-reflect-ng-for-of": "[object Object]"
+                                                                        }-->
+                                                                        <div role="tab" id="ngb-panel-0-header" class="card-header active">
+                                                                            <a href="" aria-expanded="true" aria-disabled="false" aria-controls="ngb-panel-0">
+                                                                                <!--bindings={
+                                                                                  "ng-reflect-ng-template-outlet": "[object Object]"
+                                                                                }-->
+                                                                                <span _ngcontent-c7="">Almuerzo</span>
+
+                                                                            </a>
+                                                                        </div>
+                                                                        <!--bindings={
+                                                                          "ng-reflect-ng-if": "true"
+                                                                        }-->
+                                                                        <div class="card-block" role="tabpanel" id="ngb-panel-0" aria-labelledby="ngb-panel-0-header">
+                                                                            <!--bindings={
+                                                                              "ng-reflect-ng-template-outlet": "[object Object]"
+                                                                            }-->
+                                                                            <gha-panel-seleccion-alimentos _ngcontent-c7="" _nghost-c8="" ng-reflect-alimentos="1">
+                                                                                <div _ngcontent-c8="" class="row">
+                                                                                    <div _ngcontent-c8="" class="col-md-5">
+                                                                                        <label _ngcontent-c8="" for="categoria">Categoria</label>
+                                                                                        <select _ngcontent-c8="" class="form-control ng-untouched ng-pristine ng-valid" id="categoria" ng-reflect-model="-1" wtx-context="9CF6EC8B-F59A-48FB-9BC5-0BBE650B80F0">
+                                                                                            <option _ngcontent-c8="" value="-1" ng-reflect-value="-1">Seleccionar</option>
+                                                                                            <!--bindings={
+                                                                                              "ng-reflect-ng-for-of": "[object Object]"
+                                                                                            }-->
+                                                                                            <option _ngcontent-c8="" value="1" ng-reflect-value="1">Carnes</option>
+                                                                                        </select>
+                                                                                    </div>
+                                                                                    <div _ngcontent-c8="" class="col-md-5">
+                                                                                        <label _ngcontent-c8="" for="subcategoria">Subcategoria</label>
+                                                                                        <select _ngcontent-c8="" class="form-control ng-untouched ng-pristine ng-valid" id="subcategoria" ng-reflect-model="-1" wtx-context="85C7BECD-147A-4395-9F71-0DC696CCFAA1">
+                                                                                            <option _ngcontent-c8="" value="-1" ng-reflect-value="-1">Seleccionar</option>
+                                                                                            <!--bindings={}-->
+                                                                                        </select>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div _ngcontent-c8="" class="row">
+                                                                                    <div _ngcontent-c8="" class="col-md-12">
+                                                                                        <table _ngcontent-c8="" class="table table-condensed table-striped">
+                                                                                            <thead _ngcontent-c8="">
+                                                                                                <tr _ngcontent-c8="">
+                                                                                                    <th _ngcontent-c8="">Seleccionar</th>
+                                                                                                    <th _ngcontent-c8="">Nombre</th>
+                                                                                                    <th _ngcontent-c8="">Cantidad</th>
+                                                                                                    <th _ngcontent-c8="">Uni.Med.</th>
+                                                                                                </tr>
+                                                                                            </thead>
+                                                                                            <tbody _ngcontent-c8="">
+                                                                                                <!--bindings={
+                                                                                                  "ng-reflect-ng-if": "false"
+                                                                                                }-->
+                                                                                                <!--bindings={
+                                                                                                  "ng-reflect-ng-for-of": "[object Object],[object Object"
+                                                                                                }-->
+                                                                                                <tr _ngcontent-c8="">
+                                                                                                    <td _ngcontent-c8="">
+                                                                                                        <input _ngcontent-c8="" type="checkbox" ng-reflect-model="false" class="ng-untouched ng-pristine ng-valid" wtx-context="D9D15DFE-BEB3-4CE1-99BA-CF3AC3AB2C74">
+                                                                                                    </td>
+                                                                                                    <td _ngcontent-c8="">
+                                                                                                        Costillas
+                                                                                                    </td>
+                                                                                                    <td _ngcontent-c8="">
+                                                                                                        100
+                                                                                                    </td>
+                                                                                                    <td _ngcontent-c8="">
+                                                                                                        g
+                                                                                                    </td>
+                                                                                                </tr>
+                                                                                                <tr _ngcontent-c8="">
+                                                                                                    <td _ngcontent-c8="">
+                                                                                                        <input _ngcontent-c8="" type="checkbox" ng-reflect-model="false" class="ng-untouched ng-pristine ng-valid" wtx-context="4FD10B59-D5F0-48B7-816B-5F1110A8AD61">
+                                                                                                    </td>
+                                                                                                    <td _ngcontent-c8="">
+                                                                                                        Lomo Fino
+                                                                                                    </td>
+                                                                                                    <td _ngcontent-c8="">
+                                                                                                        100
+                                                                                                    </td>
+                                                                                                    <td _ngcontent-c8="">
+                                                                                                        g
+                                                                                                    </td>
+                                                                                                </tr>
+                                                                                            </tbody>
+                                                                                        </table>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div _ngcontent-c8="" class="row">
+                                                                                    <div _ngcontent-c8="" class="col-md-12">
+                                                                                        <button _ngcontent-c8="" class="btn btn-primary" disabled="">Agregar alimento</button>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div _ngcontent-c8="" class="row">
+                                                                                    <div _ngcontent-c8="" class="col-md-12">
+                                                                                        <table _ngcontent-c8="" class="table table-condensed table-striped">
+                                                                                            <thead _ngcontent-c8="">
+                                                                                                <tr _ngcontent-c8="">
+                                                                                                    <th _ngcontent-c8="">Nombre</th>
+                                                                                                    <th _ngcontent-c8="">Cantidad</th>
+                                                                                                    <th _ngcontent-c8="">Uni.Med.</th>
+                                                                                                    <th _ngcontent-c8="">Quitar</th>
+                                                                                                </tr>
+                                                                                            </thead>
+                                                                                            <tbody _ngcontent-c8="">
+                                                                                                <!--bindings={
+                                                                                                  "ng-reflect-ng-if": "false"
+                                                                                                }-->
+                                                                                                <!--bindings={
+                                                                                                  "ng-reflect-ng-for-of": ""
+                                                                                                }-->
+                                                                                                <tr _ngcontent-c8="">
+                                                                                                    <td _ngcontent-c8="">
+                                                                                                        Chuletas
+                                                                                                    </td>
+                                                                                                    <td _ngcontent-c8="">
+                                                                                                        100
+                                                                                                    </td>
+                                                                                                    <td _ngcontent-c8="">
+                                                                                                        g
+                                                                                                    </td>
+                                                                                                    <td _ngcontent-c8="">
+                                                                                                        <button _ngcontent-c8="" class="btn-link">
+                                                                                                            <i _ngcontent-c8="" class="fa fa-trash"></i>
+                                                                                                        </button>
+                                                                                                    </td>
+                                                                                                </tr>
+                                                                                            </tbody>
+                                                                                        </table>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </gha-panel-seleccion-alimentos>
+
+                                                                        </div>
+
+                                                                    </div>
+                                                                </ngb-accordion>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </gha-panel-programacion-dia>
+
+                                            </div>
+
+                                            <!--bindings={
+                                              "ng-reflect-ng-if": "false"
+                                            }-->
+
+                                        </div>
+                                    </ngb-tabset>
+                                </div>
+                            </div>
+                        </gha-programacion-diaria>
+                    </div>
+                </div>
+                <div _ngcontent-c3="" class="row">
+                    <div _ngcontent-c3="" class="col-md-12">
+                        <button _ngcontent-c3="" class="btn btn-primary">Guardar</button>
+                        <button _ngcontent-c3="" class="btn btn-secondary">Cancelar</button>
+                    </div>
+                </div>
+                <gha-informacion-nutricional _ngcontent-c3="" _nghost-c6="" ng-reflect-programaciones-dia="[object Object]">
+                    <div _ngcontent-c6="" class="row">
+
+                    </div>
+                </gha-informacion-nutricional>
+            </gha-plan-alimenticio>
+        </div>
+    </app-planes-alimenticios>
+</div>
+

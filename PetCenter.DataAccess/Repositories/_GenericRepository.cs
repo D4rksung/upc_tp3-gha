@@ -18,6 +18,7 @@ namespace PetCenter.DataAccess.Repositories
             _context = context;
         }
 
+        #region listarEspecies
         public List<GenericoBE> listarEspecies()
         {
             using (var command = _context.CreateCommand())
@@ -27,7 +28,9 @@ namespace PetCenter.DataAccess.Repositories
                 return this.ToList(command).ToList();
             }
         }
+        #endregion
 
+        #region listarRazas
         public List<GenericoBE> listarRazas(int especie)
         {
             using (var command = _context.CreateCommand())
@@ -38,7 +41,9 @@ namespace PetCenter.DataAccess.Repositories
                 return this.ToList(command).ToList();
             }
         }
+        #endregion
 
+        #region listarCondicionesMedicas
         public List<GenericoBE> listarCondicionesMedicas()
         {
             using (var command = _context.CreateCommand())
@@ -48,7 +53,9 @@ namespace PetCenter.DataAccess.Repositories
                 return this.ToList(command).ToList();
             }
         }
+        #endregion
 
+        #region listarNivelBMI
         public List<GenericoBE> listarNivelBMI()
         {
             using (var command = _context.CreateCommand())
@@ -58,6 +65,9 @@ namespace PetCenter.DataAccess.Repositories
                 return this.ToList(command).ToList();
             }
         }
+        #endregion
+
+        #region listarEtapasVida
         public List<GenericoBE> listarEtapasVida()
         {
             using (var command = _context.CreateCommand())
@@ -67,7 +77,9 @@ namespace PetCenter.DataAccess.Repositories
                 return this.ToList(command).ToList();
             }
         }
+        #endregion
 
+        #region listarCategoria
         public List<GenericoBE> listarCategoria()
         {
             using (var command = _context.CreateCommand())
@@ -77,7 +89,9 @@ namespace PetCenter.DataAccess.Repositories
                 return this.ToList(command).ToList();
             }
         }
+        #endregion
 
+        #region listarSubCategoria
         public List<GenericoBE> listarSubCategoria(int categoria)
         {
             using (var command = _context.CreateCommand())
@@ -88,6 +102,12 @@ namespace PetCenter.DataAccess.Repositories
                 return this.ToList(command).ToList();
             }
         }
+        #endregion
+
+
+
+
+
         //public User CreateUser(User user)
         //{
         //    using (var command = _context.CreateCommand())

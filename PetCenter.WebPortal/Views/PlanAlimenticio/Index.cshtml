@@ -4,5 +4,76 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
-viene desde plan alimentico..
+<script src="~/Scripts/_hospedajePlanAlimenticio.js"></script>
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="box">
+        <div class="contenido-ficha">
+            <section>
+                <h1 class="text-center">Gestionar Plan Alimenticio </h1>
+            </section>
+
+        </div>
+    </div>
+</div>
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding:0px 2px 0px 2px;">
+    <div class="row col-lg-5 col-md-5 col-sm-5 col-xs-12">
+        <div class="form-group">
+            <label class="sr-only" for="txtNombrePlanAlimenticio"></label>
+            <div class="input-group">
+                <div class="input-group-addon">Nombre:</div>
+                <input type="text" name="txtNombrePlanAlimenticio" id="txtNombrePlanAlimenticio" class="form-control" placeholder="Ingrese nombre de plan alimenticio" />
+            </div>
+        </div>
+    </div>
+    <div class="row col-lg-3 col-md-3 col-sm-3 col-xs-12">
+        <div class="input-group">
+            <div class="input-group-addon">Especie:<font size="2" color="red"> </font></div>
+            <select required="" class="form-control" name="cbEspecies" id="cbEspecies">
+                <option value="">Todos</option>
+            </select>
+        </div>
+    </div>
+    <div class="row col-lg-3 col-md-3 col-sm-3 col-xs-12">
+        <div class="input-group">
+            <div class="input-group-addon">Condición Médica:<font size="2" color="red"> </font></div>
+            <select required="" class="form-control" name="cbCondicionesMedicas" id="cbCondicionesMedicas">
+                <option value="">Todos</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="row col-lg-1 col-md-1 col-sm-1 col-xs-12">
+        <div class="form-group">
+            <div class="input-group">
+                <a href="#" id="BuscarPlanesAlimenticios" class="btn btn-danger" role="button"  >Buscar</a>
+            </div>
+        </div>
+    </div>
+    
+</div>
+
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="row col-lg-1 col-md-1 col-sm-1 col-xs-12">
+        <div class="form-group">
+            <div class="input-group">
+                <a href="Nuevo" id="AgregarPlanAlimenticio" class="btn btn-danger" role="button">Nuevo</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="row col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div id="divPlanesAlimenticios" class="table-responsive">
+        <table id="tblPlanesAlimenticios" class="table table-striped">
+            <tbody>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Especie</th>
+                    <th>Condición Médica</th>
+                    <th>Acciones</th>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

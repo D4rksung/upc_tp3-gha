@@ -47,7 +47,6 @@
     <Compile Include="MonitoreoLogic.cs" />
     <Compile Include="PlanAlimenticioLogic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TrasladoLogic.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PetCenter.BusinessEntities\PetCenter.BusinessEntities.csproj">
