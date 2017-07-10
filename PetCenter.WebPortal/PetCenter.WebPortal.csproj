@@ -140,6 +140,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\capturas\20170703002025_1.jpg" />
     <Content Include="Content\fotos\1.jpg" />
     <Content Include="Content\fotos\2.jpg" />
     <Content Include="Content\fotos\3.jpg" />
@@ -256,7 +257,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\capturas\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

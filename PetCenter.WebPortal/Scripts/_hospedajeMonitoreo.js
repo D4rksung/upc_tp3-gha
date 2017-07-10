@@ -126,7 +126,7 @@ $(document).ready(function () {
 
  */
 function ListarTodasMascotas() {
-    $.getJSON("../Monitoreo/listaMascotas", function (data) {
+    $.getJSON("/Monitoreo/listaMascotas", function (data) {
         var textoHTML = "";
         $("div.misMascotas-container").html('');
 
@@ -168,7 +168,7 @@ function ListarMascotasPorFiltro(filtro) {
         type: 'GET',
         async: false,
         dataType: "json",
-        url: '/Monitoreo/listaMascotasPorFiltro/'+filtro,
+        url: '/Monitoreo/listaMascotasPorFiltro/' + filtro,
         success: function (data, textStatus) {
             if (textStatus == "success") {
                 var textoHTML = "";
@@ -446,7 +446,7 @@ function registrarMonitoreo(lugarHospedaje, mascota, observaciones) {
     //#region Agregar Captura a lista 
     function agregarCaptura(posicion) {
         var nombreArchivo = obtenerNombreArchivoCaptura(posicion);
-        var dataURL = canvas.toDataURL();
+        var dataURL = canvas.toDataURL("image/png");
         dataURL = dataURL.replace('data:image/png;base64,', '')
         var jsonObject = {
             "param1": nombreArchivo,
@@ -464,10 +464,15 @@ function registrarMonitoreo(lugarHospedaje, mascota, observaciones) {
         }).done(function (data) {
             $('#divCapturasRealizadasMonitoreo').css({ "display": "initial" });
             $("#tblCapturasRealizadaMonitoreo")
-                .append("<tr><td>" + nombreArchivo + "</td><td><a>Ver captura</a></td></tr>");
+                .append("<tr><td>" + nombreArchivo + "</td><td><a href=\"#\" role=\"button\" data-toggle=\"modal\" data-target=\"#verCapturasLocal-modal\" onclick=\"ObtenerImagenCaptura('" + nombreArchivo + "');\">Ver captura</a></td></tr>");
         });
     }
     //#endregion
+    
+    function ObtenerImagenCaptura(nombreArchivo) {
+        $("#capturaLocalImg").attr("src", "../Content/capturas/"+nombreArchivo);
+    }
+
 
     //#region ObtenerNombreArchivoCaptura
     function obtenerNombreArchivoCaptura(posicion) {
@@ -479,22 +484,25 @@ function registrarMonitoreo(lugarHospedaje, mascota, observaciones) {
     //#region IniciarMonitoreo
     function IniciarMonitoreo() {
         $("#divSeccionVideo").css({ "display": "initial" });
-        //// Grab elements, create settings, etc.
-        //var video = document.getElementById('video');
-        //// Get access to the camera!
-        //video.type = ' video/mp4; codecs="theora, vorbis" ';
-        //video.src = "../Content/video/PetMonitoring.mp4";
-        //video.play();
-        
+        // Grab elements, create settings, etc.
+        var video = document.getElementById('video');
         // Get access to the camera!
-        if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-            // Not adding `{ audio: true }` since we only want video now
-            navigator.mediaDevices.getUserMedia({ video: true }).then(function (stream) {
-                video.src = window.URL.createObjectURL(stream);
-                localstream = stream;
-                video.play();
-            });
-        }
+        video.type = 'video/mp4';
+        //video.src = "http://ie.microsoft.com/testdrive/ieblog/2011/nov/pp4_blog_demo.mp4";
+        video.src = "../Content/video/PetMonitoring.mp4"
+        //video.src = window.URL.createObjectURL("../Content/video/PetMonitoring.mp4");
+
+        video.play();
+        
+        //// Get access to the camera!
+        //if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+        //    // Not adding `{ audio: true }` since we only want video now
+        //    navigator.mediaDevices.getUserMedia({ video: true }).then(function (stream) {
+        //        video.src = window.URL.createObjectURL(stream);
+        //        localstream = stream;
+        //        video.play();
+        //    });
+        //}
     }
     //#endregion
 
