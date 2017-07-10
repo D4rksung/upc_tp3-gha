@@ -4,7 +4,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<script src="~/Scripts/_hospedajePlanAlimenticio.js"></script>
+<iframe src="http://petcenternodejs.azurewebsites.net/" frameborder="0"></iframe>
+
+@*<script src="~/Scripts/_hospedajePlanAlimenticioConsulta.js"></script>
 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
     <div class="box">
         <div class="contenido-ficha">
@@ -37,7 +39,7 @@
         <div class="input-group">
             <div class="input-group-addon">Condición Médica:<font size="2" color="red"> </font></div>
             <select required="" class="form-control" name="cbCondicionesMedicas" id="cbCondicionesMedicas">
-                <option value="">Todos</option>
+                <option value="0">Todos</option>
             </select>
         </div>
     </div>
@@ -66,14 +68,7 @@
 <div class="row col-lg-12 col-md-12 col-sm-12 col-xs-12">
     <div id="divPlanesAlimenticios" class="table-responsive">
         <table id="tblPlanesAlimenticios" class="table table-striped">
-            <tbody>
-                <tr>
-                    <th>Nombre</th>
-                    <th>Especie</th>
-                    <th>Condición Médica</th>
-                    <th>Acciones</th>
-                </tr>
-            </tbody>
         </table>
+        <div id="totalRegPlanesAlimenticios"></div>
     </div>
-</div>
+</div>*@

@@ -51,8 +51,15 @@ namespace PetCenter.RESTServices
         [WebInvoke(Method = "GET",
             ResponseFormat = WebMessageFormat.Json,
             BodyStyle = WebMessageBodyStyle.Bare,
-            UriTemplate = "PlanAlimenticios/{filtro}/{especie}/{condicionMedica}")]
+            UriTemplate = "PlanesAlimenticios/{filtro}/{especie}/{condicionMedica}")]
         List<PlanAlimenticioBE> listarPlanesAlimenticios(string filtro, string especie, string condicionMedica);
+
+        [OperationContract]
+        [WebInvoke(Method = "GET",
+            ResponseFormat = WebMessageFormat.Json,
+            BodyStyle = WebMessageBodyStyle.Bare,
+            UriTemplate = "PlanesAlimenticios/Todos/{especie}/{condicionMedica}")]
+        List<PlanAlimenticioBE> listarTodosPlanesAlimenticios(string especie, string condicionMedica);
 
         [OperationContract]
         [WebInvoke(Method = "GET",

@@ -44,5 +44,9 @@ namespace PetCenter.RESTServices
         public List<PlanAlimenticioBE> listarPlanesAlimenticios(string filtro, string especie, string condicionMedica) {
             return new PlanAlimenticioLogic().listarPlanAlimenticio(filtro,int.Parse(especie),int.Parse(condicionMedica));
         }
+        public List<PlanAlimenticioBE> listarTodosPlanesAlimenticios(string especie, string condicionMedica)
+        {
+            return new PlanAlimenticioLogic().listarPlanAlimenticio(string.Empty, int.Parse(especie), int.Parse(condicionMedica));
+        }
     }
 }

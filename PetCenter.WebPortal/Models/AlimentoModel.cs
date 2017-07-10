@@ -8,7 +8,9 @@ namespace PetCenter.WebPortal.Models
     public class AlimentoModel
     {
         public int codigo { get; set; }
-        public int MyProperty { get; set; }
-        //public int MyProperty { get; set; }
+        public string nombre { get; set; }
+        public string marca { get; set; }
+        public string unidadMedida { get; set; }
+        public int cantidad { get; set; }
     }
 }

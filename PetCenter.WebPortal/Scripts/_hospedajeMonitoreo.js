@@ -126,7 +126,7 @@ $(document).ready(function () {
 
  */
 function ListarTodasMascotas() {
-    $.getJSON("/Monitoreo/listaMascotas", function (data) {
+    $.getJSON("../Monitoreo/listaMascotas", function (data) {
         var textoHTML = "";
         $("div.misMascotas-container").html('');
 
@@ -479,9 +479,13 @@ function registrarMonitoreo(lugarHospedaje, mascota, observaciones) {
     //#region IniciarMonitoreo
     function IniciarMonitoreo() {
         $("#divSeccionVideo").css({ "display": "initial" });
-        // Grab elements, create settings, etc.
-        var video = document.getElementById('video');
-
+        //// Grab elements, create settings, etc.
+        //var video = document.getElementById('video');
+        //// Get access to the camera!
+        //video.type = ' video/mp4; codecs="theora, vorbis" ';
+        //video.src = "../Content/video/PetMonitoring.mp4";
+        //video.play();
+        
         // Get access to the camera!
         if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
             // Not adding `{ audio: true }` since we only want video now
@@ -497,6 +501,7 @@ function registrarMonitoreo(lugarHospedaje, mascota, observaciones) {
     //#region DetenerMonitoreo
     function DetenerMonitoreo() {
         $("#divSeccionVideo").css({ "display": "none" });
+        //var video = document.getElementById('video');
         video.pause();
         video.src = "";
         //localStream.getVideoTracks()[0].stop();

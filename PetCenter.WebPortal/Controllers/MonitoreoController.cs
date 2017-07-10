@@ -8,34 +8,39 @@ using System.Drawing;
 using System.Text;
 using System.Web.Script.Serialization;
 using System.Web.Mvc;
+using System.Configuration;
 using PetCenter.WebPortal.Models;
 namespace PetCenter.WebPortal.Controllers
 {
     public class MonitoreoController : Controller
     {
-        
+        #region Variables
+        private string endpointPetCenter;
+        #endregion
+
+        #region Constructor
+        public MonitoreoController()
+        {
+            endpointPetCenter = ConfigurationManager.AppSettings["endpointPetCenterRestServicesMonitoreo"];
+        }
+        #endregion
+
         public ActionResult Index()
         {
             return View();
         }
 
-
         #region ListarMascotas
         [HttpGet]
         public JsonResult listaMascotas()
         {
-            //listar
-            HttpWebRequest req = (HttpWebRequest)WebRequest
-                .Create("http://localhost/PetCenter.RESTServices/MonitoreoService.svc/Monitoreo/Mascotas/Todas/6");
-            req.Method = "GET";
-            HttpWebResponse res = (HttpWebResponse)req.GetResponse();
-            StreamReader reader = new StreamReader(res.GetResponseStream());
-            string mascotasHospedadasJson = reader.ReadToEnd();
+            string operacion = "Monitoreo/Mascotas/Todas/6";
+            string resultadoJSON = _Util.ObtenerResultadoJSONGET(string.Format("{0}{1}", endpointPetCenter, operacion));
             JavaScriptSerializer js = new JavaScriptSerializer();
-            List<MascotaHospedadaModel> ListaMascotasObtenidas = js.Deserialize<List<MascotaHospedadaModel>>(mascotasHospedadasJson);
-            var listaMascotas = ListaMascotasObtenidas;
+            List<MascotaHospedadaModel> ListaResultado = js.Deserialize<List<MascotaHospedadaModel>>(resultadoJSON);
+            var resultado = ListaResultado;
             //returning josn result  
-            return Json(listaMascotas, JsonRequestBehavior.AllowGet);
+            return Json(resultado, JsonRequestBehavior.AllowGet);
         }
         #endregion
 
@@ -43,18 +48,13 @@ namespace PetCenter.WebPortal.Controllers
         [HttpGet]
         public JsonResult listaMascotasPorFiltro(string param1)
         {
-            //listar
-            HttpWebRequest req = (HttpWebRequest)WebRequest
-                .Create(string.Format("http://localhost/PetCenter.RESTServices/MonitoreoService.svc/Monitoreo/Mascotas/{0}/6", param1));
-            req.Method = "GET";
-            HttpWebResponse res = (HttpWebResponse)req.GetResponse();
-            StreamReader reader = new StreamReader(res.GetResponseStream());
-            string mascotasHospedadasJson = reader.ReadToEnd();
+            string operacion =string.Format("Monitoreo/Mascotas/{0}/6",param1);
+            string resultadoJSON = _Util.ObtenerResultadoJSONGET(string.Format("{0}{1}", endpointPetCenter, operacion));
             JavaScriptSerializer js = new JavaScriptSerializer();
-            List<MascotaHospedadaModel> ListaMascotasObtenidas = js.Deserialize<List<MascotaHospedadaModel>>(mascotasHospedadasJson);
-            var listaMascotas = ListaMascotasObtenidas;
+            List<MascotaHospedadaModel> ListaResultado = js.Deserialize<List<MascotaHospedadaModel>>(resultadoJSON);
+            var resultado = ListaResultado;
             //returning josn result  
-            return Json(listaMascotas, JsonRequestBehavior.AllowGet);
+            return Json(resultado, JsonRequestBehavior.AllowGet);
         }
 
         #endregion
@@ -63,18 +63,13 @@ namespace PetCenter.WebPortal.Controllers
         [HttpGet]
         public JsonResult obtenerDatosMascota(string param1)
         {
-            //listar
-            HttpWebRequest req = (HttpWebRequest)WebRequest
-                .Create(string.Format("http://localhost/PetCenter.RESTServices/MonitoreoService.svc/Monitoreo/Mascota/{0}", param1));
-            req.Method = "GET";
-            HttpWebResponse res = (HttpWebResponse)req.GetResponse();
-            StreamReader reader = new StreamReader(res.GetResponseStream());
-            string mascotaJson = reader.ReadToEnd();
+            string operacion = string.Format("Monitoreo/Mascota/{0}", param1);
+            string resultadoJSON = _Util.ObtenerResultadoJSONGET(string.Format("{0}{1}", endpointPetCenter, operacion));
             JavaScriptSerializer js = new JavaScriptSerializer();
-            InformacionMascotaModel informacionMascota = js.Deserialize<InformacionMascotaModel>(mascotaJson);
-            var mascota = informacionMascota;
+            InformacionMascotaModel informacionMascota = js.Deserialize<InformacionMascotaModel>(resultadoJSON);
+            var resultado = informacionMascota;
             //returning josn result  
-            return Json(mascota, JsonRequestBehavior.AllowGet);
+            return Json(resultado, JsonRequestBehavior.AllowGet);
         }
 
         #endregion
@@ -83,16 +78,11 @@ namespace PetCenter.WebPortal.Controllers
         [HttpGet]
         public JsonResult listaMonitoreosMascota(string param1, string param2)
         {
-            //listar
-            HttpWebRequest req = (HttpWebRequest)WebRequest
-                .Create(string.Format("http://localhost/PetCenter.RESTServices/MonitoreoService.svc/Monitoreos/{0}/{1}", param1, param2));
-            req.Method = "GET";
-            HttpWebResponse res = (HttpWebResponse)req.GetResponse();
-            StreamReader reader = new StreamReader(res.GetResponseStream());
-            string monitoreosJson = reader.ReadToEnd();
+            string operacion = string.Format("Monitoreos/{0}/{1}", param1, param2);
+            string resultadoJSON = _Util.ObtenerResultadoJSONGET(string.Format("{0}{1}", endpointPetCenter, operacion));
             JavaScriptSerializer js = new JavaScriptSerializer();
-            List<MonitoreoMascotaModel> listaMonitoreosMascota = js.Deserialize<List<MonitoreoMascotaModel>>(monitoreosJson);
-            var resultado = listaMonitoreosMascota;
+            List<MonitoreoMascotaModel> listaResultado = js.Deserialize<List<MonitoreoMascotaModel>>(resultadoJSON);
+            var resultado = listaResultado;
             //returning josn result  
             return Json(resultado, JsonRequestBehavior.AllowGet);
         }
@@ -103,16 +93,11 @@ namespace PetCenter.WebPortal.Controllers
         [HttpGet]
         public JsonResult listaCapturasMonitoreos(string param1)
         {
-            //listar
-            HttpWebRequest req = (HttpWebRequest)WebRequest
-                .Create(string.Format("http://localhost/PetCenter.RESTServices/MonitoreoService.svc/Monitoreo/fotos/{0}", param1));
-            req.Method = "GET";
-            HttpWebResponse res = (HttpWebResponse)req.GetResponse();
-            StreamReader reader = new StreamReader(res.GetResponseStream());
-            string CapturasMonitoreoJson = reader.ReadToEnd();
+            string operacion = string.Format("Monitoreo/fotos/{0}", param1);
+            string resultadoJSON = _Util.ObtenerResultadoJSONGET(string.Format("{0}{1}", endpointPetCenter, operacion));
             JavaScriptSerializer js = new JavaScriptSerializer();
-            List<FotoMonitoreoModel> listaCapturasMonitoreo = js.Deserialize<List<FotoMonitoreoModel>>(CapturasMonitoreoJson);
-            var resultado = listaCapturasMonitoreo;
+            List<FotoMonitoreoModel> listaResultado = js.Deserialize<List<FotoMonitoreoModel>>(resultadoJSON);
+            var resultado = listaResultado;
             //returning josn result  
             return Json(resultado, JsonRequestBehavior.AllowGet);
         }
@@ -123,20 +108,11 @@ namespace PetCenter.WebPortal.Controllers
         [HttpPost]
         public JsonResult registrarMonitoreo(MonitoreoMascotaModel param1)
         {
-            
+            string operacion = "Monitoreo";
             string postdata = "{\"codigo\":0,\"lugarHospedaje\":" +param1.lugarHospedaje + ",\"mascota\":" + param1.mascota + ",\"observaciones\":\"" + param1.observaciones + "\"}";
-            byte[] data = Encoding.UTF8.GetBytes(postdata);
-            HttpWebRequest req = (HttpWebRequest)WebRequest.Create("http://localhost/PetCenter.RESTServices/MonitoreoService.svc/Monitoreo");
-            req.Method = "POST";
-            req.ContentLength = data.Length;
-            req.ContentType = "application/json";
-            var reqStream = req.GetRequestStream();
-            reqStream.Write(data, 0, data.Length);
-            var res = (HttpWebResponse)req.GetResponse();
-            StreamReader reader = new StreamReader(res.GetResponseStream());
-            string monitoreoJson = reader.ReadToEnd();
+            string resultadoJson = _Util.ObtenerResultadoJSONPOST(postdata, string.Format("{0}{1}", endpointPetCenter, operacion));
             JavaScriptSerializer js = new JavaScriptSerializer();
-            MonitoreoMascotaModel monitoreoCreado = js.Deserialize<MonitoreoMascotaModel>(monitoreoJson);
+            MonitoreoMascotaModel monitoreoCreado = js.Deserialize<MonitoreoMascotaModel>(resultadoJson);
             var resultado = monitoreoCreado;
             //returning josn result  
             return Json(resultado, JsonRequestBehavior.AllowGet);
@@ -147,27 +123,18 @@ namespace PetCenter.WebPortal.Controllers
         [HttpPost]
         public JsonResult registrarFotoMonitoreo(FotoMonitoreoModel param1)
         {
-
+            string operacion = "Monitoreo/Foto";
             string postdata = "{\"codigo\":0,\"monitoreo\":" + param1.monitoreo + ",\"nombre\":\"" + param1.nombre + "\"}";
-            byte[] data = Encoding.UTF8.GetBytes(postdata);
-            HttpWebRequest req = (HttpWebRequest)WebRequest.Create("http://localhost/PetCenter.RESTServices/MonitoreoService.svc/Monitoreo/Foto");
-            req.Method = "POST";
-            req.ContentLength = data.Length;
-            req.ContentType = "application/json";
-            var reqStream = req.GetRequestStream();
-            reqStream.Write(data, 0, data.Length);
-            var res = (HttpWebResponse)req.GetResponse();
-            StreamReader reader = new StreamReader(res.GetResponseStream());
-            string fotoMonitoreoJson = reader.ReadToEnd();
+            string resultadoJson = _Util.ObtenerResultadoJSONPOST(postdata, string.Format("{0}{1}", endpointPetCenter, operacion));
             JavaScriptSerializer js = new JavaScriptSerializer();
-            FotoMonitoreoModel fotoMonitoreoCreado = js.Deserialize<FotoMonitoreoModel>(fotoMonitoreoJson);
+            FotoMonitoreoModel fotoMonitoreoCreado = js.Deserialize<FotoMonitoreoModel>(resultadoJson);
             var resultado = fotoMonitoreoCreado;
             //returning josn result  
             return Json(resultado, JsonRequestBehavior.AllowGet);
         }
         #endregion
 
-        #region RegistrarMonitoreo
+        #region SubirCaptura
         [HttpPost]
         public JsonResult subirCaptura(string param1,string  param2)
         {

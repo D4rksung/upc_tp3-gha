@@ -11,8 +11,8 @@ namespace PetCenter.BusinessEntities
         public int codigo { get; set; }
         public string nombre { get; set; }
         public string descripcion { get; set; }
-        public int especie { get; set; }
-        public int condicionMedica { get; set; }
+        public string especie { get; set; }
+        public string condicionMedica { get; set; }
         public string fechaRegistro { get; set; }
     }
 }
